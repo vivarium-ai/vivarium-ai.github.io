@@ -10,8 +10,17 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/markdoc": "^0.15.8",
+    "@astrojs/solid-js": "^5.1.2",
     "@astrojs/starlight": "^0.36.1",
+    "@shoelace-style/shoelace": "^2.20.1",
     "astro": "^5.6.1",
-    "sharp": "^0.34.2"
+    "sharp": "^0.34.2",
+    "solid-js": "^1.9.10"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.16",
+    "mermaid": "^11.12.1",
+    "tailwindcss": "^4.1.16"
   }
 }
