@@ -1,0 +1,22 @@
+name: Deploy Pages
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: withastro/action@v2    # official Astro Pages action
+        with:
+          node-version: 20
+          package-manager: npm
+          path: .
+          # If your repo is user/gh-pages project subpath, set base in astro.config too.
