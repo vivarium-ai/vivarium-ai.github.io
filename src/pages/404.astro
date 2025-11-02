@@ -1,0 +1,20 @@
+---
+import SiteShell from "@/layouts/SiteShell.astro";
+---
+<SiteShell>
+  <slot slot="head">
+    <title>Page not found</title>
+    <meta name="robots" content="noindex" />
+  </slot>
+
+  <section class="mx-auto flex min-h-[60vh] max-w-2xl flex-col items-start justify-center gap-4 px-6 py-16">
+    <p class="text-sm font-medium text-slate-500 dark:text-slate-400">404</p>
+    <h1 class="text-3xl font-semibold tracking-tight sm:text-4xl">Page not found</h1>
+    <p class="text-slate-600 dark:text-slate-300">
+      The page you’re looking for doesn’t exist or was moved.
+    </p>
+    <a href="/" class="text-blue-600 dark:text-blue-300 underline underline-offset-4">
+      Go back home
+    </a>
+  </section>
+</SiteShell>

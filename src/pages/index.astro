@@ -1,108 +1,13 @@
 ---
-import BaseLayout from "@/layouts/BaseLayout.astro";
-import { getCollection } from "astro:content";
-
-// grab a few recent things so the page isn't empty even with little content
-const blog = await getCollection("blog");
-const newsletters = await getCollection("newsletters");
-const docs = await getCollection("docs");
-
-// newest first
-const recentBlog = blog
-  .filter((p) => p.data.published !== false)
-  .sort((a, b) => new Date(b.data.date ?? 0).getTime() - new Date(a.data.date ?? 0).getTime())
-  .slice(0, 3);
-
-const recentNewsletters = newsletters
-  .filter((n) => n.data.published !== false)
-  .sort((a, b) => new Date(b.data.date ?? 0).getTime() - new Date(a.data.date ?? 0).getTime())
-  .slice(0, 3);
-
-// for docs, just show 3 items from anywhere
-const recentDocs = docs.slice(0, 3);
+import SiteShell from '@/layouts/SiteShell.astro';
 ---
+<SiteShell>
+  <slot slot="head">
+    <title>Home</title>
+  </slot>
 
-<BaseLayout title="Vivarium AI">
-  <section class="mb-10">
-    <h1 class="text-3xl font-bold mb-2">Vivarium AI</h1>
-    <p class="text-slate-600 max-w-2xl">
-      Astro + SolidJS + Tailwind + Markdoc + Mermaid — statically built for GitHub Pages.
-    </p>
+  <section class="p-6">
+    <h1 class="text-3xl font-semibold">Hello</h1>
+    <p class="mt-2 text-slate-600 dark:text-slate-300">Welcome.</p>
   </section>
-
-  <section class="grid gap-8 md:grid-cols-3">
-    <div>
-      <h2 class="text-lg font-semibold mb-3">
-        Latest blog
-        <a href="/blog/" class="text-sm text-slate-500 hover:text-slate-700 ml-2">View all →</a>
-      </h2>
-      {recentBlog.length === 0 ? (
-        <p class="text-slate-500 text-sm">No posts yet.</p>
-      ) : (
-        <ul class="space-y-2">
-          {recentBlog.map((post) => (
-            <li>
-              <a href={`/blog/${post.slug}/`} class="text-slate-900 hover:underline">
-                {post.data.title}
-              </a>
-              {post.data.date && (
-                <p class="text-xs text-slate-500">{post.data.date}</p>
-              )}
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
-
-    <div>
-      <h2 class="text-lg font-semibold mb-3">
-        Newsletter
-        <a href="/newsletters/" class="text-sm text-slate-500 hover:text-slate-700 ml-2">View all →</a>
-      </h2>
-      {recentNewsletters.length === 0 ? (
-        <p class="text-slate-500 text-sm">No newsletters yet.</p>
-      ) : (
-        <ul class="space-y-2">
-          {recentNewsletters.map((item) => (
-            <li>
-              <a href={`/newsletters/${item.slug}/`} class="text-slate-900 hover:underline">
-                {item.data.title ?? item.slug}
-              </a>
-              {item.data.date && (
-                <p class="text-xs text-slate-500">{item.data.date}</p>
-              )}
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
-
-    <div>
-      <h2 class="text-lg font-semibold mb-3">
-        Docs
-        <a href="/docs/" class="text-sm text-slate-500 hover:text-slate-700 ml-2">Browse →</a>
-      </h2>
-      {recentDocs.length === 0 ? (
-        <p class="text-slate-500 text-sm">No docs yet.</p>
-      ) : (
-        <ul class="space-y-2">
-          {recentDocs.map((doc) => (
-            <li>
-              <a href={`/docs/${doc.slug}/`} class="text-slate-900 hover:underline">
-                {doc.data.title ?? doc.slug}
-              </a>
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
-  </section>
-
-  <section class="mt-10">
-    <h2 class="text-lg font-semibold mb-3">CLI Reference</h2>
-    <p class="text-slate-600 text-sm mb-2">
-      Command and subcommand docs:
-      <a href="/reference/" class="ml-1 text-slate-900 underline">/reference/</a>
-    </p>
-  </section>
-</BaseLayout>
+</SiteShell>
