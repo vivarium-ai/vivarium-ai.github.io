@@ -1,0 +1,63 @@
+---
+import { getCollection } from "astro:content";
+const docs = await getCollection("docs");
+const byKind = {
+  tutorial: [] as typeof docs,
+  howto: [] as typeof docs,
+  explanation: [] as typeof docs,
+  reference: [] as typeof docs,
+};
+for (const d of docs) {
+  const kind = d.data.kind ?? "explanation";
+  byKind[kind].push(d);
+}
+for (const kind of Object.keys(byKind)) {
+  // order within kind
+  // @ts-ignore
+  byKind[kind].sort((a, b) => (a.data.order ?? 999) - (b.data.order ?? 999));
+}
+---
+
+<html lang="en">
+  <head><title>Docs</title></head>
+  <body class="prose mx-auto p-6">
+    <h1>Documentation</h1>
+
+    <section>
+      <h2>Tutorials</h2>
+      <p>Start here, step by step.</p>
+      <ul>
+        {byKind.tutorial.map((d) => (
+          <li><a href={`/docs/${d.slug}/`}>{d.data.title}</a></li>
+        ))}
+      </ul>
+    </section>
+
+    <section>
+      <h2>How-to guides</h2>
+      <ul>
+        {byKind.howto.map((d) => (
+          <li><a href={`/docs/${d.slug}/`}>{d.data.title}</a></li>
+        ))}
+      </ul>
+    </section>
+
+    <section>
+      <h2>Explanations</h2>
+      <ul>
+        {byKind.explanation.map((d) => (
+          <li><a href={`/docs/${d.slug}/`}>{d.data.title}</a></li>
+        ))}
+      </ul>
+    </section>
+
+    <section>
+      <h2>Reference</h2>
+      <ul>
+        {byKind.reference.map((d) => (
+          <li><a href={`/docs/${d.slug}/`}>{d.data.title}</a></li>
+        ))}
+      </ul>
+    </section>
+  </body>
+</html>

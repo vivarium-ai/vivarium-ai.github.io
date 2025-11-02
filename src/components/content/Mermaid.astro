@@ -1,0 +1,16 @@
+---
+import { renderMermaidToSvg } from "@/lib/mermaid-processor";
+
+// Markdoc passes children as `Astro.slots.default()`
+const { code = "", title } = Astro.props;
+const slot = await Astro.slots.render("default");
+const mermaidCode = code || slot?.toString()?.trim() || "";
+
+// call our Node helper — runs only at build/SSR time
+const svgPath = await renderMermaidToSvg(mermaidCode);
+---
+
+{title && <p class="text-sm text-gray-400 mb-2">{title}</p>}
+
+<!-- simplest: just embed the SVG -->
+<img src={svgPath} alt={title ?? "Mermaid diagram"} loading="lazy" class="max-w-full" />

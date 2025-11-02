@@ -1,0 +1,49 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+// build-time: tell Astro which pages exist
+export async function getStaticPaths() {
+  const docs = await getCollection("docs");
+
+  const howtos = docs.filter((d) => d.id.startsWith("howtos/"));
+
+  if (!howtos.length) return [];
+
+  return await Promise.all(
+    howtos.map(async (entry) => {
+      const slug = entry.id
+        .replace(/^howtos\//, "")
+        .replace(/\.mdoc?$/, "")
+        .replace(/\.mdx?$/, "");
+      return {
+        params: { slug },
+        props: { entry },
+      };
+    })
+  );
+}
+
+// runtime (well, build-time render): we get the entry from props
+const { entry } = Astro.props;
+
+if (!entry) {
+  // this should basically never happen if getStaticPaths is correct
+  throw new Error("How-to not found");
+}
+
+const { Content } = await entry.render();
+---
+
+<BaseLayout title={entry.data.title ?? "How-to"}>
+  <article class="prose max-w-none">
+    <p class="text-xs uppercase tracking-wide text-slate-400 mb-4">
+      How-to
+    </p>
+    <h1>{entry.data.title ?? "Untitled how-to"}</h1>
+    {entry.data.description && (
+      <p class="text-slate-500 mb-6">{entry.data.description}</p>
+    )}
+    <Content />
+  </article>
+</BaseLayout>

@@ -4,25 +4,30 @@ import starlight from '@astrojs/starlight';
 import solidJs from '@astrojs/solid-js';
 import markdoc from '@astrojs/markdoc';
 
-// https://astro.build/config
 export default defineConfig({
+  output: "static",
   site: 'https://vivarium-ai.com',
   base: '/',   // omit or leave as '/'
 
   integrations: [starlight({
-    title: 'My Docs',
-    social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/withastro/starlight' }],
+    title: "Vivarium AI Docs",
+    social: [{ icon: 'github', label: 'Vivarium', href: 'https://github.com/vivarium-ai' }],
     sidebar: [
       {
-        label: 'Guides',
-        items: [
-          // Each item here is one entry in the navigation menu.
-          { label: 'Example Guide', slug: 'guides/example' },
-        ],
+        label: "Tutorials",
+        autogenerate: { directory: "docs/tutorials" },
       },
       {
-        label: 'Reference',
-        autogenerate: { directory: 'reference' },
+        label: "How-tos",
+        autogenerate: { directory: "docs/howtos" },
+      },
+      {
+        label: "Explanations",
+        autogenerate: { directory: "docs/explanations" },
+      },
+      {
+        label: "Reference",
+        autogenerate: { directory: "docs/reference" },
       },
     ],
   }), solidJs(), markdoc()],

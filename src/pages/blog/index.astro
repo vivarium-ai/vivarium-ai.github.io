@@ -1,0 +1,22 @@
+---
+import { getCollection } from "astro:content";
+const posts = await getCollection("blog", (p) => p.data.published !== false);
+const sorted = posts.sort(
+  (a, b) => new Date(b.data.date ?? 0).getTime() - new Date(a.data.date ?? 0).getTime()
+);
+---
+
+<html lang="en">
+  <head><title>Blog</title></head>
+  <body class="prose mx-auto p-6">
+    <h1>Blog</h1>
+    <ul>
+      {sorted.map((post) => (
+        <li>
+          <a href={`/blog/${post.slug}/`}>{post.data.title}</a>
+          {post.data.date && <span class="block text-sm text-gray-500">{post.data.date}</span>}
+        </li>
+      ))}
+    </ul>
+  </body>
+</html>

@@ -48,6 +48,8 @@ jobs:
         run: npm ci
 
       - name: Build with Astro
+        env:
+          PUPPETEER_CACHE_DIR: ./node_modules/.puppeteer_cache
         uses: withastro/action@v3
 
   deploy:

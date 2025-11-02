@@ -1,0 +1,113 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+// 1) pre-render everything under src/content/reference/**
+export async function getStaticPaths() {
+  const entries = await getCollection("reference");
+
+  // no reference yet? that's okay
+  if (!entries.length) return [];
+
+  return entries.map((entry) => {
+    // entry.id looks like:
+    //  - "vivarium/index.mdoc"
+    //  - "vivarium/world/index.mdoc"
+    //  - "vivarium/world/create.mdoc"
+    //
+    // we want the URL part after removing extension and "index"
+    const withoutExt = entry.id.replace(/\.(mdoc|mdx|md)$/, "");
+
+    // remove trailing "/index" → directory pages become just the directory
+    const clean = withoutExt.replace(/\/index$/, "");
+
+    // turn "vivarium/world/create" into ["vivarium","world","create"]
+    const segments = clean.split("/").filter(Boolean);
+
+    return {
+      params: { slug: segments },
+      props: { entryId: entry.id },
+    };
+  });
+}
+
+// 2) at render time, find the entry again (or fall back by slug)
+const { entryId } = Astro.props;
+const all = await getCollection("reference");
+
+// entryId will be something like "vivarium/world/index.mdoc"
+let entry = all.find((e) => e.id === entryId);
+
+if (!entry) {
+  throw new Error(`Reference entry not found: ${entryId}`);
+}
+
+const { Content } = await entry.render();
+
+// figure out the “prefix” so we can list subcommands
+// e.g. for "vivarium/world/index.mdoc" → "vivarium/world/"
+const entryDirPrefix = entry.id.endsWith("index.mdoc") || entry.id.endsWith("index.md")
+  ? entry.id.replace(/index\.(mdoc|mdx|md)$/, "")
+  : entry.id.replace(/\.(mdoc|mdx|md)$/, "") + "/";
+
+// build breadcrumbs from the URL params
+const slugParts = Astro.params.slug as string[]; // e.g. ["vivarium","world","create"]
+const breadcrumbs = [
+  { name: "Reference", href: "/reference/" },
+  ...slugParts.map((part, idx) => ({
+    name: part,
+    href: "/reference/" + slugParts.slice(0, idx + 1).join("/") + "/",
+  })),
+];
+
+// find immediate children (same prefix, but not self)
+const children = all
+  .filter((e) => e.id.startsWith(entryDirPrefix) && e.id !== entry.id)
+  .map((child) => {
+    const withoutExt = child.id.replace(/\.(mdoc|mdx|md)$/, "");
+    const clean = withoutExt.replace(/\/index$/, "");
+    const href = "/reference/" + clean + "/";
+    return {
+      title: child.data.title ?? clean.split("/").at(-1),
+      href,
+    };
+  })
+  // sort to keep it stable
+  .sort((a, b) => a.title.localeCompare(b.title));
+---
+
+<BaseLayout title={entry.data.title ?? "Reference"}>
+  <article class="prose max-w-none">
+    {/* breadcrumbs */}
+    <nav class="text-sm text-slate-500 mb-4 flex gap-1 flex-wrap">
+      {breadcrumbs.map((b, i) => (
+        <>
+          {i > 0 && <span>/</span>}
+          <a href={b.href} class="hover:text-slate-800">{b.name}</a>
+        </>
+      ))}
+    </nav>
+
+    <h1>{entry.data.title ?? slugParts?.at(-1) ?? "Untitled"}</h1>
+    {entry.data.description && (
+      <p class="text-slate-500 mb-6">{entry.data.description}</p>
+    )}
+
+    <Content />
+
+    {children.length > 0 && (
+      <section class="mt-10">
+        <h2 class="text-base font-semibold text-slate-900 mb-2">Subcommands</h2>
+        <ul class="list-disc pl-5 space-y-1">
+          {children.map((child) => (
+            <li>
+              <a href={child.href} class="text-slate-700 hover:text-slate-900">
+                {child.title}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+  </article>
+</BaseLayout>

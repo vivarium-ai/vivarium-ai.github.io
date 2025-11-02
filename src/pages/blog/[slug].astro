@@ -1,0 +1,37 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+// 1) tell Astro what pages to build
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+
+  // if no posts yet, that's OK — just return []
+  if (!posts.length) return [];
+
+  return posts.map((post) => ({
+    params: { slug: post.slug }, // ← /blog/<slug>/
+    props: { post },
+  }));
+}
+
+// 2) on the page, use the post we passed in props
+const { post } = Astro.props;
+
+// if somehow we got here without a post, show a friendly message
+if (!post) {
+  throw new Error("Blog post not found");
+}
+
+const { Content } = await post.render();
+---
+
+<BaseLayout title={post.data.title}>
+  <article class="prose max-w-none">
+    <h1>{post.data.title}</h1>
+    {post.data.date && (
+      <p class="text-sm text-slate-500">{post.data.date}</p>
+    )}
+    <Content />
+  </article>
+</BaseLayout>

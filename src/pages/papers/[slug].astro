@@ -1,0 +1,28 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+  const items = await getCollection("papers");
+  if (!items.length) return [];
+  return items.map((item) => ({
+    params: { slug: item.slug },
+    props: { item },
+  }));
+}
+
+const { item } = Astro.props;
+if (!item) {
+  throw new Error("Newsletter not found");
+}
+const { Content } = await item.render();
+---
+
+<BaseLayout title={item.data.title ?? item.slug}>
+  <article class="prose mx-auto">
+    <h1>{item.data.title ?? item.slug}</h1>
+    {item.data.date && <p class="text-sm text-gray-500">{item.data.date}</p>}
+    <Content />
+  </article>
+</BaseLayout>
+

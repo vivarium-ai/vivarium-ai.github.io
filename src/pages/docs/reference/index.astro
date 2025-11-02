@@ -1,0 +1,45 @@
+---
+import { getCollection } from "astro:content";
+
+const all = await getCollection("reference");
+
+// bucket by first path segment
+const commands = new Map<string, typeof all>();
+
+for (const entry of all) {
+  const [cmd] = entry.id.split("/");
+  if (!commands.has(cmd)) {
+    commands.set(cmd, []);
+  }
+  commands.get(cmd)!.push(entry);
+}
+
+// turn into array for rendering
+const commandList = Array.from(commands.entries()).map(([name, entries]) => {
+  // look for a command-level index  (e.g. vivarium/index.mdoc)
+  const index = entries.find((e) => e.id === `${name}/index.mdoc` || e.id === `${name}/index.md`);
+  return {
+    name,
+    index,
+  };
+}).sort((a, b) => a.name.localeCompare(b.name));
+---
+
+<main class="prose mx-auto p-6">
+  <h1>Reference</h1>
+  <p>CLI-style reference. Pick a command to see its subcommands.</p>
+
+  <ul>
+    {commandList.map((cmd) => (
+      <li>
+        <a href={`/reference/${cmd.name}/`}>
+          {cmd.index?.data.title ?? cmd.name}
+        </a>
+        {cmd.index?.data.description && (
+          <p class="text-sm text-gray-500">{cmd.index.data.description}</p>
+        )}
+      </li>
+    ))}
+  </ul>
+</main>
+
