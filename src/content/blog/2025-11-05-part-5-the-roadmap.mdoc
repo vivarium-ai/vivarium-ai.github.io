@@ -4,7 +4,7 @@ author: Brian Shirai
 date: 2025-11-05
 ---
 
-Posts in this series:
+### Posts in this series:
 
 * [The Vivarium AI Experimentation Platform](/blog/2025-11-05-the-vivarium-ai-experimentation-platform/)
 * [Part 1: The Agents](/blog/2025-11-05-part-1-the-agents/)
@@ -13,3 +13,62 @@ Posts in this series:
 * [Part 4: The Infrastructure](/blog/2025-11-05-part-4-the-infrastructure/)
 * [Part 5: The Roadmap](/blog/2025-11-05-part-5-the-roadmap/)
 
+## Creating Visibility to aid Understanding
+
+Vivarium is a concept that will span many systems and components. These systems may be running locally or in the cloud. You may be running them in isolation, or interacting in a shared system.
+
+Building something this complex requires a lot of coordination across teams, organizations, technologies, etc. There's no easy way to outline and keep track of all this, but there are many process-heavy, confusing, and complex ways to do so out there in industry. We'd like to avoid all that wasted time and money.
+
+For now, the stages below, which represent significant capabilities of the Vivarium system, are represented in GitHub milestones on the core [vivarium repository](https://github.com/vivarium-ai/vivarium).
+
+In addition to the milestones, there are the following GitHub Project at the organization level to help collect current and up-coming work into subject areas:
+
+* [Agents](https://github.com/orgs/vivarium-ai/projects/1)
+* [Languages](https://github.com/orgs/vivarium-ai/projects/2)
+* [Tools](https://github.com/orgs/vivarium-ai/projects/3)
+* [Infrastructure](https://github.com/orgs/vivarium-ai/projects/4)
+
+These subject areas are not perfect and more can be created as needed, but organization level projects allow associating issues and pull-requests from various repositories into one place, and they can be shown in different displays, like boards, tables, and roadmaps.
+
+### Milestones
+
+* **[Stage 1: The Essential Interfaces](https://github.com/vivarium-ai/vivarium/milestone/1)**: A system to download and run. This first stage should be the simplest possible way to run a system with an agent.:
+  * **Agent:** The ability to do something analogous to “Hello, world”.
+  * **Languages:** The first integration with the Rubinius language system.
+  * **Tools:** Something simple like a calculator.
+  * **Infrastructure:**
+    * Possibly nothing more than a single Docker container.
+    * The beginning of the system-wide, integrated telemetry.
+
+* **[Stage 2: One AI Model in an Agent](https://github.com/vivarium-ai/vivarium/milestone/2):** Start to build out the agent “interface”:
+  * **Agent:** Generally using “interface” rather than “API” because while it may be accessible via an API, the intention is to be more general (e.g. it could have a text chat interface, or access to that functionality via a REST or gRPC API equivalently).
+  * **Languages:** Integrate the language system but it is not used yet.
+  * **Tools:** Define a simple, non-language interface.
+  * **Infrastructure:** Advance from the "Hello, world" system to one with specific components:
+    1. The computational process representing the world, which “contains” agents and tools;
+    2. The computational process that is the agent (or proxy using an “agent” capability via API);
+    3. The computational process that is a tool;
+
+* **[Stage 3: An AI Model Connected to a Tool](https://github.com/vivarium-ai/vivarium/milestone/3):** A task, objective, or benchmark:
+  * **Agent:** The entire point of the AI agent is to do something useful. Similar to pure functional programming languages, without IO, there would be no way to see that computation occurred. So this should be an input, processing, output sequence (or loop).
+  * **Languages:** Introduce a simple language interface between the agent and tool.
+  * **Tools:** The tooling interface generalizes to more than one tool to enable an agent to start to select according to a task or objective.
+  * **Infrastructure:** Begin to introduce the ability to configure the infrastructure.
+
+* **[Stage 4: More than One AI Model](https://github.com/vivarium-ai/vivarium/milestone/4):** Each agent capable of performing their own task or pursuing their own goal using tools but not interacting.
+  * **Agent:** A core assumption of Vivarium is that multiple agents will be operating, collaborating, or interacting. So this would be the simplest possible multi-agent configuration.
+  * **Languages:** Introduce the language system *as a tool* the agents can interact with.
+  * **Tools:** Alongside "language-as-tool", improve the tool interface to be updated with new language instances.
+  * **Infrastructure:** Continue expanding the capabilities of the telemetry and provide it as feedback to the agents.
+
+* **[Stage 5: Agents Interacting](https://github.com/vivarium-ai/vivarium/milestone/5):** Once agents are operating with feedback loops on their behavior and use of tools, they can start to interact with other agents.
+  * **Agent:** The simplest possible implementation of a sequence of activities or actions toward a goal. The goal state is necessary to distinguish “progress” from mere “movement”.
+  * **Languages:** Enable agents to interact on defining their own shared language interface.
+  * **Tools:** Tools and agents are distinct, but enable agents to enlist other agents to perform tasks they previously only used tools for.
+  * **Infrastructure:** Begin to generalize the configuration capabilities to enable different Vivarium instances to interact.
+
+* **[Stage 6: Agents Collaborating](https://github.com/vivarium-ai/vivarium/milestone/6):** This capability opens up the potential for finite and infinite games, collective goals, and societies.
+  * **Agent:** Modifying inter-agent and tool interfaces is a common capabiility.
+  * **Languages:** The language system itself is being improved by agents.
+  * **Tools:** Tools are not only used, but are created by agents.
+  * **Infrastructure:** The telemetry and configuration systems are open to control by agents, within parameters set by the system.
