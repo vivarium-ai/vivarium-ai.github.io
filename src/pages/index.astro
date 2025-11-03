@@ -1,5 +1,6 @@
 ---
 import SiteLayout from '@/layouts/SiteLayout.astro';
+import EmailCapture from '@/components/EmailCapture.astro';
 ---
 
 <SiteLayout title="Vivarium">
@@ -8,8 +9,18 @@ import SiteLayout from '@/layouts/SiteLayout.astro';
       Welcome to Vivarium
     </h1>
     <p class="mt-4 text-slate-400 max-w-2xl mx-auto">
-      Vivarium AI
+      <strong>vi&middot;var&middot;i&middot;um</strong> | vīˈverēəm |
     </p>
+    <p class="mt-4 text-slate-400 max-w-2xl mx-auto">
+      noun (plural <em>vivaria</em> | vīˈverēə |)
+      an enclosure, container, or structure adapted or prepared for keeping animals under seminatural conditions for observation or study or as pets; an aquarium or terrarium.
+    </p>
+    <EmailCapture
+      action="https://YOUR-DATACENTER.api.mailchimp.com/subscribe/post?u=YOUR_U&amp;id=YOUR_ID"
+      honeypotName="b_YOUR_U_YOUR_ID"
+      cta="Get updates"
+      helper="No spam. Just release notes and docs."
+    />
     <div class="mt-8 flex justify-center gap-4">
       <a
         href="/docs"
