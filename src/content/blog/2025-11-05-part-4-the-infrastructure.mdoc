@@ -2,6 +2,7 @@
 title: "Part 4: The Infrastructure"
 author: Brian Shirai
 date: 2025-11-05
+order: 4
 ---
 
 Posts in this series:
@@ -13,4 +14,37 @@ Posts in this series:
 * [Part 4: The Infrastructure](/blog/2025-11-05-part-4-the-infrastructure/)
 * [Part 5: The Roadmap](/blog/2025-11-05-part-5-the-roadmap/)
 
+## Infrastructure is also What it Does
+
+Infrastructure is the "overall" component. It generalizes to storage, networking, and compute, but that is also a reflection of the dominant paradigm to this point. Generally, compute (including memory) goes in box that need communication links, these go in racks that go in buildings.
+
+What if machine intelligence properly implemented uses very little networking, but significantly greater amounts of *combined* compute + memory?
+
+### Assertions
+
+1. The von Neumann architecture is ill-suited for actual machine intelligence.
+1. The "intelligence units" will communicate efficiently with other tools, including calculators, formal methods / automated reasoning, image generation, etc.
+
+### So What?
+
+The initial systems for machine intelligence will be "simulating" intelligence but will be inefficient and scaling will require custom hardware that is unlike existing systems.
+
+However, existing systems will continue to be useful for running spreadsheets (calculators), data stores, proof assistants and formal methods.
+
+To simulate machine intelligence will require a significant increment on top of tools like Terraform and auto-scaling groups. It will need to participate in a feedback loop with application telemetry on more semantically rich signals than "load".
+
+### Pitch
+
+Computation resources are necessary for every components:
+
+* The AI agents compute things;
+* The language system runs the compiler tool chain;
+* The tools compute things like formulas in a spreadsheet or run a model checker;
+* The world containing all this computes things like they physics and constraints on agents.
+
+But in the current state of affairs, the computation resources are highly coupled in a way that makes it extremely difficult to have mobility (run anywhere it can) and inter-operability (this needs Python, that uses C++).
+
+By clearly and cleanly separating the infrastructure from the components, patterns for infrastructure configuration and operation can be standardized and participate in the ecosystem (e.g. producing and consuming telemetry, providing usage interfaces that can be manipulated by humans or machines, etc.).
+
+Infrastructure is essential to every component, but it is a distinct and separate component. It exists because the rest of the components exist, but it does not lose its identity in the ensemble.
 

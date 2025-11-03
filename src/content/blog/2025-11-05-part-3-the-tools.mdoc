@@ -2,6 +2,7 @@
 title: "Part 3: The Tools"
 author: Brian Shirai
 date: 2025-11-05
+order: 3
 ---
 
 Posts in this series:
@@ -13,4 +14,26 @@ Posts in this series:
 * [Part 4: The Infrastructure](/blog/2025-11-05-part-4-the-infrastructure/)
 * [Part 5: The Roadmap](/blog/2025-11-05-part-5-the-roadmap/)
 
+## A Tool by any Other Name Should Work the Same
 
+The tools that a machine intelligence would need to use are separate from the language machinery. The compiler is a tool, but the language facility is about interfaces and describing some computations. The tools are a more broad, heterogeneous collection of existing or future capabilities that would be integrated.
+
+### Assertions
+
+1. Machine intelligence will not replace spreadsheets (calculators), databases, formal methods / proof assistants. It will use these tools.
+1. The existing tools need to be modified to be controllable by machine intelligences.
+1. The interface to these tools needs to be a structured language.
+
+### So What?
+
+Some tools, for example, TLA+, Agda or Lean4, already fundamentally include a language, others, like spreadsheets have *ad hoc* file formats as their primary interchange.
+
+### Pitch
+
+These are some essential tools:
+
+* Visual calculators (i.e. spreadsheets);
+* Workflow or taskflow;
+* Proof assistant, model checker, or solver;
+* Data store;
+* Document generator;

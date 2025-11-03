@@ -1,9 +1,9 @@
 ---
 import { getCollection } from 'astro:content';
-import { compareDatesDesc } from '@/lib/dates';
+import { compareByDateThenOrder } from '@/lib/dates';
 
 const posts = await getCollection('blog', ({ data }) => data.published !== false);
-const sorted = posts.sort((a, b) => compareDatesDesc(a.data.date, b.data.date));
+const sorted = posts.sort((a, b) => compareByDateThenOrder(a.data, b.data));
 ---
 
 <html lang="en">
@@ -12,10 +12,8 @@ const sorted = posts.sort((a, b) => compareDatesDesc(a.data.date, b.data.date));
     <h1>Blog</h1>
     <ul class="not-prose space-y-4">
       {sorted.map((post) => (
-        <li class="border-b border-slate-800 pb-4">
-          <a class="text-lg font-semibold hover:underline" href={`/blog/${post.slug}/`}>
-            {post.data.title}
-          </a>
+        <li>
+          <a href={`/blog/${post.slug}/`}>{post.data.title}</a>
         </li>
       ))}
     </ul>
