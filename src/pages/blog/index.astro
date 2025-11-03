@@ -1,20 +1,21 @@
 ---
-import { getCollection } from "astro:content";
-const posts = await getCollection("blog", (p) => p.data.published !== false);
-const sorted = posts.sort(
-  (a, b) => new Date(b.data.date ?? 0).getTime() - new Date(a.data.date ?? 0).getTime()
-);
+import { getCollection } from 'astro:content';
+import { compareDatesDesc } from '@/lib/dates';
+
+const posts = await getCollection('blog', ({ data }) => data.published !== false);
+const sorted = posts.sort((a, b) => compareDatesDesc(a.data.date, b.data.date));
 ---
 
 <html lang="en">
   <head><title>Blog</title></head>
-  <body class="prose mx-auto p-6">
+  <body class="prose prose-invert max-w-3xl mx-auto p-6">
     <h1>Blog</h1>
-    <ul>
+    <ul class="not-prose space-y-4">
       {sorted.map((post) => (
-        <li>
-          <a href={`/blog/${post.slug}/`}>{post.data.title}</a>
-          {post.data.date && <span class="block text-sm text-gray-500">{post.data.date}</span>}
+        <li class="border-b border-slate-800 pb-4">
+          <a class="text-lg font-semibold hover:underline" href={`/blog/${post.slug}/`}>
+            {post.data.title}
+          </a>
         </li>
       ))}
     </ul>
