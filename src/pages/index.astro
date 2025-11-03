@@ -1,13 +1,28 @@
 ---
-import SiteShell from '@/layouts/SiteShell.astro';
+import SiteLayout from '@/layouts/SiteLayout.astro';
 ---
-<SiteShell>
-  <slot slot="head">
-    <title>Home</title>
-  </slot>
 
-  <section class="p-6">
-    <h1 class="text-3xl font-semibold">Hello</h1>
-    <p class="mt-2 text-slate-600 dark:text-slate-300">Welcome.</p>
+<SiteLayout title="Vivarium">
+  <section class="py-16 text-center">
+    <h1 class="text-4xl font-bold tracking-tight sm:text-5xl">
+      Welcome to Vivarium
+    </h1>
+    <p class="mt-4 text-slate-400 max-w-2xl mx-auto">
+      Vivarium AI
+    </p>
+    <div class="mt-8 flex justify-center gap-4">
+      <a
+        href="/docs"
+        class="px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-100 text-sm font-medium"
+      >
+        Get Started
+      </a>
+      <a
+        href="/blog"
+        class="px-4 py-2 rounded-lg border border-slate-700 hover:border-slate-500 text-slate-300 text-sm font-medium"
+      >
+        Read the Blog
+      </a>
+    </div>
   </section>
-</SiteShell>
+</SiteLayout>

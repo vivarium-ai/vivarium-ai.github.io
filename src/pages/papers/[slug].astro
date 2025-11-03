@@ -1,6 +1,6 @@
 ---
 import { getCollection } from "astro:content";
-import BaseLayout from "@/layouts/BaseLayout.astro";
+import SiteLayout from "@/layouts/SiteLayout.astro";
 
 export async function getStaticPaths() {
   const items = await getCollection("papers");
@@ -18,11 +18,11 @@ if (!item) {
 const { Content } = await item.render();
 ---
 
-<BaseLayout title={item.data.title ?? item.slug}>
+<SiteLayout title={item.data.title ?? item.slug}>
   <article class="prose mx-auto">
     <h1>{item.data.title ?? item.slug}</h1>
     {item.data.date && <p class="text-sm text-gray-500">{item.data.date}</p>}
     <Content />
   </article>
-</BaseLayout>
+</SiteLayout>
 

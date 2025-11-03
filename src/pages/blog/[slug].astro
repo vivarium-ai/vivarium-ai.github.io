@@ -1,6 +1,6 @@
 ---
 import { getCollection } from "astro:content";
-import BaseLayout from "@/layouts/BaseLayout.astro";
+import SiteLayout from "@/layouts/SiteLayout.astro";
 
 // 1) tell Astro what pages to build
 export async function getStaticPaths() {
@@ -26,7 +26,7 @@ if (!post) {
 const { Content } = await post.render();
 ---
 
-<BaseLayout title={post.data.title}>
+<SiteLayout title={post.data.title}>
   <article class="prose max-w-none">
     <h1>{post.data.title}</h1>
     {post.data.date && (
@@ -34,4 +34,4 @@ const { Content } = await post.render();
     )}
     <Content />
   </article>
-</BaseLayout>
+</SiteLayout>

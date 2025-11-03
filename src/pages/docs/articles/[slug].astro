@@ -1,6 +1,6 @@
 ---
 import { getCollection } from "astro:content";
-import BaseLayout from "@/layouts/BaseLayout.astro";
+import SiteLayout from "@/layouts/SiteLayout.astro";
 
 // build-time: tell Astro which pages exist
 export async function getStaticPaths() {
@@ -35,7 +35,7 @@ if (!entry) {
 const { Content } = await entry.render();
 ---
 
-<BaseLayout title={entry.data.title ?? "Article"}>
+<SiteLayout title={entry.data.title ?? "Article"}>
   <article class="prose max-w-none">
     <p class="text-xs uppercase tracking-wide text-slate-400 mb-4">
       How-to
@@ -46,4 +46,4 @@ const { Content } = await entry.render();
     )}
     <Content />
   </article>
-</BaseLayout>
+</SiteLayout>

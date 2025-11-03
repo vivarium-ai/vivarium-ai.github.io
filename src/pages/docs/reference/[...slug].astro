@@ -1,6 +1,6 @@
 ---
 import { getCollection } from "astro:content";
-import BaseLayout from "@/layouts/BaseLayout.astro";
+import SiteLayout from "@/layouts/SiteLayout.astro";
 
 // 1) pre-render everything under src/content/reference/**
 export async function getStaticPaths() {
@@ -76,7 +76,7 @@ const children = all
   .sort((a, b) => a.title.localeCompare(b.title));
 ---
 
-<BaseLayout title={entry.data.title ?? "Reference"}>
+<SiteLayout title={entry.data.title ?? "Reference"}>
   <article class="prose max-w-none">
     {/* breadcrumbs */}
     <nav class="text-sm text-slate-500 mb-4 flex gap-1 flex-wrap">
@@ -110,4 +110,4 @@ const children = all
       </section>
     )}
   </article>
-</BaseLayout>
+</SiteLayout>
