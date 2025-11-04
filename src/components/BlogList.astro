@@ -1,0 +1,33 @@
+---
+import { getBlogList, isActivePath } from "@/lib/blog";
+const blogLinks = await getBlogList();
+
+const { activeId } = Astro.props;
+---
+
+<nav aria-label="All blog posts" class="text-sm">
+  <h2 class="mb-2 px-2 text-xs font-semibold uppercase tracking-wide opacity-70">
+    Blog posts
+  </h2>
+  <ul class="space-y-1">
+    {blogLinks.map((it) => {
+      const isActive = isActivePath(it.path, activeId);
+      return (
+        <li>
+          <a
+            href={it.path}
+            aria-current={isActive ? "page" : undefined}
+            class={
+              "block rounded-md px-2 py-1.5 outline-none ring-0 transition " +
+              (isActive
+                ? "bg-fg/10 font-medium"
+                : "hover:bg-fg/5 focus:bg-fg/5")
+            }
+          >
+            {it.title}
+          </a>
+        </li>
+      );
+    })}
+  </ul>
+</nav>

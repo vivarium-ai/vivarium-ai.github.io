@@ -1,0 +1,42 @@
+<script is:inline>
+  // 0. Get system theme
+  function systemTheme() {
+    return window.matchMedia("(prefers-color-scheme: dark)")
+  }
+
+  // 1. Change html to the correct theme (light/dark)
+  function setTheme(isDark) {
+    console.log("setTheme: isDark: " + isDark);
+    document.documentElement.classList.toggle("dark", isDark);
+  }
+
+  // 2. Possibly update theme when system setting is changed
+  function systemUpdateTheme(e) {
+    console.log("systemUpdateTheme " + e.matches)
+    initTheme();
+  }
+
+  systemTheme().addEventListener("change", systemUpdateTheme);
+
+  // 3. Set initial theme from settings
+  function initTheme() {
+    let savedTheme = localStorage.getItem("theme");
+    if (!savedTheme) {
+      selectTheme("system");
+    } else {
+      if (savedTheme === "system") {
+        setTheme(systemTheme().matches);
+      } else {
+        setTheme(savedTheme === "dark");
+      }
+    }
+  }
+
+  // 4. Change theme on button press
+  function selectTheme(theme) {
+    localStorage.setItem("theme", theme);
+    initTheme();
+  }
+
+  initTheme();
+</script>

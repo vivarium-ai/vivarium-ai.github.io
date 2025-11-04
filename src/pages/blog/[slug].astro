@@ -1,30 +1,93 @@
 ---
-import SiteLayout from '@/layouts/SiteLayout.astro';
-import BlogPost from '@/layouts/BlogPost.astro';
-import { getCollection } from 'astro:content';
+import SiteLayout from "@/layouts/SiteLayout.astro";
+import BlogList from "@/components/BlogList.astro";
+import DocToc from "@/components/DocToc.astro";
+import { getCollection, getEntryBySlug } from "astro:content";
+import { sortDocs, toListItems, buildToc, titleFor } from "@/lib/docs";
 
+export const prerender = true;
+
+// SSG build-time path generation
 export async function getStaticPaths() {
-  const posts = await getCollection('blog');
+  const posts = await getCollection("blog", (p) => p.data.published !== false);
 
-  return posts.map((post) => ({
-    params: { slug: post.slug },
-    props: { post },
-  }));
+  const seen = new Set<string>();
+  const paths = posts.map((p) => {
+    const base = p.slug.split("/").pop()!;
+    if (seen.has(base)) {
+      throw new Error(`[blog] Duplicate basename for /blog/${base}`);
+    }
+    seen.add(base);
+    return {
+      params: { slug: base },
+      props: { fullSlug: p.slug },
+    };
+  });
+
+  return paths;
 }
 
-const { post } = Astro.props;
-const { Content } = await post.render();
+type Props = { fullSlug: string };
+const { fullSlug } = Astro.props as Props;
 
-const { title, description, author, date } = post.data;
+// Load current blog post
+const entry = await getEntryBySlug("blog", fullSlug);
+if (!entry) return Astro.redirect("/404");
+
+const { Content, headings } = await entry.render();
+const title = titleFor(entry);
+const description = entry.data.description ?? "";
+const pubDate = entry.data.date ? new Date(entry.data.date) : null;
+
+// Left sidebar: all blog posts
+const posts = await getCollection("blog", (p) => p.data.published !== false);
+const listItems = toListItems(sortDocs(posts));
+const activeId = entry.id;
+
+// Right sidebar: ToC
+const tocItems = buildToc(headings, [2, 3]);
 ---
 
-<SiteLayout title={title}>
-  <BlogPost
-    title={title}
-    description={description}
-    author={author}
-    date={date}
+<SiteLayout {title} {description}>
+  <main
+    class="grid grid-cols-[1fr_3fr_1fr] gap-4 [&>*]:min-w-0 [&>*]:[overflow-wrap:anywhere]"
   >
-    <Content />
-  </BlogPost>
+    <!-- Left: Blog post list -->
+    <aside class="hidden lg:block">
+      <div class="sticky top-20 shrink-0 min-w-0 overflow-wrap:anywhere pe-2">
+        <BlogList items={listItems} activeId={activeId} />
+      </div>
+    </aside>
+
+    <!-- Middle: Blog content -->
+    <article
+      class="prose dark:prose-invert prose-compact grow shrink min-w-0 @container prose-headings:scroll-mt-28">
+      <header class="mb-8 border-b pb-5">
+        <h1 class="text-3xl font-semibold tracking-tight">{title}</h1>
+        {description && <p class="mt-2 text-sm opacity-80">{description}</p>}
+        {pubDate && (
+          <p class="mt-2 text-xs opacity-70">
+            {pubDate.toLocaleDateString(undefined, {
+              year: "numeric",
+              month: "short",
+              day: "2-digit",
+            })}
+          </p>
+        )}
+      </header>
+
+      <Content />
+    </article>
+
+    <!-- Right: Static ToC -->
+    <aside class="hidden xl:block">
+      <div class="sticky top-20 shrink-0 min-w-0 overflow-wrap:anywhere ps-2">
+        <DocToc headings={headings} />
+      </div>
+    </aside>
+  </main>
 </SiteLayout>
+
+<style>
+  aside > div { scrollbar-gutter: stable; }
+</style>

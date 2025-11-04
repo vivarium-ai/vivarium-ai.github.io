@@ -1,0 +1,54 @@
+---
+import type { DocListItem } from "@/lib/docs";
+
+interface Props {
+  items: DocListItem[];
+  activeId?: string;
+}
+
+const { items, activeId } = Astro.props;
+
+// Group by section (e.g., "tutorials"). If everything is one section, we’ll just show a flat list.
+const bySection = items.reduce((acc, it) => {
+  const key = it.section ?? "docs";
+  (acc[key] ||= []).push(it);
+  return acc;
+}, {} as Record<string, DocListItem[]>);
+
+for (const key of Object.keys(bySection)) {
+  bySection[key] = bySection[key].slice().sort((a, b) => a.title.localeCompare(b.title));
+}
+---
+
+<nav aria-label="All docs" class="text-sm">
+  {Object.entries(bySection).map(([section, list]) => (
+    <section class="mb-6">
+      {Object.keys(bySection).length > 1 && (
+        <h2 class="mb-2 px-2 text-xs font-semibold uppercase tracking-wide opacity-70">
+          {section}
+        </h2>
+      )}
+      <ul class="space-y-1">
+        {list.map((it) => {
+          const isActive = it.id === activeId;
+          return (
+            <li>
+              <a
+                href={it.href}
+                aria-current={isActive ? "page" : undefined}
+                class={
+                  "block rounded-md px-2 py-1.5 outline-none ring-0 transition " +
+                  (isActive
+                    ? "bg-fg/10 font-medium"
+                    : "hover:bg-fg/5 focus:bg-fg/5")
+                }
+              >
+                {it.title}
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+    </section>
+  ))}
+</nav>

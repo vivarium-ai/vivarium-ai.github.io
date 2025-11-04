@@ -1,22 +1,31 @@
 ---
-import Header from '@/components/SiteHeader.astro';
-import Footer from '@/components/SiteFooter.astro';
+import "@/styles/tailwind.css";
+import ThemeBoot from "@/components/ThemeBoot.astro";
+import Header from "@/components/SiteHeader.astro";
+import Footer from "@/components/SiteFooter.astro";
 
-const { title = 'Vivarium AI' } = Astro.props;
+const {
+  title = "Vivarium AI",
+  description = "An experimentation platform for real AI.",
+} = Astro.props;
 ---
 
-<html lang="en" class="h-full bg-slate-950 text-slate-100">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <ThemeBoot />
   </head>
-  <body class="min-h-screen flex flex-col">
-    {/* single width-controlled container */}
-    <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex-1 flex flex-col gap-6 py-6">
+
+  <body class="min-h-screen antialiased bg-[--color-bg] text-[--color-fg]">
+    <!-- Single outer box for consistent width across header/main/footer -->
+    <div class="mx-auto max-w-7xl px-4">
       <Header />
 
-      <main class="flex-1">
+      <main class="py-10">
         <slot />
       </main>
 

@@ -1,0 +1,31 @@
+---
+const buttons = [
+  { id: "theme-light",  value: "light", pressed: false },
+  { id: "theme-system", value: "system", pressed: false },
+  { id: "theme-dark",   value: "dark", pressed: false },
+];
+---
+
+<div class="flex gap-2" role="radiogroup">
+  {buttons.map(({ id, value, pressed }) => (
+    <button
+      id={id}
+      type="button"
+      class="text-black border-black dark:text-white dark:border-white px-3 py-1.5 rounded-xl text-sm font-medium border"
+      aria-pressed={pressed}
+    >
+      {value}
+    </button>
+  ))}
+</div>
+
+<script is:inline>
+  function attachThemeHandler(id, value) {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener("click", () => selectTheme(value));
+  }
+
+  attachThemeHandler("theme-light",  "light");
+  attachThemeHandler("theme-system", "system");
+  attachThemeHandler("theme-dark",   "dark");
+</script>

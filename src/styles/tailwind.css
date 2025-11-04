@@ -1,0 +1,36 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@layer base {
+  :root { color-scheme: light dark; }
+}
+
+@custom-variant dark (&:is(html.dark *));
+
+@utility prose-compact {
+  @apply prose;
+}
+
+.prose-compact :where(ul > li, ol > li) {
+  margin-block: 0.1em;
+}
+.prose-compact :where(ul > li > :last-child, ol > li > :last-child) {
+  margin-bottom: 0;
+}
+
+@layer base {
+  @theme {
+    --color-bg: white;
+    --color-fg: black;
+  }
+
+  html.dark {
+    --color-bg: black;
+    --color-fg: white;
+  }
+
+  html, body {
+    background-color: var(--color-bg);
+    color: var(--color-fg);
+  }
+}

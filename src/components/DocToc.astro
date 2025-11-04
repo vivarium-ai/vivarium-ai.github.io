@@ -1,0 +1,38 @@
+---
+import { buildToc, type RawHeading, type TocItem } from "@/lib/docs";
+
+interface Props {
+  headings: RawHeading[]; // pass through from entry.render()
+}
+const { headings } = Astro.props;
+const toc: TocItem[] = buildToc(headings, [2, 3]);
+---
+
+<nav aria-label="In this document" class="text-sm">
+  <h2 class="mb-2 px-2 text-xs font-semibold uppercase tracking-wide opacity-70">
+    In this document
+  </h2>
+
+  {toc.length === 0 ? (
+    <p class="px-2 opacity-70">No sections</p>
+  ) : (
+    <ul class="space-y-1">
+      {toc.map((h2) => (
+        <li>
+          <a href={h2.slug} class="block rounded-md px-2 py-1.5 hover:bg-fg/5">{h2.text}</a>
+          {h2.children?.length ? (
+            <ul class="mt-1 ms-2 border-s ps-3 space-y-1">
+              {h2.children.map((h3) => (
+                <li>
+                  <a href={h3.slug} class="block rounded-md px-2 py-1 hover:bg-fg/5">
+                    {h3.text}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          ) : null}
+        </li>
+      ))}
+    </ul>
+  )}
+</nav>
