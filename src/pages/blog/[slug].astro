@@ -4,6 +4,7 @@ import BlogList from "@/components/BlogList.astro";
 import DocToc from "@/components/DocToc.astro";
 import { getCollection, getEntryBySlug } from "astro:content";
 import { sortDocs, toListItems, buildToc, titleFor } from "@/lib/docs";
+import { formatDateUTC } from "@/lib/dates";
 
 export const prerender = true;
 
@@ -37,7 +38,7 @@ if (!entry) return Astro.redirect("/404");
 const { Content, headings } = await entry.render();
 const title = titleFor(entry);
 const description = entry.data.description ?? "";
-const pubDate = entry.data.date ? new Date(entry.data.date) : null;
+const pubDate = entry.data.date ? formatDateUTC(entry.data.date) : null;
 
 // Left sidebar: all blog posts
 const posts = await getCollection("blog", (p) => p.data.published !== false);
@@ -66,13 +67,7 @@ const tocItems = buildToc(headings, [2, 3]);
         <h1 class="text-3xl font-semibold tracking-tight">{title}</h1>
         {description && <p class="mt-2 text-sm opacity-80">{description}</p>}
         {pubDate && (
-          <p class="mt-2 text-xs opacity-70">
-            {pubDate.toLocaleDateString(undefined, {
-              year: "numeric",
-              month: "short",
-              day: "2-digit",
-            })}
-          </p>
+          <p class="mt-2 text-xs opacity-70"> {pubDate} </p>
         )}
       </header>
 
