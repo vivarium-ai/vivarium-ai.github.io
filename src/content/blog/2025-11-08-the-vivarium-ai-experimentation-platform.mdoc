@@ -1,0 +1,213 @@
+---
+title: The Vivarium AI Experimentation Platform
+author: Brian Shirai
+date: 2025-11-08
+order: 0
+---
+
+Posts in this series:
+
+* [The Vivarium AI Experimentation Platform](/blog/2025-11-08-the-vivarium-ai-experimentation-platform/)
+* [Part 1: The Agents](/blog/2025-11-08-part-1-the-agents/)
+* [Part 2: The Languages](/blog/2025-11-08-part-2-the-languages/)
+* [Part 3: The Tools](/blog/2025-11-08-part-3-the-tools/)
+* [Part 4: The Infrastructure](/blog/2025-11-08-part-4-the-infrastructure/)
+* [Part 5: The Roadmap](/blog/2025-11-08-part-5-the-roadmap/)
+* [Part 6: The Funding](/blog/2025-11-08-part-6-the-funding/)
+
+## Is Artificial Intelligence Real?
+
+If you're like I was a few weeks ago, you may be tempted to believe that the reason the world is absurdly chasing LLMs on GPUs with hundreds of billions of dollars is because no one knows anything better about machine intelligence.
+
+Like I was, you would be mistaken. And you can make a fair case for being excused for that.
+
+My goal in this series of posts is to present irrefutable evidence that an alternate future is possible, one where we collectively develop real machine intelligence that approaches human intelligence, using comparable amounts of energy, and accessible to all.
+
+Sound like a fantasy, too good to be true? Well, hear me out first. After all, if my fantasy turns out to be impossible, you can always go back to LLMs and GPUs.
+
+### How Much Do We Know?
+
+As it turns out, quite a lot going back many decades. A lot of the earlier "AI
+failures" had to do with an "over-application" of things we associated with
+"intelligence", like formal mathematical logic. With all due respect to Spock,
+it turns out that making sense out of the world isn't a simple as "reasoning".
+
+Here are what I consider three foundational books:
+
+* [Structural Information
+  Theory](https://www.goodreads.com/book/show/17068918-structural-information-theory)
+  by Emanuel Leeuwenberg. Do you want to learn about perception? Here's where to start.
+* [Machine Super
+  Intelligence](https://www.goodreads.com/book/show/28951036-machine-super-intelligence)
+  by Shane Legg. Did you know that we can define an optimal intelligent agent?
+  Learn more here.
+* [An Introduction to Universal Artificial
+  Intelligence](https://www.goodreads.com/book/show/187648146-an-introduction-to-universal-artificial-intelligence)
+  by Marcus Hutter, Elliot Catt, David Quarel. Marcus Hutter was Shane Legg's
+  advisor. There's a lot to learn from these two. (Also, they both worked at
+  [DeepMind](https://en.wikipedia.org/wiki/Google_DeepMind).)
+
+In addition to these books, here are projects pursuing artificial intelligence from perspectives very different than LLMs and genAI:
+
+* [Thousand Brains Project](https://thousandbrains.org)
+* [Open Brain Institute](https://www.openbraininstitute.org/)
+* [Hyperdimensional Computing]()
+* [Free Enery Principle]()
+* [Bayesian Inference]()
+* [Dynamic Field Theory](https://dynamicfieldtheory.org)
+
+
+And here are three approaches to hardware that could be very promising:
+
+* [Extropic Thermodynamic Computing](https://extropic.ai)
+* [University of Texas at Dallas Neuromorphic Computer](https://thedebrief.org/forget-ai-scientists-have-developed-a-neuromorphic-computer-that-thinks-like-a-human-brain/)
+* [USC Viterbi School of Engineering and the School of Advanced Computing Integrated Spiking Artificial Neuron](https://scitechdaily.com/new-artificial-neurons-physically-replicate-the-brain/)
+
+## What is Vivarium?
+
+This proposal is a comprehensive framework for a research and experimentation platform based on four core elements of a RealAI™ system:
+
+1. AI definitions and models;
+1. Machine language and human-machine language interfaces;
+1. Tools;
+1. Infrastructure;
+
+The totality of this system is also an entity: **Vivarium**.
+
+The **"AI agents"** exist within a **"world"** and use **"language interfaces"** to **"tools"**. The worlds are described (structure and functionality) using languages capable of computation (i.e. not simply YAML or HCL etc).
+
+The **"infrastructure"** is a combination of the computational resources (processor, memory, storage) to run the worlds and agents, and the controlling mechanisms for those computational resources.
+
+Within the agents, an evolutionary mechanism can be introduced, again based on a language, that permits unguided exploration of solution spaces with respect to the structure or function of the agents.
+
+The three other components are agnostic about the specific functioning of the "AI agent" component other than the agents' interface, which allows agents to interact with one another and with the world in which they are embedded and with the tools to which they have access.
+
+### What's in this Series of Posts
+
+* **Agents:** I will offer that we should be defining the terms we use to talk
+  about "agents", including "agent" itself. There's a lot of prior art here,
+  some of it linked above. Agents are the components of the system that contain
+  "intelligence".
+* **Languages as interfaces:** Unlike APIs, domain-specific languages as a
+  medium for agents to collaborate with one another, as well as being the
+  mechanism for how they use tools, presents a rich opportunity to encode
+  capabilities and safety in the system.
+* **Tools are the means by which agents act:** There's nothing new in this
+  idea, but strictly enforcing these boundaries enables desirable system
+  properties. Tools cannot act on their own. We can carefully define their
+  capabilities, while still allowing for unbounded complexity in the agents.
+* **Infrastructure:** The internet has been around for decades now and we are
+  collectively still firmly stuck in the manufacturing era, where widgets are
+  spit out of assembly lines into boxes into the shrink-wrapping machine onto
+  trucks over highways into stores and onto shelves where we venture to review
+  and sometimes purchase them. Don't let SaaS (software as a service) fool you;
+  you're just renting that, it still comes in a box.
+
+If that sounds interesting enough, you can certainly [continue to Part
+1](/blog/2025-11-08-part-1-the-agents/).
+
+The rest of this post will discuss the current AI bubble around LLMs and GPUs.
+
+## An Immensely Consequential Decision
+
+Now is a good time to address the 800 lb gorilla in the room, or the 100s of
+billions of dollars gorilla, if you prefer.
+
+"What about LLMs and genAI?" you may be tempted to ask.
+
+Yes, indeed, what about them?
+
+Let me start by telling you where I'm coming from here:
+
+* I've spent more than 30 years writing complex software, like virtual machines
+  and compilers.
+* I understand a fair bit of math and some things about neural networks.
+* I know a little about congnitive psychology, and comparative studies of
+  intelligence, for example corvids and cephalopods.
+* Over the past 18 months, I've used genAI intensely. Mostly ChatGPT, but also
+  Gemini and Claude.
+
+Maybe those are relevant or maybe not. I don't think Sam Altman has those and
+people listen to him. He didn't even build what he's selling, but maybe all we
+needed to invent AI was the right salesman to come along.
+
+My own opinion based on the above is that genAI is a very wide cul-de-sac
+wherein some well-funded street racers are doing cookies in their custom built
+(at great expense) barely street legal hotrods and it's a blight on humanity.
+Not to put too sharp a point on it.
+
+But I'm not going to be offended if you tell me I'm wrong, because I could be.
+But do you really think that one 10-page paper with an extremely humble title
+like "Attention is all you need" has cracked the nut of intelligence and we
+just need to spend a few hundred more billions of dollars to "scale" it?
+
+Anyway, rather than taking my word for it, here are a couple links to other
+people's takes on it:
+
+* [The Bullshit Machines](https://thebullshitmachines.com)
+* [The Case Against Generative AI](https://www.wheresyoured.at/the-case-against-generative-ai/)
+
+It's curious that every time someone invites some investor (in AI) to opine on
+whether there is an "AI bubble", somehow no one rings up Ed Zitron to ask if
+he's available to be on a panel.
+
+Or you could ask ChatGPT, as I did, what are the fatal flows of the genAI/LLM
+approach and you might get something like the following:
+
+1. No Grounding in the Physical or Causal World (Semantic Grounding Problem)
+2. No Internal Causal Model of the World
+3. No Unified Self-Model or Persistent Memory
+4. No Embodiment or Situated Agency
+5. Lack of Compositional, Systematic Generalization
+6. Architectural Myopia: Sequence Prediction ≠ Thinking
+7. No True Intentionality or Semantic Reference
+8. Lack of Hierarchical, Cross-Modal World Models
+9. No Internal Curiosity, Goal Formation, or Motivation
+10. Epistemic Fragility and Lack of Meta-Cognition
+
+The very idea that all there is to know about the world can be inferred by
+which word follows which other word should be, on its face, such a laughable
+notion, that people would indeed laugh when they hear it. But in fact, most
+don't, and a few throw tens of billions of dollars after it.
+
+### To Learn or Not to Learn
+
+If we had persisted with the notion that the way to elevate oneself above the
+ground was to use a ladder because to everyone it appeared to usually work just
+fine, we never would have reached the moon.
+
+If you're a critical observer, LLMs don't even appear to work much of the time,
+so continuing to pour billions of dollars into "scaling" them borders on an
+absurdity beyond the words to express it.
+
+The idea that autonomous driving must "learn the city" in order to function
+obviously does not match our experience as human drivers, so even if it's the
+best we're capable of at this moment, it shouldn't be accepted as a reasonable
+approach to autonomous driving.
+
+I'll go even further and plainly state that multi-trillion dollar market cap
+companies have no real utiility or valuable contribution to the world economy.
+The goal should be putting AI in the service of every individual to enable them
+to live a happier, healthier, more fulfilling life alongside their friends and
+loved ones no matter where they are in the world. No company or group of
+companies should have a monopoly on that.
+
+When on steps back just a little, it's very easy to see that the demo of
+ChatGPT was just too convincing. Like a young child does with their inanimate
+stuffed animal, we anthropomorphize something that gives the appearance of
+realness and imbue it with meaning and human attributes. The demonstrators
+were, of course, clever. When the ChatGPT shimmers its "Thinking..." rather
+than telling the truth (crunching some small floats on these here GPUs), we eat
+it up. And then it tells us, "This is exactly the right question to ask and
+cuts right to the heart of blah blah blah" for the fiftieth time, and we keep
+on feeling quite proud of ourselves.
+
+It is a little weird, though, that we do this. After all, intelligence isn't
+that rare on this earth. Just counting the humans, we're surrounded by about
+eight billion examples. And that's before we count the cats, dogs, birds, cows,
+horses, hummingbirds, and dragon flies. Surely, I've missed a few. LLMs can't
+do any of that. Not even dragon flies.
+
+What a time to be alive.
+
+[Part 1: The Agents](/blog/2025-11-08-part-1-the-agents/)

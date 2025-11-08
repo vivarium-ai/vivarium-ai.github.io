@@ -1,0 +1,96 @@
+---
+title: "Part 4: The Infrastructure"
+author: Brian Shirai
+date: 2025-11-08
+order: 4
+---
+
+Posts in this series:
+
+* [The Vivarium AI Experimentation Platform](/blog/2025-11-08-the-vivarium-ai-experimentation-platform/)
+* [Part 1: The Agents](/blog/2025-11-08-part-1-the-agents/)
+* [Part 2: The Languages](/blog/2025-11-08-part-2-the-languages/)
+* [Part 3: The Tools](/blog/2025-11-08-part-3-the-tools/)
+* [Part 4: The Infrastructure](/blog/2025-11-08-part-4-the-infrastructure/)
+* [Part 5: The Roadmap](/blog/2025-11-08-part-5-the-roadmap/)
+* [Part 6: The Funding](/blog/2025-11-08-part-6-the-funding/)
+
+## Where We're Going We Need Computers
+
+There is a lot of computation going on in Vivarium:
+
+* The AI agents compute things;
+* The language system runs the compiler tool chain;
+* The tools compute things like formulas in a spreadsheet or run a model checker;
+* The world containing all this computes things like the physics and constraints on agents.
+
+Computation resources are needed for every component. And the infrastructure is
+that part that connects all this together, getting the things that need to
+compute to the compute resources they need.
+
+## The Current State of Infrastructure
+
+Software has grown up in a manufacturing world, and many aspects of how we
+build and operate software mimics how we work with physical matter in
+manufacturing.
+
+But software is different. It's information, and it doesn't need assembly
+lines, shrink-wrapped boxes, delivery trucks, or store shelves.
+
+Yet, this is really how we still make software. A programmer "produces" some
+code that goes into a "build pipeline" where it is squished into "packages"
+that are put on the shelves of some "package repository" so that other things
+can come along and "deploy" them to "compute resources" (i.e. CPUs, memory,
+disk drives, networks).
+
+In this current software world, the application represented by the code the
+programmer wrote most likely will know nothing about the compute resources it
+will be run on or probably not even anything about the systems used to "test"
+it.
+
+And the programming language used to write the application is probably very
+different from the one that is used to describe the compute resources, so even
+if the programmer was curious and wanted to experiment with having the
+application know something about how it is run, the separate languages would
+be a substantial barrier to that sort of integration.
+
+## Infrastructure is also What it Does
+
+In Vivarium, the use of language as the interface offers a significant
+opportunity to rethink how infrastructure and applications work together.
+
+In the case of an agent, it may be running on a separate machine and
+communicating with another agent on a different machine via a network
+connection. But it's also possible that the two agents could be running on the
+same machine, still communicating over a messaging link. Or it's even possible
+that the two agents could be running in the same process and communicating
+directly through something like messages-passing in memory.
+
+The ability to seamlessly manage these various scenarios and integrate that
+with the language machinery supporting the use of language as an interface is
+the domain of the infrastructure concept in Vivarium.
+
+## Telemetry
+
+Another aspect of infrastructure that is built into every part of Vivarium is
+telemetry.
+
+The [OpenTelemetry](https://opentelemetry.io) standard provides a good
+foundation for making sense of how a Vivarium instance and all its components
+are operating over time.
+
+Additionally, this very telemetry can be used as an input source of data to the
+agents and tooling, creating a dynamic feedback system in real time.
+
+## Tying it Together
+
+You've now seen a sketch of our idea of an experimentation platform for
+inventing, discovering, building, testing, and operating a system of machine
+intelligence.
+
+There's nothing fundamentally new here, that will come in the actual creation
+of machine intelligence. But these ideas represent a significantly different
+way of thinking about the construction of a softwore system.
+
+There is a *ton* of work to be done. In the next post, I outline an overall
+initial roadmap and milestones to build Vivarium.

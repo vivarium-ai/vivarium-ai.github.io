@@ -1,0 +1,67 @@
+---
+title: "Part 3: The Tools"
+author: Brian Shirai
+date: 2025-11-08
+order: 3
+---
+
+Posts in this series:
+
+* [The Vivarium AI Experimentation Platform](/blog/2025-11-08-the-vivarium-ai-experimentation-platform/)
+* [Part 1: The Agents](/blog/2025-11-08-part-1-the-agents/)
+* [Part 2: The Languages](/blog/2025-11-08-part-2-the-languages/)
+* [Part 3: The Tools](/blog/2025-11-08-part-3-the-tools/)
+* [Part 4: The Infrastructure](/blog/2025-11-08-part-4-the-infrastructure/)
+* [Part 5: The Roadmap](/blog/2025-11-08-part-5-the-roadmap/)
+* [Part 6: The Funding](/blog/2025-11-08-part-6-the-funding/)
+
+## To Tool is Human
+
+One thing humans do extremely well is create and use tools to achieve goals.
+
+In Vivarium, a tool is a component that has an interface and can carry out an
+action. In Part 2 of this series, we covered aspects of using language as an
+interface.
+
+Tools in Vivarium may be used by agents, but they can also be run by automation
+(ie scripts) or other facilities.
+
+The definition of a tool is purposefully as broad as possible, while still
+keeping a clear distinction between agents, tools, and infrastructure.
+
+These are some examples of tools:
+
+* Visual calculators (i.e. spreadsheets);
+* Creating or executing a workflow;
+* Proof assistant, model checker, or solver;
+* Data store;
+* Document generator.
+
+## A Tool by any Other Name Should Work the Same
+
+Using language as the interface to tools offers many benefits.
+
+While it is true that some APIs offer typed schemas to help reduce the
+likelihood of misusing (intentional or otherwise) the API, by itself, that does
+provide enough support to reason about the tool's capabilities.
+
+There are also standards for documenting APIs, but then that is documetation
+*for* the API, not the API itself. And some API providers will offer a
+"staging" or "sandbox" version of the API, where costly or dangerous actions
+won't be taken on production data.
+
+But with a language as the interface, particularly one carefully constructed
+for the capabilities of the tool, including the type system, it's possible to
+experiment robustly (e.g. does it parse, typecheck, etc.) without ever
+invoking the actual tool.
+
+And if there are competing tools that offer the same capabilities, but perhaps
+with a different implementation, using the same language makes substituting one
+for the other robust versus hoping that the two APIs are actually implemented
+the same even when their endpoints are the same.
+
+## The Whole System
+
+Up to now, we've covered the idea of Vivarium as a whole, the agents, the
+language-as-interface, and the tools. Next up, the infrastructure component
+that brings it all together.

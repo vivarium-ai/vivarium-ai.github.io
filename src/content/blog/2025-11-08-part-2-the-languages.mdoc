@@ -1,0 +1,71 @@
+---
+title: "Part 2: The Languages"
+author: Brian Shirai
+date: 2025-11-08
+order: 2
+---
+
+Posts in this series:
+
+* [The Vivarium AI Experimentation Platform](/blog/2025-11-08-the-vivarium-ai-experimentation-platform/)
+* [Part 1: The Agents](/blog/2025-11-08-part-1-the-agents/)
+* [Part 2: The Languages](/blog/2025-11-08-part-2-the-languages/)
+* [Part 3: The Tools](/blog/2025-11-08-part-3-the-tools/)
+* [Part 4: The Infrastructure](/blog/2025-11-08-part-4-the-infrastructure/)
+* [Part 5: The Roadmap](/blog/2025-11-08-part-5-the-roadmap/)
+* [Part 6: The Funding](/blog/2025-11-08-part-6-the-funding/)
+
+## What does Language do for Vivarium?
+
+Language is a fundamental tool of intelligence. The particular form of the
+language is not nearly as important. But the concept of language, a syntax and
+grammar that carries meaning, is absolutely fundamental. For animals, this is
+usually body language, but anyane who has a pet dog or cat knows from
+experience that a lot of meaning comes through in a partiular bark or meow.
+
+In Vivarium, language has an additional function: it is the mechanism for
+definition and inter-operation. The system is defined using domain-specific
+languages, and agents use language to interact or to control tools.
+
+Every part of the system, from world to the description of the structure and
+function of agents to the tools agents can use needs an interface and the most
+powerful and efficient interface is an instance of a language.
+
+Hence, language capabilities (i.e. form or syntax, semantics, parsers,
+compilers, etc) ore a fundamental element of this system.
+
+## What is in a Language?
+
+Programmers tend to either view programming languages as handed down on stone
+tablets and hence you must be an adherent and religiously defend them, or
+something to go into the desert to create and bestow upon humanity to displace
+one of the existing religions.
+
+This proposal takes a different perspective: Languages are somewhat mundane but
+still quite powerful tools and we'll make and use them as necessary.
+
+By using "language" as the core interface between the components, the rigidity
+of something like a REST or gRPC API is avoided. One component could send the
+other a textual representation, a computation graph, or possibly just a pointer
+to the data structure that would result from the computation graph. **The
+potential power here is immense.**
+
+
+Three aspects of language
+
+* Syntax and semantics, including the type system
+* The implementation, and the ability to abstract the boundaries between components down to a single system
+* The opportunity to formally evaluate and model ensembles of agents interacting based on the properties of their interface languages.
+* The ability to enforce limitations for security on the capabilities an agent has access to.
+
+## But Will this Work?
+
+There are numerous reasons why making languages themselves a core component is controversial:
+
+*. Language tech is extremely fragmented.
+*. Most concerns about language focus on rather irrelevant syntax and sometimes on not-very-interesting semantics (e.g. Rust lifetimes and borrow checker).
+*. Assumptions about "frontend", "middle-end", and "backend" limit the language tool chain unnecessarily.
+*. Compiler writers, almost by definition, do not care about the applications. But in order to understand and utilize telemetry from the application in the compiler, the compiler must care about the application.
+*. AI provides an ideal context to bring together "application" and "application telemetry" with the compiler machinery.
+
+With languages as the core interface between components, the allowed semantics of the interaction can be formally verified and vary significantly according to the desired security posture.
