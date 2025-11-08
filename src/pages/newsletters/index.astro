@@ -1,4 +1,6 @@
 ---
+import SiteLayout from '@/layouts/SiteLayout.astro';
+
 import { getCollection } from "astro:content";
 const items = await getCollection("newsletters", (n) => n.data.published !== false);
 const sorted = items.sort(
@@ -6,10 +8,9 @@ const sorted = items.sort(
 );
 ---
 
-<html lang="en">
-  <head><title>Newsletter</title></head>
-  <body class="prose mx-auto p-6">
-    <h1>Newsletter</h1>
+<SiteLayout title="Vivarium - Blog">
+  <main>
+    <h1>Newsletters</h1>
     <ul>
       {sorted.map((item) => (
         <li>
@@ -20,5 +21,5 @@ const sorted = items.sort(
         </li>
       ))}
     </ul>
-  </body>
-</html>
+  </main>
+</SiteLayout>

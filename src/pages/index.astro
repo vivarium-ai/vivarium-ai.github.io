@@ -6,7 +6,7 @@ import EmailCapture from '@/components/EmailCapture.astro';
 <SiteLayout title="Vivarium">
   <section class="py-16 text-center">
     <h1 class="text-4xl font-bold tracking-tight sm:text-5xl">
-      Welcome to Vivarium
+      Welcome to Vivarium AI
     </h1>
 
     <!-- Use token color with softer emphasis via opacity -->
@@ -30,7 +30,9 @@ import EmailCapture from '@/components/EmailCapture.astro';
       <!-- Primary: fg on bg -->
       <a
         href="/docs"
-        class="px-4 py-2 rounded-lg bg-[--color-fg] text-[--color-bg] text-sm font-medium transition-opacity hover:opacity-90"
+        class="px-4 py-2 rounded-lg border text-sm font-medium
+               border-black/20 dark:border-white/20
+               hover:bg-black/5 dark:hover:bg-white/10 transition-colors"
       >
         Get Started
       </a>
@@ -40,7 +42,6 @@ import EmailCapture from '@/components/EmailCapture.astro';
         href="/blog"
         class="px-4 py-2 rounded-lg border text-sm font-medium
                border-black/20 dark:border-white/20
-               text-[--color-fg]
                hover:bg-black/5 dark:hover:bg-white/10 transition-colors"
       >
         Read the Blog

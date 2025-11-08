@@ -2,6 +2,7 @@
 import SiteLayout from "@/layouts/SiteLayout.astro";
 import BlogList from "@/components/BlogList.astro";
 import DocToc from "@/components/DocToc.astro";
+
 import { getCollection, getEntryBySlug } from "astro:content";
 import { sortDocs, toListItems, buildToc, titleFor } from "@/lib/docs";
 import { formatDateUTC } from "@/lib/dates";
@@ -40,13 +41,7 @@ const title = titleFor(entry);
 const description = entry.data.description ?? "";
 const pubDate = entry.data.date ? formatDateUTC(entry.data.date) : null;
 
-// Left sidebar: all blog posts
-const posts = await getCollection("blog", (p) => p.data.published !== false);
-const listItems = toListItems(sortDocs(posts));
 const activeId = entry.id;
-
-// Right sidebar: ToC
-const tocItems = buildToc(headings, [2, 3]);
 ---
 
 <SiteLayout {title} {description}>
@@ -56,7 +51,7 @@ const tocItems = buildToc(headings, [2, 3]);
     <!-- Left: Blog post list -->
     <aside class="hidden lg:block">
       <div class="sticky top-20 shrink-0 min-w-0 overflow-wrap:anywhere pe-2">
-        <BlogList items={listItems} activeId={activeId} />
+        <BlogList activeId={activeId} />
       </div>
     </aside>
 

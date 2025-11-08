@@ -19,9 +19,10 @@ const { Content } = await item.render();
 ---
 
 <SiteLayout title={item.data.title ?? item.slug}>
-  <article class="prose mx-auto">
+  <article class="prose dark:prose-invert mx-auto">
+    <h2 class="text-xs uppercase">The weekly Vivarium for Week {item.data.week}</h2>
     <h1>{item.data.title ?? item.slug}</h1>
-    {item.data.date && <p class="text-sm text-gray-500">{item.data.date}</p>}
+    {item.data.date && <p class="text-sm">{item.data.date}</p>}
     <Content />
   </article>
 </SiteLayout>

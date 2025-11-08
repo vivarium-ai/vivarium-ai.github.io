@@ -21,12 +21,12 @@ const {
     <ThemeBoot />
   </head>
 
-  <body class="min-h-screen antialiased bg-[--color-bg] text-[--color-fg]">
+  <body class="min-h-dvh flex flex-col antialiased">
     <!-- Single outer box for consistent width across header/main/footer -->
-    <div class="mx-auto max-w-7xl px-4">
+    <div class="mx-auto w-full max-w-7xl px-4 flex flex-1 flex-col">
       <Header />
 
-      <main class="py-10">
+      <main class="flex-1 py-10">
         <slot />
       </main>
 

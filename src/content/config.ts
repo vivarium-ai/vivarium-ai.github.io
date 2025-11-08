@@ -25,7 +25,8 @@ const blog = defineCollection({
 const newsletters = defineCollection({
   type: "content",
   schema: z.object({
-    issue: z.number().optional(),
+    title: z.string(),
+    week: z.number(),
   }),
 });
 

@@ -1,21 +1,19 @@
 ---
-import { getCollection } from 'astro:content';
-import { compareByDateThenOrder } from '@/lib/dates';
-
-const posts = await getCollection('blog', ({ data }) => data.published !== false);
-const sorted = posts.sort((a, b) => compareByDateThenOrder(a.data, b.data));
+import SiteLayout from '@/layouts/SiteLayout.astro';
+import BlogList from "@/components/BlogList.astro";
 ---
 
-<html lang="en">
-  <head><title>Blog</title></head>
-  <body class="prose prose-invert max-w-3xl mx-auto p-6">
-    <h1>Blog</h1>
-    <ul class="not-prose space-y-4">
-      {sorted.map((post) => (
-        <li>
-          <a href={`/blog/${post.slug}/`}>{post.data.title}</a>
-        </li>
-      ))}
-    </ul>
-  </body>
-</html>
+<SiteLayout title="Vivarium - Blog">
+  <main
+    class="grid grid-cols-[1fr_3fr] gap-4 [&>*]:min-w-0 [&>*]:[overflow-wrap:anywhere]"
+  >
+    <aside class="hidden lg:block">
+      <div class="sticky top-20 shrink-0 min-w-0 overflow-wrap:anywhere pe-2">
+        <BlogList activeId="" />
+      </div>
+    </aside>
+    <section>
+
+    </section>
+  </main>
+</SiteLayout>

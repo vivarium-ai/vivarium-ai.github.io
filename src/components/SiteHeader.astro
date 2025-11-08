@@ -4,12 +4,14 @@ import ThemeSwitch from "@/components/ThemeSwitch.astro";
 
 <header class="flex items-center justify-between h-14">
   <div class="text-sm font-semibold tracking-tight">
-    Vivarium AI
+    <a href="/">Vivarium AI</a>
   </div>
-  <nav class="hidden md:flex gap-4 text-sm text-slate-200/80 items-end">
-    <a href="/" class="text-black dark:text-white">Home</a>
-    <a href="/blog" class="text-black dark:text-white">Blog</a>
-    <a href="/docs" class="text-black dark:text-white">Docs</a>
+  <nav class="hidden md:flex gap-4 text-sm items-end">
+    <a href="/blog/">Blog</a>
+    <a href="/docs/">Docs</a>
+    <a href="/newsletters/">Newsletters</a>
+    <a href="/papers/">Papers</a>
+
     <ThemeSwitch />
   </nav>
 </header>
