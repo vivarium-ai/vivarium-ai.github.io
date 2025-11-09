@@ -19,41 +19,34 @@ const {
 ---
 
 <form
-  class="mt-8 max-w-md mx-auto flex flex-col sm:flex-row gap-3 relative"
-  action={action}
-  method="post"
-  noValidate
->
-  <label class="sr-only" for="mce-EMAIL">Email address</label>
-  <input
-    id="mce-EMAIL"
-    name="EMAIL"
-    type="email"
-    required
-    autocomplete="email"
-    placeholder="you@example.com"
-    class="flex-1 rounded-lg  border px-3 py-2 text-sm  focus:outline-none focus:ring-2 focus:ring-slate-500"
-  />
-  <button
-    type="submit"
-    class="rounded-lg px-4 py-2 text-sm font-semibold hover:bg-white transition"
-  >
-    {cta}
-  </button>
+    action="https://vivarium-ai.us5.list-manage.com/subscribe/post?u=0fdb01c266ad85cb1cef48b04&amp;id=06aca8a11c&amp;f_id=002ee4e1f0"
+    method="post"
+    id="mc-embedded-subscribe-form"
+    name="mc-embedded-subscribe-form"
+    class="mt-8 max-w-md mx-auto flex flex-col sm:flex-row gap-3 relative validate" target="_blank">
 
-  <div
-    aria-hidden="true"
-    style="position: absolute; left: -5000px;"
-  >
+    <label class="sr-only" for="mce-EMAIL">Email address</label>
     <input
-      type="text"
-      name={honeypotName}
-      tabIndex="-1"
-      value=""
-      autoComplete="off"
+      id="mce-EMAIL"
+      name="EMAIL"
+      type="email"
+      required
+      autocomplete="email"
+      placeholder="you@example.com"
+      class="flex-1 rounded-lg  border px-3 py-2 text-sm  focus:outline-none focus:ring-2 focus:ring-slate-500"
     />
-  </div>
 
+    <div aria-hidden="true" style="position: absolute; left: -5000px;">
+      /* real people should not fill this in and expect good things - do not remove this or risk form bot signups */
+      <input type="text" name="b_0fdb01c266ad85cb1cef48b04_06aca8a11c" tabindex="-1" value="">
+    </div>
+
+    <button
+      type="submit"
+      class="rounded-lg px-4 py-2 text-sm font-semibold hover:bg-white transition"
+    >
+      {cta}
+    </button>
 </form>
 
 {helper && (
