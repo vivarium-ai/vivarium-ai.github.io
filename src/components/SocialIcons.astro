@@ -1,0 +1,20 @@
+---
+import { siBluesky, siGithub, siDiscord, siYoutube } from "simple-icons";
+
+const icons = [
+  { icon: siBluesky, url: "https://bsky.app/profile/vivarium-ai.com" },
+  { icon: siDiscord, url: "https://discord.gg/25GuZR4fBN" },
+  // { icon: siYoutube, url: "" },
+  { icon: siGithub, url: "https://github.com/vivarium-ai/" },
+];
+---
+
+<div class="flex gap-3">
+  {icons.map(({ icon, color, dark, url }) => (
+  <a href={url}>
+    <svg fill="currentColor" viewBox="0 0 24 24" aria-label={icon.title} width="24" height="24">
+      <path d={icon.path} />
+    </svg>
+  </a>
+  ))}
+</div>
