@@ -1,31 +1,26 @@
 ---
+import { createSignal, onMount } from "solid-js";
+import { Icon } from "solid-heroicons";
+import { sun, moon, computerDesktop } from "solid-heroicons/solid";
+
 const buttons = [
-  { id: "theme-light",  value: "light", pressed: false },
-  { id: "theme-system", value: "system", pressed: false },
-  { id: "theme-dark",   value: "dark", pressed: false },
+  { id: "theme-light",  icon: sun, value: "light", pressed: false },
+  { id: "theme-system", icon: computerDesktop, value: "system", pressed: true },
+  { id: "theme-dark",   icon: moon, value: "dark", pressed: false },
 ];
 ---
 
-<div class="flex gap-2" role="radiogroup">
-  {buttons.map(({ id, value, pressed }) => (
-    <button
-      id={id}
-      type="button"
-      class="text-black border-black dark:text-white dark:border-white px-3 py-1.5 rounded-xl text-sm font-medium border"
-      aria-pressed={pressed}
-    >
-      {value}
-    </button>
+<div id="theme-group"
+    class="flex gap-2 border border-fg/20 rounded-xl p-2 flex items-center" role="radiogroup">
+  {buttons.map(({ id, icon, value, pressed }) => (
+  <button
+    id={id}
+    type="button"
+    class="inline-flex items-center justify-center text-fg/60 p-1 rounded-sm hover:text-fg/100 aria-[pressed=true]:ring-1 aria-[pressed=true]:ring-accent/60"
+    aria-pressed={pressed}
+    onclick={`selectTheme('${value}')`}
+  >
+    <Icon path={icon} class="h-5 w-5" />
+  </button>
   ))}
 </div>
-
-<script is:inline>
-  function attachThemeHandler(id, value) {
-    const el = document.getElementById(id);
-    if (el) el.addEventListener("click", () => selectTheme(value));
-  }
-
-  attachThemeHandler("theme-light",  "light");
-  attachThemeHandler("theme-system", "system");
-  attachThemeHandler("theme-dark",   "dark");
-</script>

@@ -34,7 +34,14 @@
 
   // 4. Change theme on button press
   function selectTheme(theme) {
+    const group = document.getElementById("theme-group");
+    group.querySelectorAll('[aria-pressed]').forEach((btn) => {
+      const isActive = btn.id === `theme-${theme}`;
+      btn.setAttribute("aria-pressed", isActive ? "true" : "false");
+    });
+
     localStorage.setItem("theme", theme);
+
     initTheme();
   }
 
