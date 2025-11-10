@@ -46,10 +46,10 @@ const activeId = entry.id;
 
 <SiteLayout {title} {description}>
   <main
-    class="grid grid-cols-[1fr_3fr_1fr] gap-4 [&>*]:min-w-0 [&>*]:[overflow-wrap:anywhere]"
+    class="grid grid-cols-1 sm:grid-cols-[1fr_3fr_1fr] gap-4 [&>*]:min-w-0 [&>*]:[overflow-wrap:anywhere]"
   >
     <!-- Left: Blog post list -->
-    <aside class="hidden lg:block">
+    <aside class="hidden sm:block">
       <div class="sticky top-20 shrink-0 min-w-0 overflow-wrap:anywhere pe-2">
         <BlogList activeId={activeId} />
       </div>
@@ -70,7 +70,7 @@ const activeId = entry.id;
     </article>
 
     <!-- Right: Static ToC -->
-    <aside class="hidden xl:block">
+    <aside class="hidden md:block">
       <div class="sticky top-20 shrink-0 min-w-0 overflow-wrap:anywhere ps-2">
         <DocToc headings={headings} />
       </div>
