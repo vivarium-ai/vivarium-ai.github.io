@@ -17,22 +17,31 @@ Posts in this series:
 
 ## Is Artificial Intelligence Real?
 
-If you're like I was a few weeks ago, you may be tempted to believe that the reason the world is absurdly chasing LLMs on GPUs with hundreds of billions of dollars is because no one knows anything better about machine intelligence.
+If you're like I was a few weeks ago, you may be tempted to believe that the
+reason the world is absurdly chasing LLMs on GPUs with hundreds of billions of
+dollars is because no one knows anything better about machine intelligence.
 
-Like I was, you would be mistaken. And you can make a fair case for being excused for that.
+Like I was, you would be mistaken. And you can make a fair case for being
+excused for that. There's a lot of hype out there.
 
-My goal in this series of posts is to present irrefutable evidence that an alternate future is possible, one where we collectively develop real machine intelligence that approaches human intelligence, using comparable amounts of energy, and accessible to all.
+My goal in this series of posts is to present irrefutable evidence that an
+alternate future is possible, one where we collectively develop real machine
+intelligence that approaches human intelligence, using comparable amounts of
+energy, and accessible to all.
 
-Sound like a fantasy, too good to be true? Well, hear me out first. After all, if my fantasy turns out to be impossible, you can always go back to LLMs and GPUs.
+Sound like a fantasy, too good to be true? Well, hear me out first. After all,
+if my fantasy turns out to be impossible, you can always go back to LLMs and
+GPUs.
 
 ### How Much Do We Know?
 
 As it turns out, quite a lot going back many decades. A lot of the earlier "AI
 failures" had to do with an "over-application" of things we associated with
 "intelligence", like formal mathematical logic. With all due respect to Spock,
-it turns out that making sense out of the world isn't a simple as "reasoning".
+it turns out that making sense out of the world isn't as simple as "reasoning".
 
-Here are what I consider three foundational books:
+Let's take a look at what is out there that's not LLMs. Here are what I
+consider three foundational books:
 
 * [Structural Information
   Theory](https://www.goodreads.com/book/show/17068918-structural-information-theory)
@@ -51,9 +60,10 @@ In addition to these books, here are projects pursuing artificial intelligence f
 
 * [Thousand Brains Project](https://thousandbrains.org)
 * [Open Brain Institute](https://www.openbraininstitute.org/)
-* [Hyperdimensional Computing]()
-* [Free Enery Principle]()
-* [Bayesian Inference]()
+* [Hyper-dimensional Computing](https://arxiv.org/abs/2111.06077)
+* [Free Energy Principle](https://awjuliani.medium.com/a-gentle-introduction-to-the-free-energy-principle-03f219853177)
+* [Bayesian Prediction / Active Inference](https://arxiv.org/abs/1909.10863)
+* [Integrated Neuro-Symbolic Architecture](https://aigo.ai/insa-integrated-neuro-symbolic-architecture/)
 * [Dynamic Field Theory](https://dynamicfieldtheory.org)
 
 
@@ -65,24 +75,38 @@ And here are three approaches to hardware that could be very promising:
 
 ## What is Vivarium?
 
-This proposal is a comprehensive framework for a research and experimentation platform based on four core elements of a RealAI™ system:
+Vivarium is a comprehensive, integrated platform for the experimentation with
+and testing of arbitrary machine intelligence models. It is comprised of four
+core elements:
 
-1. AI definitions and models;
+1. AI agent definitions and models;
 1. Machine language and human-machine language interfaces;
 1. Tools;
 1. Infrastructure;
 
-The totality of this system is also an entity: **Vivarium**.
+The totality of this system is called **Vivarium**.
 
-The **"AI agents"** exist within a **"world"** and use **"language interfaces"** to **"tools"**. The worlds are described (structure and functionality) using languages capable of computation (i.e. not simply YAML or HCL etc).
+The **"AI agents"** exist within a **"world"** and use **"language
+interfaces"** to **"tools"** and other agents. The worlds are described
+(structure and functionality) using languages capable of computation (i.e. not
+simply YAML or JSON, etc.).
 
-The **"infrastructure"** is a combination of the computational resources (processor, memory, storage) to run the worlds and agents, and the controlling mechanisms for those computational resources.
+The **"infrastructure"** is a combination of the computational resources
+(processor, memory, storage) to run the worlds and agents, and the mechanisms
+for organizing, structuring, and manipulating those computational resources.
 
-Within the agents, an evolutionary mechanism can be introduced, again based on a language, that permits unguided exploration of solution spaces with respect to the structure or function of the agents.
+Within the agents, an evolutionary mechanism can be introduced, again based on
+a language, that permits unguided exploration of solution spaces with respect
+to the structure or function of the agents.
 
-The three other components are agnostic about the specific functioning of the "AI agent" component other than the agents' interface, which allows agents to interact with one another and with the world in which they are embedded and with the tools to which they have access.
+The three other components are agnostic about the specific functioning of the
+"AI agent" component other than the agents' interface, which allows agents to
+interact with one another and with the world in which they are embedded and
+with the tools to which they have access.
 
 ### What's in this Series of Posts
+
+This series of posts introduces the core concepts in Vivarium:
 
 * **Agents:** I will offer that we should be defining the terms we use to talk
   about "agents", including "agent" itself. There's a lot of prior art here,
@@ -122,8 +146,8 @@ Let me start by telling you where I'm coming from here:
 * I've spent more than 30 years writing complex software, like virtual machines
   and compilers.
 * I understand a fair bit of math and some things about neural networks.
-* I know a little about congnitive psychology, and comparative studies of
-  intelligence, for example corvids and cephalopods.
+* I know a little about cognitive psychology, and comparative studies of
+  intelligence, for example, with corvids and cephalopods.
 * Over the past 18 months, I've used genAI intensely. Mostly ChatGPT, but also
   Gemini and Claude.
 
@@ -133,7 +157,7 @@ needed to invent AI was the right salesman to come along.
 
 My own opinion based on the above is that genAI is a very wide cul-de-sac
 wherein some well-funded street racers are doing cookies in their custom built
-(at great expense) barely street legal hotrods and it's a blight on humanity.
+(at great expense) barely street-legal hot-rods and it's a blight on humanity.
 Not to put too sharp a point on it.
 
 But I'm not going to be offended if you tell me I'm wrong, because I could be.
@@ -154,16 +178,16 @@ he's available to be on a panel.
 Or you could ask ChatGPT, as I did, what are the fatal flows of the genAI/LLM
 approach and you might get something like the following:
 
-1. No Grounding in the Physical or Causal World (Semantic Grounding Problem)
-2. No Internal Causal Model of the World
-3. No Unified Self-Model or Persistent Memory
-4. No Embodiment or Situated Agency
-5. Lack of Compositional, Systematic Generalization
-6. Architectural Myopia: Sequence Prediction ≠ Thinking
-7. No True Intentionality or Semantic Reference
-8. Lack of Hierarchical, Cross-Modal World Models
-9. No Internal Curiosity, Goal Formation, or Motivation
-10. Epistemic Fragility and Lack of Meta-Cognition
+1. **No Grounding in the Physical or Causal World (Semantic Grounding Problem)**
+2. **No Internal Causal Model of the World**
+3. **No Unified Self-Model or Persistent Memory**
+4. **No Embodiment or Situated Agency**
+5. **Lack of Compositional, Systematic Generalization**
+6. **Architectural Myopia: Sequence Prediction ≠ Thinking**
+7. **No True Intentionality or Semantic Reference**
+8. **Lack of Hierarchical, Cross-Modal World Models**
+9. **No Internal Curiosity, Goal Formation, or Motivation**
+10. **Epistemic Fragility and Lack of Meta-Cognition**
 
 The very idea that all there is to know about the world can be inferred by
 which word follows which other word should be, on its face, such a laughable
@@ -186,21 +210,23 @@ best we're capable of at this moment, it shouldn't be accepted as a reasonable
 approach to autonomous driving.
 
 I'll go even further and plainly state that multi-trillion dollar market cap
-companies have no real utiility or valuable contribution to the world economy.
+companies have no real utility or valuable contribution to the world economy.
 The goal should be putting AI in the service of every individual to enable them
 to live a happier, healthier, more fulfilling life alongside their friends and
 loved ones no matter where they are in the world. No company or group of
 companies should have a monopoly on that.
 
-When on steps back just a little, it's very easy to see that the demo of
+When one steps back just a little, it's very easy to see that the demo of
 ChatGPT was just too convincing. Like a young child does with their inanimate
 stuffed animal, we anthropomorphize something that gives the appearance of
 realness and imbue it with meaning and human attributes. The demonstrators
-were, of course, clever. When the ChatGPT shimmers its "Thinking..." rather
-than telling the truth (crunching some small floats on these here GPUs), we eat
-it up. And then it tells us, "This is exactly the right question to ask and
-cuts right to the heart of blah blah blah" for the fiftieth time, and we keep
-on feeling quite proud of ourselves.
+were, of course, clever.
+
+When the ChatGPT shimmers its "Thinking..." text after your prompt rather than
+telling the truth (crunching some small floats on these here GPUs), we eat it
+up. And then it tells us, "This is exactly the right question to ask and cuts
+right to the heart of blah blah blah" for the fiftieth time, and we keep on
+feeling quite proud of ourselves.
 
 It is a little weird, though, that we do this. After all, intelligence isn't
 that rare on this earth. Just counting the humans, we're surrounded by about

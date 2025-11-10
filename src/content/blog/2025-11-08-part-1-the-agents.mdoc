@@ -41,7 +41,7 @@ enables the location for the compute of the agent to be separated from the
 computing device providing the resource under the rest of the Vivarium
 instance.
 
-### How to Think About the Languge Interface
+## How to Think About the Language Interface
 
 The language and language-related tools (e.g. the compiler assembly, including
 the JIT machinery) are obviously useful in a stand-alone manner because
@@ -67,7 +67,7 @@ and communicate with other agents. This uniformity of agents containing
 intelligence clarifies and simplifies the architecture without loss of
 generality.
 
-### Necessary Attributes of (Ideal) Agents
+## Necessary Attributes of (Ideal) Agents
 
 The goal is to experimentally create real intelligence, where learning,
 understanding, and sense-making transfer to new domains with ever-improving
@@ -78,8 +78,8 @@ general, the less accurate inescapably).
 The following are structural elements of agents, where they:
 
 * **Inhabit a world**;
-* Have a **"language interface" (expanded on in section 2 below) for input and output**;
-* Have a **"language interface" to tools** (expanded on in section 3 below);
+* Have a **"language interface" for input and output**;
+* Have a **"language interface" to tools**;
 * Have an **operational (most likely "language") interface** to the world they exist within;
 * **Produce telemetry** that is combined with the world and tool telemetry;
 * Are able to **use the telemetry as feedback**.
@@ -90,24 +90,32 @@ And these (or many of them) should be required core functions or capabilities:
 * **Sensorimotor capabilities** in the broadest sense. The ability to perceive and act;
 * **Intentionality**, acting in pursuit of a goal;
 * **Boredom**, essentially an internal state of insufficient novelty in recent experience;
-* **Curiosity**, and urge to question and pursue "What would happen if...?"
-* **Purpose**, these are individual, internal
-* **Goals**, these are external and can be collective, must be multiple and often will be in conflict
-* **Motivation**, the direction of attention and energy toward a goal
-* **Drive**, a force moving foward
+* **Curiosity**, and urge to question and pursue "What would happen if...?";
+* **Purpose**, these are individual, internal;
+* **Goals**, these are external and can be collective, must be multiple and often will be in conflict;
+* **Motivation**, the direction of attention and energy toward a goal;
+* **Drive**, a force moving forward;
 * **Learning not training**, may be externally (goals provided) or internally (curiosity) guided;
-* **Understanding**, closes the loop between perception, learning, intentionality, acting;
+* **Understanding**, closes the loop between perception, learning, intentionality, acting.
 
 The concepts of perception, goals, causality, etc are used in the most general
 sense. An agent could "intend to find the error in a piece of code by
 understanding the looping structure where the error is happening and trying
 changes, potentially, but hopefully not exclusively at random".
 
-All of these concepts should be rigorounly defined and vigorously
+All of these concepts should be rigorously defined and vigorously
 de-anthropomorphized. This itself constitutes a significant amount of work on
 the agent aspect of Vivarium.
+
+## This is Just the Start
+
+Of course, no short introduction like this can possibly do justice to the
+incredible complexity of intelligent agents, but there is a truly enormous
+amount of prior art, some of it linked in the introductory post.
 
 [Dynamic Field Theory](https://dynamicfieldtheory.org) has already established
 quite substantial progress on many of these but it appears to lack good
 surrounding infrastructure.
 
+There is a lot more to write on this topic, but for now, let's move on to some
+details of the language component.

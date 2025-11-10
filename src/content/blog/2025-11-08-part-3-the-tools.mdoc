@@ -24,7 +24,7 @@ action. In Part 2 of this series, we covered aspects of using language as an
 interface.
 
 Tools in Vivarium may be used by agents, but they can also be run by automation
-(ie scripts) or other facilities.
+(i.e. scripts) or other facilities.
 
 The definition of a tool is purposefully as broad as possible, while still
 keeping a clear distinction between agents, tools, and infrastructure.
@@ -45,14 +45,14 @@ While it is true that some APIs offer typed schemas to help reduce the
 likelihood of misusing (intentional or otherwise) the API, by itself, that does
 provide enough support to reason about the tool's capabilities.
 
-There are also standards for documenting APIs, but then that is documetation
+There are also standards for documenting APIs, but then that is documentation
 *for* the API, not the API itself. And some API providers will offer a
 "staging" or "sandbox" version of the API, where costly or dangerous actions
 won't be taken on production data.
 
 But with a language as the interface, particularly one carefully constructed
 for the capabilities of the tool, including the type system, it's possible to
-experiment robustly (e.g. does it parse, typecheck, etc.) without ever
+experiment robustly (e.g. does it parse, type-check, etc.) without ever
 invoking the actual tool.
 
 And if there are competing tools that offer the same capabilities, but perhaps
