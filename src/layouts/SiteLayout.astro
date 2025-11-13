@@ -17,6 +17,12 @@ const {
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="Vivarium AI"
+      href={new URL("rss.xml", Astro.site)}
+    />
 
     <ThemeBoot />
   </head>
