@@ -1,0 +1,167 @@
+---
+title: "LLMs Must Hallucinate to Function"
+author: Brian Shirai
+date: 2025-11-16T12:00:01Z
+---
+
+Imagine that you made a technology that could not really be tested for
+correctness, that you couldn't really explain how it worked, that you
+definitely couldn't reliably predict what it would do, and that using it could
+cause very serious problems, like people committing suicide.
+
+How seriously do you think people would take you? Do you think they'd line up
+to pour hundreds of billions of dollars into your product?
+
+Here's the bare, simple truth about LLMs, or what most people know of as
+"Generative AI" or perhaps just by one of the product's names, ChatGPT or Grok
+or Claude: LLMs *must* hallucinate to function.
+
+Two years ago, when ChatGPT was making a big splash and heads of companies were
+tripping over themselves to deploy "AI initiatives" and loudly proclaim they
+were reducing headcount or not hiring anymore because "AI" could do the job,
+this is not what people were leading with.
+
+But more recently, the news organizations are starting to catch up. Here are a
+couple recent, notable articles:
+
+"Hallucination is fundamental to how transformer-based language models work. In
+fact, it’s their greatest asset: this is the method by which language models
+find links between sometimes disparate concepts. But hallucination can become a
+curse when language models are applied in domains where the truth matters."
+[Your AI strategy needs mathematical
+logic](https://fortune.com/2025/09/20/aws-scientist-why-hallucinations-are-ai-llm-greatest-asset/)
+
+... "domains where the truth matters." That's a big hmm for me. 🤔
+
+According to a recent article in the Wall Street Journal, Yann LeCun, formerly
+head of Meta's FAIR (Fundamental AI Research team), "has been telling anyone
+who asks that he thinks large language models, or LLMs, are a dead end in the
+pursuit of computers that can truly outthink humans." [He’s Been Right About AI
+for 40 Years. Now He Thinks Everyone Is
+Wrong.](https://www.wsj.com/tech/ai/yann-lecun-ai-meta-0058b13c)
+
+But, you know, technology isn't perfect and sometimes things are rough around
+the edges, so maybe we shouldn't be too hasty in judging this new technology.
+
+That might be a fair point. I'm not sure. Maybe if we knew how big of a problem
+this might be, we could assess our stance more carefully.
+
+You may have heard of IBM. They're a pretty big company and have done a thing
+or two with computational technologies over the years. For example, their
+computer, Deep Blue, was [the first to beat a world chess
+champion](https://www.ibm.com/history/deep-blue).
+
+On the IBM website, you can find something called the [AI risk
+atlas](https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas). To make
+it easy, I added all their content links to a single enumerated list to give a
+sense of the span of topics they've collected about dangers in deploying LLMs.
+You might enjoy browsing:
+
+1. [Toxic output](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-toxic-output)
+1. [Unexplainable and untraceable actions](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-unexplainable-untraceable-actions)
+1. [Data poisoning](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-data-poisoning)
+1. [Unreliable source attribution](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-unreliable-source-attribution)
+1. [Mitigation and maintenance](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-mitigation-maintenance)
+1. [AI agent compliance](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-ai-agent-compliance)
+1. [Function calling hallucination](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-function-calling-hallucination)
+1. [Harmful output](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-harmful-output)
+1. [Indirect instructions attack](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-indirect-instructions-attack)
+1. [Confidential information in data](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-confidential-information-in-data)
+1. [Lack of model transparency](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-lack-model-transparency)
+1. [Exploit trust mismatch](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-exploit-trust-mismatch)
+1. [Unrepresentative data](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-unrepresentative-data)
+1. [AI agents' Impact on human agency](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-ai-agents-impact-human-agency)
+1. [AI agents' impact on human agency](https://www.ibm.com/docs/en/watsonx/saas?topic=ara-ai-agents-impact-human-agency)
+1. [Personal information in prompt](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-personal-information-in-prompt)
+1. [Sharing IP/PI/confidential information with user](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-sharing-ippiconfidential-information-user)
+1. [Temporal gap](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-temporal-gap)
+1. [Nonconsensual use](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-nonconsensual-use)
+1. [Decision bias](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-decision-bias)
+1. [Lack of testing diversity](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-lack-testing-diversity)
+1. [Exposing personal information](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-exposing-personal-information)
+1. [Confidential data in prompt](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-confidential-data-in-prompt)
+1. [Data privacy rights alignment](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-data-privacy-rights-alignment)
+1. [Discriminatory actions](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-discriminatory-actions)
+1. [IP information in prompt](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-ip-information-in-prompt)
+1. [Prompt leaking](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-prompt-leaking)
+1. [Hallucination](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-hallucination)
+1. [Legal accountability](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-legal-accountability)
+1. [Social hacking attack](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-social-hacking-attack)
+1. [Non-disclosure](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-non-disclosure)
+1. [Lack of training data transparency](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-lack-training-data-transparency)
+1. [Model usage rights restrictions](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-model-usage-rights-restrictions)
+1. [Reproducibility](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-reproducibility)
+1. [Specialized tokens attack](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-specialized-tokens-attack)
+1. [Prompt injection attack](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-prompt-injection-attack)
+1. [Incomplete advice](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-incomplete-advice)
+1. [Lack of system transparency](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-lack-system-transparency)
+1. [Data usage restrictions](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-data-usage-restrictions)
+1. [Impact on cultural diversity](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-impact-cultural-diversity)
+1. [Impact on education: plagiarism](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-impact-education-plagiarism)
+1. [Personal information in data](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-personal-information-in-data)
+1. [Direct instructions attack](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-direct-instructions-attack)
+1. [Improper usage](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-improper-usage)
+1. [Exclusion](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-exclusion)
+1. [Extraction attack](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-extraction-attack)
+1. [Impact on Jobs](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-impact-jobs)
+1. [Jailbreaking](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-jailbreaking)
+1. [Data acquisition restrictions](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-data-acquisition-restrictions)
+1. [Sharing IP/PI/confidential information with tools](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-sharing-ippiconfidential-information-tools)
+1. [Prompt priming](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-prompt-priming)
+1. [Reidentification](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-reidentification)
+1. [Overfitting](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-overfitting)
+1. [Attribute inference attack](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-attribute-inference-attack)
+1. [Poor model accuracy](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-poor-model-accuracy)
+1. [Data transfer restrictions](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-data-transfer-restrictions)
+1. [Generated content ownership and IP](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-generated-content-ownership-ip)
+1. [Encoded interactions attack](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-encoded-interactions-attack)
+1. [Impact on human dignity](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-impact-human-dignity)
+1. [Output bias](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-output-bias)
+1. [Dangerous use](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-dangerous-use)
+1. [Lack of AI agent transparency](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-lack-ai-agent-transparency)
+1. [Unexplainable output](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-unexplainable-output)
+1. [Human exploitation](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-human-exploitation)
+1. [AI agents' impact on jobs](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-ai-agents-impact-jobs)
+1. [Improper data curation](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-improper-data-curation)
+1. [Over- or under-reliance on AI agents](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-over-under-reliance-ai-agents)
+1. [Attack on AI agents’ external resources](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-attack-ai-agents-external-resources)
+1. [Revealing confidential information](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-revealing-confidential-information)
+1. [Lack of domain expertise](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-lack-domain-expertise)
+1. [Spreading disinformation](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-spreading-disinformation)
+1. [Data bias](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-data-bias)
+1. [Uncertain data provenance](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-uncertain-data-provenance)
+1. [Unrepresentative risk testing](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-unrepresentative-risk-testing)
+1. [Redundant actions](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-redundant-actions)
+1. [Data usage rights restrictions](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-data-usage-rights-restrictions)
+1. [Unauthorized use](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-unauthorized-use)
+1. [Misaligned actions](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-misaligned-actions)
+1. [AI agents' impact on environment](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-ai-agents-impact-environment)
+1. [Harmful code generation](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-harmful-code-generation)
+1. [Data contamination](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-data-contamination)
+1. [Incomplete usage definition](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-incomplete-usage-definition)
+1. [Copyright infringement](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-copyright-infringement)
+1. [Context overload attack](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-context-overload-attack)
+1. [Lack of data transparency](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-lack-data-transparency)
+1. [Impact on affected communities](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-impact-affected-communities)
+1. [Improper retraining](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-improper-retraining)
+1. [Spreading toxicity](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-spreading-toxicity)
+1. [Inaccessible training data](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-inaccessible-training-data)
+1. [Impact on education: bypassing learning](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-impact-education-bypassing-learning)
+1. [Introduce data bias](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-introduce-data-bias)
+1. [Accountability of AI agent actions](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-accountability-ai-agent-actions)
+1. [Incomplete AI agent evaluation](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-incomplete-ai-agent-evaluation)
+1. [Untraceable attribution](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-untraceable-attribution)
+1. [Evasion attack](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-evasion-attack)
+1. [Impact on the environment](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-impact-environment)
+1. [Over- or under-reliance](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-over-under-reliance)
+1. [Incorrect risk testing](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-incorrect-risk-testing)
+1. [Membership inference attack](https://www.ibm.com/docs/en/watsonx/saas?topic=atlas-membership-inference-attack)
+
+I don't know about you, but if someone showed me a list like this about a piece
+of technology, I might be concerned about the level of oversight it might be
+getting and whether we might want to investigate it a bit further.
+
+At the same time, you might also wonder if we're just stuck with LLMs or
+whether there might be something else we could try. Turns out, [there are quite
+a few
+things](http://localhost:51938/blog/2025-11-08-the-vivarium-ai-experimentation-platform/).
