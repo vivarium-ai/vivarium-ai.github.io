@@ -1,0 +1,44 @@
+---
+title: "What Would an Intelligent SQL Agent Do?"
+author: Brian Shirai
+date: 2025-11-18T19:00:00Z
+published: false
+---
+
+This is what an intelligent SQL Assistant would do...
+
+# The Meta-Objects or Physics of SQL
+
+The following ideas came up discussing with Norm an agent actually learning SQL.
+
+## The SQL Syntax and Semantics
+
+The *syntax* of SQL does not encode the *"physics"* of querying or updating a database.
+
+For example, here are several relevant spatial and temporal properties:
+
+1. Processing data already in memory is faster that pulling data from disk.
+1. Historical data (data before some recent time) can be stored in a manner or in a format that makes the needed queries as fast as possible.
+1. New (or recent) data probably needs to be processed during a query if it has not been formatted or stored in an efficient way yet, which takes more time.
+
+The *semantics* of SQL, for example, what an "INNER JOIN" means is an important (indeed critical) aspect of *using* SQL effectively, but it also does not express the *"physics"* above, by design really, separating the declaration of data definition or query from its implementation.
+
+## Learning SQL
+
+To *effectively* learn SQL requires learning the *"physics"* of SQL much more than learning the syntax or even semantics. We know this because a human can think through what they want to achieve and then experiment with an SQL statement until they get the result they want.
+
+So the environment in which the SQL Agent learns needs to express the *"physics"* of SQL in a way that is independent of the agent's function and also provides a responsive check (e.g. like gravity to a child learning how blocks stack).
+
+## Problem-solving in SQL
+
+Norm related some heuristics he uses when approaching a problem with an SQL query. For example, rather than looking at the query, asking the people using it, "What does this query do?"
+
+We can make a list of these heuristics, but we would expect an actually intelligent agent (or one capable of actual learning) to start to derive these heuristics from observing the *"physics"* of SQL.
+
+## Communicating with an Intelligent SQL Agent
+
+Given that the concepts involved in SQL are only superficially related to what an intelligent agent would consider about a database, Norm suggested an analogy with the whistles and chirps dolphins make. Rather than the sound patterns themselves representing language in the humans use them, what if a dolphin makes sounds in a sonar-manner that mimic the "scene" they would see if using those sounds, and the other dolphin "sees" the same scene or it evokes a similar scene, perhaps along the lines of the "mirror neurons" mechanism.
+
+## The Economic Value of an SQL Agent
+
+An SQL Agent of the sort described here would be able to continue to learn contextual information relevant to a particular business from a baseline of SQL competency. The agent would be a domain-specific assistant to someone who understood or was responsible for greater business scope but the agent would assist them in optimizing or evolving the business (or division, etc.) database system.
