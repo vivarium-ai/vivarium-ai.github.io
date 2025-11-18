@@ -1,0 +1,105 @@
+---
+title: "A Big Shift is Underway"
+week: 1
+---
+
+When I was a kid, Bubble Yum and Bubblicious bubble gum brands fought for the
+hearts and minds of fun-loving kids. If you wanted to blow bigger bubbles, you
+used more pieces. And one thing we learned was that blowing a big bubble took
+some time and patience and it helped if the wind wasn't blowing.
+
+But while the bubble got big a little at a time, when it popped, it popped all
+of a sudden.
+
+The Wall Street Journal published [an
+article](https://www.wsj.com/tech/ai/yann-lecun-ai-meta-0058b13c) suggesting
+that Yann LeCun will be leaving Meta, where previously he was heading up the
+FAIR (Fundamental AI Research) team.
+
+I'm not gonna go on the record stating that this is the start of the bubble
+popping, but one thing you learned as a kid is that it was hard to know
+precisely when the bubble is gonna popped, but every single one popped once it
+got big enough.
+
+Nice thing about Bubblicious, though, is it didn't stick to your face and hair.
+Or maybe it did stick to your hair. Or maybe it was Bubble Yum that didn't
+stick. I think we should have a big bubble gum bubble blowing and popping
+party.
+
+Maybe not as fun as all that, but we've got some posts up about how [LLM
+hallucination is a feature not a
+bug](/blog/2025-11-16-llms-must-hallucinate-to-function/), some [thoughts on
+the ethics of AI](/blog/2025-11-16-elizabeth-holmes-should-have-picked-ai/),
+and a [fun little thought experiment ChatGPT ran on Vivarium
+infrastructure](/blog/2025-11-17-infrastructure-according-to-chatgpt/) ideas
+after I mixed a bunch of alphabets into its soup.
+
+## News Around Your Towns
+
+Last week, I mentioned wanting to start up a weekly in-person hacking event
+reminiscent of some of the famous ones in history, like [Seattle Ruby
+Brigade](https://localwiki.org/seattle/Seattle_Ruby_Brigade) and [LA
+Ruby](https://www.meetup.com/laruby/).
+
+So I popped (not bubble popping, different popping) over to [PDX
+Hackerspace](https://pdxhackerspace.org) on Saturday and had a look around. It
+looks amazing. If everything goes according to plan, we'll probably start
+hosting there every Tuesday maybe 6-9pm. I'll post it on
+[Calagator](https://calagator.org) when it's finalized. If you're in the
+Portland Metro area, we'd love to see you!
+
+If virtual is more your thing, or you just live really really far away, join
+[the Discord](https://discord.gg/25GuZR4fBN) (not to be confused with The
+Facebook) and chat with us.
+
+## Reader's Corner
+
+Thanks to a request from long time Rubinius supporter, Shane Becker, we now have [🎉 an RSS feed 🎉](/rss.xml).
+
+I literally hadn't heard the words "RSS feed" in several decades, but it turns
+out that it's pretty cool stuff. If you haven't heard those words either, or
+have and are looking for a good RSS reader application, Shane says you can't
+beat [NetNewsWire](https://netnewswire.com). I installed it and when I opened
+it, I rediscovered all the feeds I had been subscribed to all those decades
+ago.
+
+## How's it Tracking?
+
+The [build2](https://www.build2.org) project "is a hierarchy of tools
+consisting of a general-purpose build system, package manager (for package
+consumption), and project manager (for project development)."
+
+It's basically everything I wanted more than 15 years ago when I was wiring
+everything together with Rake and shell scripts, but they only started working
+on it about 10 years ago.
+
+As cool as it is, it does take some wrapping your brain around it, so I spent
+time doing that last week to save you the trouble. I've written it up in [a
+post with a bow](https://rubinius.com/blog/2025-11-16-omg-what-a-mess/) to
+explain the new Rubinius build setup.
+
+## London Calling...
+
+As the world-wide pivot away from LLMs accelerates, it would be fantastic to get one of these competing technologies integrated in Vivarium: [Integrated Neuro-Symbolic Architecture](https://aigo.ai/insa-integrated-neuro-symbolic-architecture/), [Bayesian Prediction / Active Inference](https://arxiv.org/abs/1909.10863), or one of the [world models](https://www.quantamagazine.org/world-models-an-old-idea-in-ai-mount-a-comeback-20250902/) that LeCun is interested in.
+
+If you're interested in any of these, or already have experience with one of them, [drop by](https://discord.gg/25GuZR4fBN) and let's talk.
+
+## Looking Forward to Next Week
+
+I'm not ticking off these issues from last week yet because I want to
+stress-test the new Rubinius build setup with a couple package managers. One of
+the huge problems we had before was getting support from package maintainers
+because of the difficulty to them of needing things like Ruby to build
+Rubinius. So, I'm adding that to this list.
+
+* [Test Rubinius build with Debian and Arch](https://github.com/rubinius/build/issues/1)
+* [Package the Ruby Prism parser for integration](https://github.com/rubinius/rubinius/issues/3858)
+* [Package the Python PEG parser for integration](https://github.com/rubinius/rubinius/issues/3859)
+* [Add the LLVM fork to GitHub CI](https://github.com/rubinius/compiler-ng/issues/1)
+* [Add the minimum Rubinius TableGen backend to LLVM](https://github.com/rubinius/compiler-ng/issues/2)
+* [Integrate the Prism parser](https://github.com/rubinius/compiler-ng/issues/3)
+* [Add the minimum asm and object writer to LLVM](https://github.com/rubinius/compiler-ng/issues/4)
+
+Have something you want to work on? It's all free and open source, so dive right in!
+
+Have a splendid week!
