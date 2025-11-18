@@ -11,5 +11,12 @@ export default defineMarkdocConfig({
         title: { type: String, required: false },
       },
     },
+    youtube: {
+      render: component('./src/components/YouTube.astro'),
+      attributes: {
+        id: { type: String, required: true },
+        title: { type: String },
+      },
+    },
   },
 });

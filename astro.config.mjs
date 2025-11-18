@@ -10,5 +10,10 @@ export default defineConfig({
   base: '/',
 
   vite: { plugins: [tailwind()] },
-  integrations: [solidJs(), markdoc()],
+  integrations: [
+    solidJs(),
+    markdoc({
+      allowHTML: true
+    }),
+  ],
 });
