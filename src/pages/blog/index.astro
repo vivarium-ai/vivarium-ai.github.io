@@ -1,19 +1,48 @@
 ---
+import { getCollection } from "astro:content";
 import SiteLayout from '@/layouts/SiteLayout.astro';
 import BlogList from "@/components/BlogList.astro";
+import DocToc from "@/components/DocToc.astro";
+import { titleFor } from "@/lib/docs";
+import { formatDateUTC } from "@/lib/dates";
+
+const all = await getCollection("blog");
+const items = all.filter((p) => p.data.published !== false);
+const item = items.at(-1);
+
+const title = titleFor(item);
+const description = item.data.description ?? "";
+const pubDate = item.data.date ? formatDateUTC(item.data.date) : null;
+
+const { Content, headings } = await item.render();
 ---
 
 <SiteLayout title="Vivarium - Blog">
   <main
-    class="grid grid-cols-1 sm:grid-cols-[1fr_3fr] gap-4 [&>*]:min-w-0 [&>*]:[overflow-wrap:anywhere]"
+    class="grid grid-cols-1 sm:grid-cols-[1fr_3fr_1fr] gap-4 [&>*]:min-w-0 [&>*]:[overflow-wrap:anywhere]"
   >
     <aside class="block">
       <div class="sticky top-20 shrink-0 min-w-0 overflow-wrap:anywhere pe-2">
         <BlogList activeId="" />
       </div>
     </aside>
-    <section>
+    <article
+      class="prose dark:prose-invert prose-compact grow shrink min-w-0 @container prose-headings:scroll-mt-28">
+      <header class="mb-8 border-b pb-5">
+        <h1 class="text-3xl font-semibold tracking-tight">{title}</h1>
+        {description && <p class="mt-2 text-sm opacity-80">{description}</p>}
+        {pubDate && (
+          <p class="mt-2 text-xs opacity-70"> {pubDate} </p>
+        )}
+      </header>
 
-    </section>
+      <Content />
+    </article>
+
+    <aside class="hidden md:block">
+      <div class="sticky top-20 shrink-0 min-w-0 overflow-wrap:anywhere ps-2">
+        <DocToc headings={headings} />
+      </div>
+    </aside>
   </main>
 </SiteLayout>

@@ -1,6 +1,7 @@
 ---
-import { getCollection } from "astro:content";
+import { getCollection, getEntryBySlug } from "astro:content";
 import SiteLayout from "@/layouts/SiteLayout.astro";
+import NewsList from "@/components/NewsList.astro";
 
 export async function getStaticPaths() {
   const items = await getCollection("newsletters");
@@ -12,17 +13,26 @@ export async function getStaticPaths() {
 }
 
 const { item } = Astro.props;
-if (!item) {
-  throw new Error("Newsletter not found");
-}
+if (!item) return Astro.redirect("/404");
+
 const { Content } = await item.render();
 ---
 
 <SiteLayout title={item.data.title ?? item.slug}>
-  <article class="prose dark:prose-invert mx-auto">
-    <h2 class="text-xs uppercase">The weekly Vivarium for Week {item.data.week}</h2>
-    <h1>{item.data.title ?? item.slug}</h1>
-    {item.data.date && <p class="text-sm">{item.data.date}</p>}
-    <Content />
-  </article>
+  <main
+    class="grid grid-cols-1 sm:grid-cols-[1fr_3fr_1fr] gap-4 [&>*]:min-w-0 [&>*]:[overflow-wrap:anywhere]"
+    <aside class="hidden sm:block">
+      <div class="sticky top-20 shrink-0 min-w-0 overflow-wrap:anywhere pe-2">
+        <NewsList activeId={item.slug} />
+      </div>
+    </aside>
+
+    <article class="prose dark:prose-invert mx-auto">
+      <h2 class="text-xs uppercase">The weekly Vivarium for Week {item.data.week}</h2>
+      <h1>{item.data.title ?? item.slug}</h1>
+      <Content />
+      <hr />
+      {item.data.date && <p class="text-sm">{item.data.date}</p>}
+    </article>
+  </main>
 </SiteLayout>
