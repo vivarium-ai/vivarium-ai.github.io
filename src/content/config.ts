@@ -1,5 +1,12 @@
 import { defineCollection, z } from 'astro:content';
 
+const news = z.object({
+  title: z.string(),
+  author: z.string(),
+  date: z.coerce.date(),
+  published: z.boolean().default(true),
+});
+
 const docs = defineCollection({
   type: "content",
   schema: z.object({
@@ -11,21 +18,15 @@ const docs = defineCollection({
 
 const blog = defineCollection({
   type: "content",
-  schema: z.object({
-    title: z.string(),
+  schema: news.extend({
     subtitle: z.string().optional(),
-    author: z.string(),
-    published: z.boolean().default(true),
-    date: z.coerce.date(),
     tags: z.array(z.string()).optional(),
-    order: z.number().optional(),
   }),
 });
 
 const newsletters = defineCollection({
   type: "content",
-  schema: z.object({
-    title: z.string(),
+  schema: news.extend({
     week: z.number(),
   }),
 });
