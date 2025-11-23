@@ -1,0 +1,27 @@
+
+---
+import { getCollection } from "astro:content";
+const items = await getCollection("events", (n) => n.data.published !== false);
+const sorted = items.sort(
+  (a, b) => new Date(b.data.date ?? 0).getTime() - new Date(a.data.date ?? 0).getTime()
+);
+
+const { activeId } = Astro.props;
+---
+
+<nav aria-label="All events" class="text-sm">
+  <h2 class="mb-2 px-2 text-xs font-semibold uppercase tracking-wide opacity-70">
+    Events
+  </h2>
+  <ul class="space-y-1">
+    {sorted.map((item) => (
+      <li>
+        <a href={`/events/${item.slug}/`}
+          class="block rounded-md px-2 py-1.5 outline-none ring-0 transition hover:bg-fg/5 focus:bg-fg/5"
+        >
+          {item.data.title ?? item.slug}
+        </a>
+      </li>
+    ))}
+  </ul>
+</nav>

@@ -1,0 +1,36 @@
+---
+import SiteLayout from "@/layouts/SiteLayout.astro";
+import EventsList from "@/components/EventsList.astro";
+import Event from "@/components/Event.astro";
+import { getCollection, getEntryBySlug } from "astro:content";
+
+export async function getStaticPaths() {
+  const items = await getCollection("events");
+
+  return items
+    .filter((p) => p.data.published !== false)
+    .map((item) => ({
+      params: { slug: item.slug },
+    }));
+}
+
+const { slug } = Astro.params;
+const item = await getEntryBySlug("events", slug);
+
+if (!item) throw new Error(`Event not found: ${slug}`);
+
+const { Content } = await item.render();
+---
+
+<SiteLayout title={item.data.title ?? item.slug}>
+  <main
+    class="grid grid-cols-1 sm:grid-cols-[1fr_3fr_1fr] gap-4 [&>*]:min-w-0 [&>*]:[overflow-wrap:anywhere]"
+    <aside class="hidden sm:block">
+      <div class="sticky top-20 shrink-0 min-w-0 overflow-wrap:anywhere pe-2">
+        <EventsList activeId={item.slug} />
+      </div>
+    </aside>
+
+    <Event item={item} Content={Content} showTitle={true} />
+  </main>
+</SiteLayout>

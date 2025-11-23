@@ -1,0 +1,43 @@
+---
+import { getCollection } from "astro:content";
+import SiteLayout from "@/layouts/SiteLayout.astro";
+import EventsList from "@/components/EventsList.astro";
+import Event from "@/components/Event.astro";
+
+const all = await getCollection("events");
+
+const items = all
+  .filter((p) => p.data.published !== false)
+  .sort(
+    (a, b) =>
+      new Date(a.data.start_date).getTime() -
+      new Date(b.data.start_date).getTime()
+  );
+
+// Pre-render Content for each event during SSG.
+// NOTE: this is plain TS data, not JSX nodes.
+const rendered = await Promise.all(
+  items.map(async (item) => {
+    const { Content } = await item.render();
+    return { item, Content };
+  })
+);
+---
+
+<SiteLayout title="Vivarium - Events">
+  <main class="grid grid-cols-1 sm:grid-cols-[1fr_3fr_1fr] gap-4 [&>*]:min-w-0 [&>*]:[overflow-wrap:anywhere]">
+    <aside class="block">
+      <div class="sticky top-20 shrink-0 min-w-0 overflow-wrap:anywhere pe-2">
+        <EventsList activeId="" />
+      </div>
+    </aside>
+
+    <ul class="space-y-12">
+      {rendered.map(({ item, Content }) => (
+        <li>
+          <Event item={item} Content={Content} />
+        </li>
+      ))}
+    </ul>
+  </main>
+</SiteLayout>

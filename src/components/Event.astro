@@ -1,0 +1,89 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { formatDateUTC, timeRangeWithZone } from "@/lib/dates.ts"
+
+type EventLike = {
+  start_date: string | Date;
+  start_time: string;
+  end_time?: string;
+  time_zone: string;
+  recurring?: string;
+};
+
+export function whenTextForEvent(e: EventLike) {
+  const dateISO =
+    e.start_date instanceof Date
+      ? e.start_date.toISOString().slice(0, 10)
+      : e.start_date;
+
+  // If you have an end_time, prefer a range; else just format start_time.
+  const timeText = e.end_time
+    ? timeRangeWithZone(dateISO, e.start_time, e.end_time, e.time_zone)
+    : new Intl.DateTimeFormat("en-US", {
+        timeZone: e.time_zone,
+        hour: "numeric",
+        minute: "2-digit",
+        hour12: true,
+        timeZoneName: "short",
+      }).format(new Date(`${dateISO}T${e.start_time}:00`));
+
+  if (e.recurring) {
+    // e.recurring already like "Every weekday"
+    return `${e.recurring} at ${timeText} starting ${formatDateUTC(dateISO)}`;
+  }
+
+  // single occasion
+  return `${dateISO} • ${timeText}`;
+}
+
+
+interface Props {
+  item: CollectionEntry<"events">;
+  Content: any;
+  class?: string;
+  showTitle?: boolean;
+}
+
+const {
+  item,
+  Content,
+  class: className = "",
+  showTitle = true,
+} = Astro.props;
+
+const {
+  start_date,
+  start_time,
+  end_time,
+  time_zone,
+  recurring,
+  location,
+  location_url,
+} = item.data;
+const time = timeRangeWithZone(start_date, start_time, end_time, time_zone);
+
+const whenText = whenTextForEvent({
+  start_date: start_date,
+  start_time: start_time,
+  end_time: end_time,
+  time_zone: time_zone,
+  recurring: recurring,
+});
+---
+
+<article class={`space-y-4 ${className}`}>
+  {showTitle && (
+    <header class="mb-2">
+      <h2 id={item.slug} class="text-xl font-semibold">
+        {item.data.title}
+        <a href={`#${item.slug}`} class="anchor hover:underline">#</a>
+      </h2>
+      <ul>
+        <li><strong>When: </strong> {whenText}</li>
+        <li><strong>Where: </strong> <a href={location_url} class="hover:underline">{location}</a>
+      </ul>
+    </header>
+  )}
+
+  <Content />
+</article>

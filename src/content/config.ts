@@ -43,9 +43,39 @@ const papers = defineCollection({
   }),
 });
 
+const time = z.string().regex(
+  /^([01]\d|2[0-3]):[0-5]\d$/,
+  "Use HH:MM, e.g. 10:00"
+);
+
+const timeZone = z.string().regex(
+  /^[A-Za-z_]+\/[A-Za-z_]+(?:\/[A-Za-z_]+)?$/,
+  "Use an IANA zone, e.g. America/Los_Angeles"
+);
+
+const events = defineCollection({
+  type: "content",
+  schema: z.object({
+    title: z.string(),
+    location: z.string(),
+    event_online_url: z.string().optional(),
+    location_url: z.string().optional(),
+    event_url: z.string().optional(),
+    rsvp_url: z.string().optional(),
+    start_date: z.date(),
+    end_date: z.date().optional(),
+    time_zone: timeZone,
+    start_time: time,
+    end_time: time,
+    duration: time.optional(),
+    recurring: z.string().optional(),
+  }),
+});
+
 export const collections = {
   blog: blog,
   newsletters: newsletters,
   docs: docs,
   papers: papers,
+  events: events,
 };
