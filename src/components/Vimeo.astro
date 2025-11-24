@@ -1,0 +1,20 @@
+---
+interface Props {
+  id: string;
+  title?: string;
+}
+
+const { id, title = 'Vimeo video player' } = Astro.props;
+---
+
+<div class="aspect-video w-full ring-1 p-1 rounded-sm">
+  <iframe
+    title="vimeo-player"
+    src={`https://player.vimeo.com/video/${id}`}
+    frameborder="0"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen
+    class="h-full w-full border-0"
+ />
+</div>

@@ -18,5 +18,12 @@ export default defineMarkdocConfig({
         title: { type: String },
       },
     },
+    vimeo: {
+      render: component('./src/components/Vimeo.astro'),
+      attributes: {
+        id: { type: String, required: true },
+        title: { type: String },
+      },
+    },
   },
 });
