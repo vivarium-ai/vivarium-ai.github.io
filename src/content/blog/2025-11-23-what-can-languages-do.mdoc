@@ -1,0 +1,305 @@
+---
+title: "What Can Languages Do?"
+author: Brian Shirai
+date: 2025-11-23T21:00:00Z
+---
+
+There's a reason why we think that computer languages are one of the [four
+pillars of
+Vivarium](/blog/2025-11-08-the-vivarium-ai-experimentation-platform/).
+
+But if your experience of programming languages is the common one, you may not
+yet be convinced. That's because most people are introduced to "general
+purpose" programming language and almost everything else revolves around
+ensuring you believe that's the one, true programming language.
+
+Think about your experience of this. If you started in Java, how often did the
+Java ecosystem push you to go use a different language? I'm going to guess that
+it was extremely rare. More likely, if there were something in another
+language, like C/C++, you'd be encouraged to use "bindings" to pull that into
+Java.
+
+I'm not picking on Java here. The same would be true for Python, Ruby, Rust,
+Go, and on and an.
+
+Sure, there are some good reasons for that. It takes time to learn a different
+programming language. It takes time to build up libraries of useful things. It
+takes time to build applications and maintain them. These are all important and
+practical things.
+
+But is one programming language really any better than another one? If it's
+"general purpose", isn't it all pretty much a wash at the end of the day?
+
+"No way, my blub is really special! It's got a woo-dingy and biznobobble and never
+let's you warblegedunk even if you try!"
+
+Ok, cool.
+
+But is it really any better than this other one? Wait, before you think I
+wasn't listening, let me ask you this: Doesn't every single general purpose
+programming language eventually run on the same CPU using the same CPU
+instructions? (No, there's nothing special about GPUs in this sense, they just
+let you play with the time dimension.)
+
+Yes, in fact, any old blub language runs on the same CPU.
+
+"But _**surely**_ you wouldn't argue that Python is as fast as Rust?!"
+
+Isn't it, though? Oh, it's not? Hmm, I wonder why...
+
+I'm gonna get back to that later, but for now, since I've got your attention, I
+want to show you a few pretty interesting things about programming languages.
+
+But to open your mind a bit first, I'd like to recommend two videos. They're
+both about programming and programming languages, but neither is going to give
+you something simple to grab onto. You might even be a little annoyed after
+watching them that you wasted your time. But let them sit, I bet you'll come
+back and discover some pretty cool stuff about how they changed your mind about
+programming.
+
+Maybe not, though.
+
+The first is, "We Really Don't Know How to Compute!" by Gerald Sussman from way
+way back in 2011.
+
+{% youtube id="HB5TrK7A4pI" / %}
+
+The second is by Joe Armstrong about "What are the important ideas in Erlang?".
+
+{% vimeo id="12307912?h=0ca62a111f" / %}
+
+Or you might want to ignore all that and just check out [interaction
+combinators (interaction nets)](https://www.youtube.com/watch?v=HCOQmKTFzYY) or
+the [Unison programming language](https://www.unison-lang.org), where code is
+content-addressable and building distributed applications gets really fun.
+
+## PEG Parsers
+
+Most languages start with some syntax. Unless you're Lisp, and then it's pretty
+much all the same thing.
+
+Syntax needs a parser. And parsers are black magic.
+
+Well, maybe not. Parsing expression grammars (PEG) are an approach to parsing
+that's quite natural. You use a special notation to describe how a program can
+"recognize" expressions (or statements) in your language.
+
+Roberto Ierusalimschy, the creator of the [Lua programming
+language](https://www.lua.org/) wrote a wonderful paper on something he created
+called LPeg: [A text pattern-matching tool based on Parsing Expression
+Grammars](https://www.cs.tufts.edu/~nr/cs257/archive/roberto-ierusalimschy/lpeg-spe.pdf)
+
+One particularly interesting part of this paper is the presentation of the PEG
+semantics as a machine with instructions much like a regular CPU. The power of
+this is that then we can apply optimizations to the parsing program
+(represented as a sequence of instructions of this machine) using the same sort
+of compiler optimization techniques that we've been developing for programming
+languages for decades.
+
+In the [Rubinius language system](https://rubinius.com), the ISA (instruction
+set architecture) includes PEG instructions modeled on LPeg. This enables the
+compiler to optimize these instructions alongside other operations in your
+program and exposes the parsing operations to the debugger and profiling tools
+just like any other code.
+
+And since PEGs are compositional, they provide an excellent basis for building
+up modular parsing machinery.
+
+## Type Systems
+
+Most people know that some languages are statically typed and some dynamically
+typed. "Statically" if the compiler must know the type of every variable,
+function, and piece of data. "Dynamically" if... "Wait, what's a compiler?"
+
+If you use a dynamically typed language, many people assume that you
+haven't (unfortunately) learned of a better language, or you're not a
+programmer (e.g. maybe a researcher or data scientist), or you don't care very
+much about correctness because your dynamically-typed programming language can
+try to call non-existent methods or functions, or do something silly with "nil".
+
+If you use a statically typed language, you know everything. Well, there's that
+one about functional programmers: "They know the value of everything and the
+cost of nothing."
+
+The formalism that is the Untyped lambda calculus is able to compute any
+computable value. At least we believe that to be true, no one has yet checked
+every computable value.
+
+Once you begin adding a type system, you begin to exclude programs that can be
+written. The compiler (or more specifically, the type checker) will reject a
+program that does not conform to the type system. This is the idea behind the
+saying by Robin Milner in _"A Theory of Type Polymorphism in Programming"_
+(1978):
+
+> “Well-typed programs do not go wrong.”
+
+Type systems add two properties to a programming language: progress and
+preservation. Sounds fancy, but this is what it means:
+
+* Progress: the program does not get stuck at the current instruction, it will
+  reliably take another step in the computation.
+* Preservation: The correctness of the type of the current operation will be
+  preserved by the operation. You can't get a bad type from a good type.
+
+Dependently-typed programming languages use a particularly powerful kind of
+type system where a "type" can "depend" on a "term". For example, mathematical
+vectors have lengths. In a dependently-typed language, you can have a type
+`Vec[3]` and a type `Vec[4]` and the type checker would complain if you tried
+to add vectors of different lengths. The "term" is the integer (3, 4, etc) and
+the "type" of Vec "depends" on the length value to be specified.
+
+If this sounds interesting, it is. And way more interesting than I can express
+here, so check out the [Curry-Howard
+correspondence](https://en.wikipedia.org/wiki/Curry%E2%80%93Howard_correspondence).
+
+Or if Philip Wadler videos are your thing, watch this:
+
+{% youtube id="IOiZatlZtGU" / %}
+
+If you've used [TypeScript](https://www.typescriptlang.org/), you've also
+dipped your toes into a type system that is sometimes called flow-based typing.
+[Semantic subtyping](https://www.irif.fr/~gc/papers/icalp-ppdp05.pdf) enables
+treating types like sets, so you can have things like unions, intersections,
+and negations. For example, imagine a type of function `fun(a : Int): ~Bool`, a
+function that takes integers to anything that isn't a boolean.
+
+[Elixir](https://elixir-lang.org/) has based [its type
+system](https://arxiv.org/abs/2306.06391) on semantic subtyping.
+
+We're barely scratching the surface here. Want more typing fun? Check out
+[Homotopy type theory
+(HoTT)](https://en.wikipedia.org/wiki/Homotopy_type_theory). According to
+Wikipedia:
+
+> In mathematical logic and computer science, **homotopy type theory (HoTT)** includes various lines of development of intuitionistic type theory, based on the interpretation of types as objects to which the intuition of (abstract) homotopy theory applies.
+
+## Capabilities
+
+"Capabilities" are a concept for defining what something is allowed to do. It
+combines the _designation_ (what object or resource) and _authorization_ (what
+actions are allowed).
+
+This is sometimes contrasted with "ambient authority", depending on where an
+object is at in the code confers the authority to do something.
+
+Capabilities define crisp boundaries around the ability to act.
+
+And the extra power is that they can be built into the programming language
+itself. This isn't some library that you tack on later. Even better, the
+concept of capabilities can be applied quite generally. They are not limited to
+things that we may think of as security, like whether the program can read or
+write a particular file. They can also enable segregating other actions, like
+whether an object in the program can run concurrently.
+
+Here are a couple papers on the topic you may find interesting:
+
+* [Capability Myths Demolished](https://classpages.cselabs.umn.edu/Spring-2019/csci5271/papers/SRL2003-02.pdf)
+* [Concurrency Among Strangers](https://www.researchgate.net/profile/Jonathan-Shapiro-5/publication/247274469_Programming_in_E_as_Plan_Coordination/links/56c7220d08ae408dfe52cece/Programming-in-E-as-Plan-Coordination.pdf)
+* [Capability-Based Financial Instruments](https://www.researchgate.net/publication/220796895_Capability-Based_Financial_Instruments)
+* [The Structure of Authority: Why Security Is Not a Separable Concern](https://www.researchgate.net/publication/221091280_The_Structure_of_Authority_Why_Security_Is_Not_a_Separable_Concern)
+
+## Algebraic Effect Systems
+
+You may have heard the quote attributed to James Iry but popularized by Philip
+Wadler by putting it on a t-shirt:
+
+> A monad is just a monoid in the category of endofunctors. What’s the problem?
+
+Well, it was probably too much to fit onto a t-shirt with quite the same
+pizzazz, but the problem is that monads are generally not composable, and so
+you need a mechanism like [Monad
+trasformers](https://en.wikibooks.org/wiki/Haskell/Monad_transformers).
+
+Algebraic effect systems, on the other hand, let you model side-effects as
+first-class, composable operations with clean equational laws, making effects
+modular instead of hard-wired into the language or runtime.
+
+They separate what an effect is, for example, an abstract operation like read
+or write, from how it is handled, the effect interpreter that gives the effect
+its meaning.
+
+"First-class" means you can operate with the effects like you do other things
+in the programming language. And "equational laws" are a fancy way of saying
+you can do rigorous logic and say "this thing" is just like "that thing" in a
+way that preserves correctness.
+
+Here are a couple resources to learn more:
+
+* [Handlers of Algebraic Effects](https://link.springer.com/chapter/10.1007/978-3-642-00590-9_7)
+* [The Koka Programming Language](https://koka-lang.github.io/koka/doc/book.html#tour)
+
+## Virtual Machines & Tools
+
+Virtual machines are often seen as baggage these days, but at one point, they
+looked like they would be essential infrastructure. Java coined the phrase
+early in its development, "Write once, run anywhere."
+
+Virtual machines are powerful for a number of reasons that may not be entirely
+appreciated today:
+
+* Physical CPUs are incredibly complex devices. Having an "abstraction" of an
+  instruction set in a virtual machine that still faithfully represents the
+  meaning of the program is both easier to compile to and easier to understand.
+* Programs are typically extremely complex and behave in unexpected ways.
+  Virtual machines provide a runtime that is dynamic and con interact with the
+  running program to extract useful information.
+
+Just these two aspects enable writing debuggers, profilers, memory use
+analyzers, and more while not having to deal with intricacies of ARM vs x86_64,
+etc.
+
+Virtual machines don't have to be all or nothing. For decades now, we've had
+JIT (just-in-time) compilers that coordinate with the virtual machine to
+generate machine code functions that act like they were AoT (ahead-of-time)
+compiled and don't use many of the virtual machine components, improving the
+programs efficiency.
+
+## Compilers
+
+Compilers are fantastically fun programs. Whenever I think of compilers, I
+think of M. C. Escher piece [Drawing Hands](https://en.wikipedia.org/wiki/Drawing_Hands):
+
+![Drawing Hands by M. C. Escher](/DrawingHands.jpg)
+
+Compilers enable traversing incredible expanses of meaning, from something that
+makes sense to a human and can be expressed in a few words, to intricate
+sequences of instructions for a physical CPU where electrons are buzzing around
+[transistors that are only a small number of atoms in
+size](https://www.youtube.com/watch?v=IS5FovPfvf0).
+
+Compilers can perform [complex
+optimizations](https://en.wikipedia.org/wiki/Frameworks_supporting_the_polyhedral_model)
+for specific hardware CPUs and hide all that complexity from humans so we can
+think about things that have meaning to us, for example, making real, safe,
+reliable systems of machine intelligence.
+
+Compilers and virtual machines go together like chocolate and peanut butter, or
+whatever your favorite sweet combination is.
+
+Remember above where I was questioning whether there's much difference at all,
+for example, between Python and Rust?
+
+Much of the difference comes down to the compiler. It's not that Python can't
+be as fast as Rust. It's that certain features of the Python language make
+_writing a compiler for Python_ that produces code that runs as fast as Rust is
+harder than writing a compiler for Rust.
+
+Instead of seeing Python and Rust as sort of opposite ends of some spectrum, I
+suggest seeing them as incompletely integrated systems, where we should expect
+to have all the ease of Python and all the speed of Rust without having to
+think about them separately.
+
+## Tying it Together
+
+At the top, I offered a couple videos by Gerald Sussman and Joe Armstrong.
+
+The example Sussman gives of perceiving [Kanizsa's
+triangle](https://en.wikipedia.org/wiki/Illusory_contour) taking only a
+fraction of a second and very few "steps" should cause us to deeply question
+the current massive expenditure on LLM-based "AI".
+
+Joe Armstrong provided irrefutable evidence that we can make reliable systems
+from unreliable parts. And, in fact, sometimes letting a component in the
+system fail can be a better way to build the system.
+
+What did you get from them?
