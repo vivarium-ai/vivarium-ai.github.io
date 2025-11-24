@@ -1,0 +1,40 @@
+---
+import IconBadgesFluid from "./IconBadgesFluid.tsx";
+
+const sponsors = [
+  {
+    id: "acme",
+    src: "/logos/acme.svg",
+    alt: "Acme Corp",
+    href: "https://acme.example",
+  },
+  {
+    id: "widgetlabs",
+    src: "/logos/widgetlabs.png",
+    alt: "Widget Labs",
+    href: "https://widgetlabs.example",
+  },
+  // add more…
+];
+
+const supporters = [
+  {
+    id: "foo",
+    src: "/logos/foo.svg",
+    alt: "Foo Supporter",
+    href: "https://foo.example",
+  },
+];
+---
+
+<section class="space-y-8">
+  <div class="space-y-3">
+    <h2 class="text-xl font-semibold tracking-tight">Sponsors</h2>
+    <IconBadgesFluid client:visible badges={sponsors} height={240} />
+  </div>
+
+  <div class="space-y-3">
+    <h2 class="text-lg font-semibold tracking-tight opacity-90">Supporters</h2>
+    <IconBadgesFluid client:visible badges={supporters} height={180} />
+  </div>
+</section>
