@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import SiteLayout from '@/layouts/SiteLayout.astro';
 import NewsList from "@/components/NewsList.astro";
+import { formatDateUTC } from "@/lib/dates.ts";
 
 const all = await getCollection("newsletters");
 const items = all.filter((p) => p.data.published !== false);
@@ -25,7 +26,7 @@ const { Content } = await item.render();
       <h1>{item.data.title ?? item.slug}</h1>
       <Content />
       <hr />
-      {item.data.date && <p class="text-sm">{item.data.date}</p>}
+      {item.data.date && <p class="text-sm">{formatDateUTC(item.data.date)}</p>}
     </article>
   </main>
 </SiteLayout>

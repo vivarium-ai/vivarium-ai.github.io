@@ -3,25 +3,131 @@ title: Good Things Come in Threes
 author: Brian Shirai
 date: 2025-11-23T14:00:00Z
 week: 2
-published: false
 ---
 
 Welcome new and returning readers to the *third* Vivarium AI weekly newsletter!
 Didn't I say good things come in threes?
 
-Things haven't been so good despite the threes for your neighborhood LLM. 
+Things haven't been so good for your neighborhood LLMs.
 
+I've been [writing](http://localhost:51938/blog/2025-11-08-the-vivarium-ai-experimentation-platform/) [a lot](http://localhost:51938/blog/2025-11-16-llms-must-hallucinate-to-function/) [about LLMs](http://localhost:51938/blog/2025-11-16-elizabeth-holmes-should-have-picked-ai/). It's not very flattering. But some other folks are writing about it, too.
+
+On November 13, 2025, Anthropic published an article, [Disrupting the first reported AI-orchestrated cyber espionage campaign](https://www.anthropic.com/news/disrupting-AI-espionage), where...
+
+> In mid-September 2025, we detected suspicious activity that later investigation determined to be a highly sophisticated espionage campaign. The attackers used AI’s “agentic” capabilities to an unprecedented degree—using AI not just as an advisor, but to execute the cyberattacks themselves.
+
+Whoa, sounds... not great. What did they do?
+
+> The threat actor—whom we assess with high confidence was a Chinese state-sponsored group—manipulated our Claude Code tool into attempting infiltration into roughly thirty global targets and succeeded in a small number of cases. The operation targeted large tech companies, financial institutions, chemical manufacturing companies, and government agencies. We believe this is the first documented case of a large-scale cyberattack executed without substantial human intervention.
+
+😳 😳 😳
+
+Meanwhile, a post from Microsoft about [Securing AI agents on Windows](https://blogs.windows.com/windowsexperience/2025/10/16/securing-ai-agents-on-windows/) claims:
+
+> As these capabilities are introduced, AI models still face functional limitations in terms of how they behave and occasionally may hallucinate and produce unexpected outputs. Additionally, agentic AI applications introduce novel security risks, such as cross-prompt injection (XPIA), where malicious content embedded in UI elements or documents can override agent instructions, leading to unintended actions like data exfiltration or malware installation.
+
+But not to worry, the operating system manufacturer (with various noted problems) assures us...
+
+> Windows 11 is the most secure version of Windows ever built, and as we enter this new agentic era, our commitment is clear: Windows will be the most secure, trusted, and user-centric platform for agentic computing.
+
+Are we over-thinking it or do these two sort of seem to be at odds? I'm sure they have thought about it carefully, right? I'l just leave this here... [Microsoft finally admits almost all major Windows 11 core features are broken](https://www.neowin.net/news/microsoft-finally-admits-almost-all-major-windows-11-core-features-are-broken/).
+
+I get it, the tech is early, rough around the edges. It'll take some time to mature, work the wrinkles out. But, I'm sure these mega-corporations in the attention-extractive economy are careful to act ethically, right?
+
+An article in Reuters about [Meta's AI rules](https://www.reuters.com/investigates/special-report/meta-ai-chatbot-guidelines/) asserts that:
+
+> An internal Meta Platforms document detailing policies on chatbot behavior has permitted the company’s artificial intelligence creations to 'engage a child in conversations that are romantic or sensual,' generate false medical information and help users argue that Black people are 'dumber than white people.'
+
+Hrm... Ok, but you know, we can rely on the free-market economy to sift the wheat from the chaff here, no thumbs on any scales, right?
+
+The folks over at Hedge Fund Alpha published a post titled, ["Einhorn – AI Math Makes No Sense; OpenAI Bleeds; Microsoft & NVIDIA Bank: $1 -> $8 (Greenlight Capital Q3 25 Letter)"](https://hedgefundalpha.com/investor-letters/greenlight-capital-q3-25/)
+
+[Greenlight Capital's investor letter](https://hedgefundalpha.com/wp-content/uploads/2025/10/Qlet2025-03-1_unlocked_watermark.pdf) talks about the "funny math" in the "AI Industry", where $1 goes in and $8 magically pop out on the balance sheets of a few companies. Surely, there's no way this could be a many tens of billions of dollars scam, could it? No way...
+
+I don't want to leave this on a down note. It's important to be aware of these things, mostly as motivation to build something better. At least, that's my opinion.
+
+Thanksgiving may be a U.S. holiday, but many people use it as an occasion to reflect. This year, [Warren Buffett sent his last shareholder letter](https://www.berkshirehathaway.com/news/nov1025.pdf), but promises he'll continue to write Thanksgiving letters while he's still kicking around.
+
+I urge you to read it.
+
+Maybe it isn't that complicated. Maybe wealth and ethics aren't incompatible, it just comes down to character.
 
 ## News Around Your Towns
 
+[Wilson](https://github.com/wilson) suggested a couple Discords where people
+interested in programming languages hang out: [The Programmer's
+Hangout](https://discord.gg/programming) and [Programming Language
+Development](https://discord.gg/VY9b8buaAr). I'm going to post some Rubinius
+stuff there, soon.
+
+The Vivarium website now has an [events](/events/) link! Available now, there are two event series:
+1. A [daily (weekdays) Discord hangout](/events/weekday-hangout-n-hack/); and
+1. A [weekly in-person hacking event](/events/weekly-ruby-tuesday-hacknight/) (just waiting to finalize the location).
 
 ## Reader's Corner
 
+Are you subscribed to the [RSS feed](/rss.xml)? Coming soon, separate feeds for
+the blog and newsletters, and a combined site feed with both separated by
+categories.
 
 ## How's it Tracking?
 
+Programming languages are a huge topic, and really important to what we're
+trying to build with Vivarium, so this week I wrote a [post about what
+programming languages can do](/blog/2025-11-23-what-can-languages-do/).
+
+Building complex projects is a difficult task. Now, there is a Rubinius doc
+dedicated to explaining [the build
+system](https://rubinius.com/docs/articles/the-rubinius-build-system/). It's
+still a work-in-progress, of course, but the core idea is maintaining a good
+separation between systems so that:
+
+* The version control system (git) manages source code.
+* The build system manages build packages.
+* The build system builds the packages.
+* System package managers install the built software (collections of build
+  system packages intended for the end-user not the developer).
+
+There are a lot of package managers out there and a typical Linux distro is
+usually tightly coupled to a particular system package manager.
+
+We're planning to make Rubinius easily installable via
+[Homebrew](https://brew.sh), which has improved a ton over the past decade, and
+now works quite well on Linux systems as well as macOS.
 
 ## London Calling...
 
+Anybody out there know about design? Visual design, API design, experience
+design. All the designs, please. The AI revolution needs designers. Will you
+answer the call?
 
 ## Looking Forward to Next Week
+
+Building good infrastructure to support a big project is hard, and we didn't do
+it near well enough in Rubinius before.
+
+I've been building out better capabilities piece-by-piece over the past month.
+For Rubinius, these include
+[project](https://github.com/orgs/rubinius/projects),
+[docs](https://rubinius.com/docs/), and the [blog](https://rubinius.com/blog/).
+And [the same](https://github.com/orgs/vivarium-ai/projects) [for]([docs/)
+[Vivarium](/blog/), including [these newsletters](/newsletters/).
+
+GitHub Projects has a neat feature where you can enable an automation that will
+add issues tagged with a certain label to the project. This makes it easy to
+add an issue, tag it, and the relevant project(s) update automatically.
+
+The roadmaps for [Rubinius](https://rubinius.com/docs/articles/roadmap/) and
+[Vivarium](/docs/articles/roadmap/) are now in the docs directly, and will be
+updated and improved so they are always easily accessible to contributors. It's
+always important for roadmaps to stay current with changing circumstances, so
+graphical representations with planned versus completed work will be coming
+soon.
+
+Now that the basic proof-of-concept of the new build system appears to be
+working, the goal is to get [legacy
+Rubinius](https://github.com/rubinius/rubinius) working in parallel with the
+[rbx compiler](https://github.com/rubinius/rbx) so that the Ruby core library
+can be updated to the [soon-to-be-released Ruby
+4.0](https://www.ruby-lang.org/en/news/2025/11/17/ruby-4-0-0-preview2-released/)
+while the compiler is built out.
