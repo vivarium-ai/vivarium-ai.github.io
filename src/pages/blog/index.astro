@@ -1,5 +1,5 @@
 ---
-import { getCollection } from "astro:content";
+import { getCollection, render } from "astro:content";
 import SiteLayout from '@/layouts/SiteLayout.astro';
 import BlogList from "@/components/BlogList.astro";
 import DocToc from "@/components/DocToc.astro";
@@ -14,10 +14,10 @@ const title = titleFor(item);
 const description = item.data.description ?? "";
 const pubDate = item.data.date ? formatDateUTC(item.data.date) : null;
 
-const { Content, headings } = await item.render();
+const { Content, headings } = await render(item);
 ---
 
-<SiteLayout title="Vivarium - Blog">
+<SiteLayout title="Rubinius - Blog">
   <main
     class="grid grid-cols-1 sm:grid-cols-[1fr_3fr_1fr] gap-4 [&>*]:min-w-0 [&>*]:[overflow-wrap:anywhere]"
   >
@@ -26,8 +26,9 @@ const { Content, headings } = await item.render();
         <BlogList activeId="" />
       </div>
     </aside>
+
     <article
-      class="prose dark:prose-invert prose-compact grow shrink min-w-0 @container prose-headings:scroll-mt-28">
+      class="prose dark:prose-invert prose-compact grow shrink min-w-0 @container prose-headings:scrol    l-mt-28">
       <header class="mb-8 border-b pb-5">
         <h1 class="text-3xl font-semibold tracking-tight">{title}</h1>
         {description && <p class="mt-2 text-sm opacity-80">{description}</p>}

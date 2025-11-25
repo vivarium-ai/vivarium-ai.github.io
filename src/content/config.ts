@@ -1,4 +1,31 @@
 import { defineCollection, z } from 'astro:content';
+import { glob } from "astro/loaders";
+
+const docsSchema = z.object({
+  title: z.string(),
+  tags: z.array(z.string()).optional(),
+  order: z.number().optional(),
+});
+
+const articles = defineCollection({
+  loader: glob({ pattern: "**/*.mdoc", base: "./src/content/docs/articles" }),
+  schema: docsSchema,
+});
+
+const tutorials = defineCollection({
+  loader: glob({ pattern: "**/*.mdoc", base: "./src/content/docs/tutorials" }),
+  schema: docsSchema,
+});
+
+const howtos = defineCollection({
+  loader: glob({ pattern: "**/*.mdoc", base: "./src/content/docs/howtos" }),
+  schema: docsSchema,
+});
+
+const reference = defineCollection({
+  loader: glob({ pattern: "**/*.mdoc", base: "./src/content/docs/reference" }),
+  schema: docsSchema,
+});
 
 const news = z.object({
   title: z.string(),
@@ -7,17 +34,8 @@ const news = z.object({
   published: z.boolean().default(true),
 });
 
-const docs = defineCollection({
-  type: "content",
-  schema: z.object({
-    title: z.string(),
-    tags: z.array(z.string()).optional(),
-    order: z.number().optional(),
-  }),
-});
-
 const blog = defineCollection({
-  type: "content",
+  loader: glob({ pattern: "**/*.mdoc", base: "./src/content/blog" }),
   schema: news.extend({
     subtitle: z.string().optional(),
     tags: z.array(z.string()).optional(),
@@ -73,9 +91,12 @@ const events = defineCollection({
 });
 
 export const collections = {
-  blog: blog,
-  newsletters: newsletters,
-  docs: docs,
-  papers: papers,
-  events: events,
+  blog,
+  newsletters,
+  papers,
+  events,
+  articles,
+  tutorials,
+  howtos,
+  reference,
 };

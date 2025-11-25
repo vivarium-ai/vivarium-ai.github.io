@@ -2,27 +2,20 @@
 import SiteLayout from "@/layouts/SiteLayout.astro";
 import BlogList from "@/components/BlogList.astro";
 import DocToc from "@/components/DocToc.astro";
-
-import { getCollection, getEntryBySlug } from "astro:content";
+import { getCollection, getEntry, render } from "astro:content";
 import { sortDocs, toListItems, buildToc, titleFor } from "@/lib/docs";
 import { formatDateUTC } from "@/lib/dates";
 
 export const prerender = true;
 
-// SSG build-time path generation
 export async function getStaticPaths() {
   const posts = await getCollection("blog", (p) => p.data.published !== false);
 
-  const seen = new Set<string>();
-  const paths = posts.map((p) => {
-    const base = p.slug.split("/").pop()!;
-    if (seen.has(base)) {
-      throw new Error(`[blog] Duplicate basename for /blog/${base}`);
-    }
-    seen.add(base);
+  return posts.map((p) => {
+    const base = p.id.split("/").pop()!;
     return {
       params: { slug: base },
-      props: { fullSlug: p.slug },
+      props: { fullSlug: p.id },
     };
   });
 
@@ -33,15 +26,21 @@ type Props = { fullSlug: string };
 const { fullSlug } = Astro.props as Props;
 
 // Load current blog post
-const entry = await getEntryBySlug("blog", fullSlug);
+const entry = await getEntry("blog", fullSlug);
 if (!entry) return Astro.redirect("/404");
 
-const { Content, headings } = await entry.render();
+const { Content, headings } = await render(entry);
 const title = titleFor(entry);
 const description = entry.data.description ?? "";
 const pubDate = entry.data.date ? formatDateUTC(entry.data.date) : null;
 
+// Left sidebar: all blog posts
+const posts = await getCollection("blog", (p) => p.data.published !== false);
+const listItems = toListItems(sortDocs(posts));
 const activeId = entry.id;
+
+// Right sidebar: ToC
+const tocItems = buildToc(headings, [2, 3]);
 ---
 
 <SiteLayout {title} {description}>
@@ -51,7 +50,7 @@ const activeId = entry.id;
     <!-- Left: Blog post list -->
     <aside class="hidden sm:block">
       <div class="sticky top-20 shrink-0 min-w-0 overflow-wrap:anywhere pe-2">
-        <BlogList activeId={activeId} />
+        <BlogList items={listItems} activeId={activeId} />
       </div>
     </aside>
 
