@@ -30,7 +30,7 @@ export async function getBlogList(): Promise<Array<{ title: string; path: string
   posts.sort(cmpBlog);
   return posts.map((p) => ({
     title: p.data.title,
-    path: `/blog/${p.slug}/`,
+    path: `/blog/${p.id}/`,
   }));
 }
 
