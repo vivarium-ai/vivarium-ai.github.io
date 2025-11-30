@@ -25,5 +25,10 @@ export default defineMarkdocConfig({
         title: { type: String },
       },
     },
+    email_capture: {
+      render: component('./src/components/EmailCapture.astro'),
+      attributes: {
+      },
+    },
   },
 });

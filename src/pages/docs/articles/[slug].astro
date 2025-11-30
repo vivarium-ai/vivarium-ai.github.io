@@ -24,7 +24,11 @@ const { Content, headings } = await render(entry);
   <main
       class="grid grid-cols-1 sm:grid-cols-[1fr_3fr_1fr] gap-4 [&>*]:min-w-0 [&>*]:[overflow-wrap:anywhere]">
 
-    <DocList />
+  <aside class="block">
+    <div class="sticky top-20 shrink-0 min-w-0 overflow-wrap:anywhere pe-2">
+      <DocList />
+    </div>
+  </aside>
 
   <article class="prose dark:prose-invert max-w-none">
     <p class="text-xs uppercase tracking-wide text-slate-400 mb-4">
@@ -37,6 +41,10 @@ const { Content, headings } = await render(entry);
     <Content />
   </article>
 
-  <DocToc headings={headings} />
+  <aside class="hidden md:block">
+    <div class="sticky top-20 shrink-0 min-w-0 overflow-wrap:anywhere ps-2">
+      <DocToc headings={headings} />
+    </div>
+  </aside>
   </main>
 </SiteLayout>

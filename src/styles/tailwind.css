@@ -41,7 +41,7 @@
 }
 
 .prose-compact :where(ul > li, ol > li) {
-  margin-block: 0.1em;
+  margin-block: 0.05em;
 }
 .prose-compact :where(ul > li > :last-child, ol > li > :last-child) {
   margin-bottom: 0;

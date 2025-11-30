@@ -7,6 +7,10 @@ import DocList from "@/components/DocList.astro";
 <SiteLayout title="Rubinius - Docs">
   <main
       class="grid grid-cols-1 sm:grid-cols-[1fr_3fr_1fr] gap-4 [&>*]:min-w-0 [&>*]:[overflow-wrap:anywhere]">
-      <DocList />
+    <aside class="block">
+      <div class="sticky top-20 shrink-0 min-w-0 overflow-wrap:anywhere pe-2">
+        <DocList />
+      </div>
+    </aside>
   </main>
 </SiteLayout>

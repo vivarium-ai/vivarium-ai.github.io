@@ -1,21 +1,335 @@
 ---
 title: Cooking with Gas
 author: Brian Shirai
-date: 2025-11-30T14:00:00Z
+date: 2025-11-30T20:00:00Z
 week: 3
-published: false
 ---
+
+When I was a kid, I remember hearing someone say, "Now we're cooking with gas..." We didn't have the internet back then, so it was much harder to find out [what something like this meant](https://english.stackexchange.com/questions/25897/origin-of-the-phrase-now-were-cooking-with). Since we're on something of a [moonshot](https://english.stackexchange.com/questions/352761/what-is-the-original-meaning-of-moonshot-and-who-used-it) here, sometimes it's easy to get buried in the details, but I wanted to share some progress on the bigger picture.
+
+Before we dive into that, there are a couple big stories on the slow-moving train wreck that is the "LLM Industrial Complex".
+
+Edward Zitron of [WHERE'S YOUR ED AT?](https://www.wheresyoured.at/) published another banger, [_Big Tech Needs $2 Trillion In AI Revenue By 2030 or They Wasted Their Capex_](https://www.wheresyoured.at/big-tech-2tr/). You may recall Ed's earlier mammoth 19,000-word post [arguing the case against generative AI](https://www.wheresyoured.at/the-case-against-generative-ai/).
+
+The Verge didn't pull any punches with their article, [_Large Language Mistake_](https://www.theverge.com/ai-artificial-intelligence/827820/large-language-models-ai-intelligence-neuroscience-problems), plainly stating in the subtitle:
+
+> Cutting-edge research shows language is not the same as intelligence. The entire AI bubble is built on ignoring it.
+
+Well, not everyone is ignoring it. [Markus on AI](https://garymarcus.substack.com) chimed in with, [_A trillion dollars is a terrible thing to waste_](https://garymarcus.substack.com/p/a-trillion-dollars-is-a-terrible):
+
+> An old saying about such follies is that “six months in the lab can you save you an afternoon in the library”; here we may have wasted a trillion dollars and several years to rediscover what cognitive science already knew.
+
+Ooooff, that hits hard...
+
+Not to be outdone, the folks over at [Nautilus](https://nautil.us/about-us/) posted [_Deep Learning Is Hitting a Wall_](https://nautil.us/deep-learning-is-hitting-a-wall-238440/), asking, "What would it take for artificial intelligence to make real progress?"
+
+If only we could take all these hard-learned recent lessons and rewind the clock a few years and get some of that trillion dollars back... _Oh, hold on now!!_ \<_me squints..._\> _The date on that Nautilus post **is March 10, 2022, folks.**_ I feel like maybe we were scammed a little bit...
+
+Don't get me wrong, I'm all for developing "AI" (machine intelligence) if [it actually works](https://thebullshitmachines.com), is [safely built and operated](/blog/2025-11-16-llms-must-hallucinate-to-function/), and doesn't further consolidate immense power in the hands of [a few dudes with extremely dubious ethics](https://www.reuters.com/investigates/special-report/meta-ai-chatbot-guidelines/). But, that's like just my opinion, man.
+
+### Reality Check
+
+Let me expand on those opinions just a bit.
+
+So, here we have a human brain... According to [a recent article by NIST](https://www.nist.gov/blogs/taking-measure/brain-inspired-computing-can-help-us-create-faster-more-energy-efficient#:~:text=The%20human%20brain%20is%20an,just%2020%20watts%20of%20power.):
+
+> The human brain is an amazingly energy-efficient device. In computing terms, it can perform the equivalent of an exaflop — a billion-billion (1 followed by 18 zeros) mathematical operations per second — with just 20 watts of power.
+
+I guess things have changed a bit with LED lights now, but 20 watts is a dim incandescent light bulb. Yet, with those measly 20 watts, we can recognize the non-existent triangle in this image in a fraction of a second.
+
+<img src="/Kanizsa_triangle.svg" alt="Kanizsa's triangle drawing" class="w-full border-1 rounded-lg" />
+
+<p class="text-center mt-2">
+  <a href="https://commons.wikimedia.org/w/index.php?curid=1788215">Kanizsa's Triangle</a>
+  by <a href="//commons.wikimedia.org/wiki/User:Fibonacci" title="User:Fibonacci">Fibonacci</a>
+  (<a href="http://creativecommons.org/licenses/by-sa/3.0/" title="Creative Commons Attribution-Share Alike 3.0">CC BY-SA 3.0</a>)
+</p>
+
+And this sort of thing below is called a "bi-stable" image. You can switch back and forth between the young woman and the old woman (you see them both, right?), but I'd challenge to see an old and young woman simultaneously. Also notice how effortlessly you're able to switch between the two.
+
+<img src="/old-woman-young-woman.jpg" alt="Old woman, young woman bi-stable image" class="w-full border-1 rounded-lg" />
+
+Now, I'm guessing you've probably had an experience or two with an LLM where you think, "Wow! How did it do that??" I have. But, if you've used them much at all, you've also seen the opposite, an utter lack of even a shred of actual understanding, _because they do not have any_. We imbue the word sequences they somewhat randomly spit out with our own experience and intelligence and "see" the Kanizsa triangle that _does not exist_.
+
+I've recommended [this video before](/blog/2025-11-23-what-can-languages-do/), and I really encourage you to watch it.
+
+{% youtube id="HB5TrK7A4pI" /%}
+
+We humans do have a lot to be proud of with our wetware. We can do some amazing things. Things that we have no evidence anywhere in the known universe that other living things are able to do.
+
+Or, do we?
+
+Ever heard of a bee? [_Scientists now know that bees can process time, a first in insects_](https://www.cnn.com/2025/11/12/science/bees-visual-stimulus-study-scli-intl) according to an article from CNN. And according to an article from [Cincinnati Public Radio](https://cinradio.org/wvxu-history/), [_Bees make some very smart decisions. Their brains are now a model for AI_](https://www.wvxu.org/podcast/focus-on-technology/2023-08-07/bees-brains-model-ai):
+
+> The brain of a honeybee has just one million neurons. That's 85,999,000 less than a human brain, making it perfect for researchers to study such "simple" circuitry.
+>
+> Bees make quick and accurate decisions, say researchers from the University of Sheffield in the UK, and algorithms from the bees' thinking can improve artificial intelligence.
+
+How long have we known this? Surely, not before we spent a trillion dollars on stochastic parrots that get a lot of stuff wildly, weirdly wrong? Oh, the date on the article is August 7, 2023. Weird...
+
+I have two hummingbird feeders above the deck off my living room.
+
+One day I was washing and refilling them and happened to look over just as a hummingbird zipped to exactly the spot it normally would, paused for a fraction of second and zipped off. It certainly wasn't using the feeder itself as landmark for navigation. And it didn't notice it was gone until it was right there, otherwise why bother? Of course, as soon as the feeders were refilled and put up, they were back to feed.
+
+A few days later, I saw one arrive and visit the flowers that had grown through a gap in the transparent Plexiglas railing. It did not try to fly through it to the flowers on the inside, but I'm guessing it could see them.
+
+It's also fascinating to watch how quickly they dart in with their needle-like beaks, placing them precisely into the less-than-2 millimeter holes in the fake flowers on the feeder.
+
+If this isn't intelligence, then what are NVIDIA and Amazon doing with all their drone delivery and warehouse robotic automation training frameworks? Just one little hummingbird brain renders all that quite amateur indeed.
+
+In another bit of news that would shock literally no one but an LLM researcher, it seems like [our brains have some "pre-configured" stuff going on in there](https://particle.news/story/human-brain-organoids-reveal-preconfigured-firing-patterns):
+
+> Researchers at [UC Santa Cruz’s](https://particle.news/entity/university-of-california-santa-cruz/m/07vhb?ref=cluster:10303911) Braingeneers group observed temporally structured single‑neuron firing sequences in organoids within the first few months of development.
+
+Since we're the product of a few billion years of evolution that has figured out intelligence [a few](https://en.wikipedia.org/wiki/Corvidae) [times](https://en.wikipedia.org/wiki/Cephalopod), this really shouldn't surprise us.
+
+Given the amount of energy that a human brain uses, and the minuscule size of a bee's brain by comparison, it's pretty clear that we don't have even one, let along tens of thousands of [NVIDIA RTX 5090s](https://www.nvidia.com/en-us/geforce/graphics-cards/50-series/rtx-5090/) in our heads.
+
+Thus, I think it's pretty hard to argue that better ideas in hardware are probably going to be critical. After all, a typical nerve axon is 1-20 micrometers wide and a transistor on a 3nm process chip is about 3 nanometers. If you had to look it up, like I did, there are 1,000 nanometers in 1 micrometer.
+
+I think this is important because just like bee brains and hummingbird brains refute the contention that you can't have intelligence without the enormous complexity of the human brain, the human brain itself is big, wet, noisy, squishy mess compared to the electronic devices that we're capable of manufacturing. Need more things doing stuff? I'm sure we can figure that out.
+
+There are some very interesting things going on in hardware out there. I've posted about most of them before:
+
+* [Extropic Thermodynamic Computing](https://extropic.ai/);
+* [University of Texas at Dallas Neuromorphic Computer](https://thedebrief.org/forget-ai-scientists-have-developed-a-neuromorphic-computer-that-thinks-like-a-human-brain/);
+* [USC Viterbi School of Engineering and the School of Advanced Computing Integrated Spiking Artificial Neuron](https://scitechdaily.com/new-artificial-neurons-physically-replicate-the-brain/); and
+* [Tenstorrent Blackhole™ RISC-V Arrays](https://tenstorrent.com/hardware/blackhole).
+
+And if you've heard of FPGAs, there are also [FPAAs (field programmable analog arrays)](https://en.wikipedia.org/wiki/Field-programmable_analog_array).
+
+Long story short, all of this should make us extremely skeptical of any "AI researcher" telling us about something like an LLM. We should have a whole slew of questions ready to fire from the hip that would demolish any of the LLM claims put forward so far, and that should have been the end of the story more than two years ago.
+
+But it wasn't. So we need to try harder.
+
+### Vivarium
+
+As we just saw, there are countless very interesting examples of intelligence all around us. And there are [a bunch of theories about intelligence](/blog/2025-11-08-the-vivarium-ai-experimentation-platform/) that have nothing to do with the LLM Industrial Complex.
+
+So rather than trying to tell you what Vivarium is, let me ask you this...
+
+If you were researching intelligence models, how would you reliably check your progress? How would you share your results? How would you reproduce the results another researcher presented? How would you share your work? How would you onboard collaborators? How would you challenge results someone presented? How would you combine another researcher's model or system with your own? How would you do all this efficiently across various types of hardware?
+
+Eventually, to meet all these demands, you'd probably build a system like Vivarium. And central to that system is the ability to express computation in the widest possible contexts.
+
+Either intelligence is computable, or we're all wasting our time in the silliest fashion.
+
+What are programming languages? They're a method of describing computation. Ergo, we need programming languages to build machine intelligence. This doesn't seem to me to be something that should be controversial. Especially if we're going to need exotic new hardware different from the von Neumann architecture that has dominated computing for all these decades.
+
+What is, _bizarrely (to me anyway), **non-controversial**_ (right now) is that "HTTPS+JSON" or "gRPC" are a very intelligent way to connect systems together. Why would we think this?
+
+If we're going to develop actual machine intelligence, we need to be as efficient and as quick as possible. We cannot spend trillions of dollars on this. The LLM Industrial Complex already vaporized all that available capital. We don't want to be associated with robbing the piggy banks of grandmothers and grandfathers for hair-brained schemes like this.
+
+Think about it... We put people on the moon in the 1960s. Do you know what kind of computers they had in the 1960s? They could never have done this the "SpaceX Way" of blowing things up. In fact, SpaceX built on top of decades of rocket science. Maybe they've gone faster with their approach. They certainly haven't put people on the moon yet.
+
+One could hope that, by now, the "Move fast and break things" ethos has been solidly discredited. But if the LLM Industrial Complex is any indication, it hasn't. So we're going to need to forge ahead.
+
+### Gilligan's Island
+
+[Gilligan's Island](https://en.wikipedia.org/wiki/Gilligan's_Island) was an American sitcom that aired for three seasons (98 episodes) on CBS from 1964-1967. It was a story of seven castaways shipwrecked on a deserted island. A fun fact according to Wikipedia, "All 36 episodes of the first season were filmed in black and white and were later colorized for syndication." Imagine that.
+
+I remember enjoying the show when I was a kid (re-runs, not the original), and was probably 10 or so the last time I watched it. For some reason, when I was thinking about a good way to explain what I think is an important principle of organizing the new [Rubinius](https://rubinius.com) structure and build system, the show popped into my head.
+
+I could be mis-remembering, so take this with a grain of salt, but I recall that all the characters had quite distinct roles and responsibilities. Skipper was, of course, the skipper. Gilligan was the first mate (and always getting into some kind of trouble). The professor. Mary Ann. Ginger. Thurston Howell III. Eunice "Lovely" Howell, his wife. Here's another interesting bit from Wikipedia:
+
+> In 1997, show creator Sherwood Schwartz explained that the underlying concept, people with different characters and backgrounds being in a situation where they need to learn how to get along and cooperate to survive, is still "the most important idea in the world today.
+
+So, that's the basic idea, each area should have a clear responsibility without overlap and no piece doing someone else's job. And they should all get along.
+
+#### Building Cool Stuff
+
+Ok, we made it to the "cooking with gas" part, get your aprons on...
+
+In the Rubinius system, we're dealing with these tools:
+
+* git
+* build2
+* package managers
+
+Git manages source code. It's not an _ad hoc_ project or package manager. We use these capabilities of git:
+
+* Git submodules are used to efficiently create build2 packages from upstream source code that does not (yet) use the build2 system. This is the only time I can think of where git submodules are used in a sensible way.
+* Git subtrees. Where git submodules create a link between source code repositories, git subtrees suggest a much more intimate connection. In our case, we're using them to factor out common code across multiple packages that really needs to be more tightly integrated than a submodule.
+
+The [build2](https://build2.org) tools for configuring, resolving dependencies, _development_ package management, building, and testing.
+
+I would have to say that build2 must been built by aliens because it deftly avoids the typical mess created by mere mortals, like we see in Bazel or CMake. It has a strong sense of the most efficient way to build packages and a package ecosystem, but is flexible enough to accommodate almost any type of project configuration you can imagine either punting on its responsibility or sacrificing its ideals.
+
+Finally, let's talk about package managers for a moment: I identify three types of package managers:
+
+1. Development packages: These are collections of source code files that have additional metadata, like a package name, version, dependencies;
+1. System package managers: These are systems like APT (for Debian and Ubuntu), RPM for RHEL, Portage for Gentoo, or pacman on Arch Linux;
+1. Application package managers: A good example here is Homebrew. It's not going to package your Linux kernel modules (I don't think), but it's a great way to manage tools you might use on macOS or Linux.
+
+There are overlaps between all these. A system package manager, like APT on Ubuntu, is often used to install development libraries, as well as end-user applications and system level tools or even the kernel modules.
+
+The Rubinius build system must be flexible and modular enough that system package maintainers can easily substitute their own system packages when they desire, while still being as smooth and convenient for developers working on the Rubinius modules.
+
+build2 cleanly separates the source code (managed by git) from the configuration and build, in a completely separate directory. In fact, multiple simultaneous, parallel configurations are the norm. You don't have to rebuild to use a debug version and then recompile everything to do benchmarks on a release version. The debug, instrumented, release, etc versions live side-by-side.
+
+For the end-user, we are prioritizing Homebrew taps and "bottle" builds (pre-built binaries that are installed in just a few seconds).
+
+In fact, we may even build "switching" directly into the `rbx` executable because the goal is to have only the CodeDB as a runtime dependency, so the executable could respect whatever mechanism is used to express the desired version in a source repository and re-exec itself as that version.
+
+#### `rbx`
+
+The `rbx` application is the central tool in the Rubinius language platform.
+
+It is both a compiler and runtime. It must be as resource-efficient as possible, so a hard rule is that no managed code must be loaded to provide the core functionality. In addition, it is designed to be modular enough that less-essential functionality can be lazily loaded as shared libraries.
+
+You may wonder, if the Ruby core library is written in Ruby, how will the Ruby runtime load without running any managed code? Since rbx is an end-to-end (i.e. from parser to code generator) native compiler built on LLVM, the Ruby core library will be precompiled to machine code, but of course, any dynamism will still function the same way "de-opt" works with the JIT (just-in-time) compiler and falling back to interpreted code from JIT-compiled when a JIT assumption is invalid.
+
+Following the pattern of "umbrella" executables, there will be distinct "ruby" and "python" executable (i.e. `rbx ruby` and `rbx python`) so that command line processing of options is distinct.
+
+The core modules are the following (not yet extracted libraries do not have links):
+
+* [**github.com/rubinius/prism**](https://github.com/rubinius/prism): The build2-packaged CRuby parser;
+* [**github.com/rubinius/libpypeg**](https://github.com/rubinius/libpypeg): The extracted Python PEG parser;
+* [**github.com/rubinius/libburp**](https://github.com/rubinius/libburp/): The Rubinius parser. (If the name annoys you, we may be holding a raffle to rename it, stay tuned!) This is a proper build2 package that depends on the "pegtl" C++ template library for writing PEG parsers. The importance of this components is two-fold: 1) to experiment with robust language infrastructure outside of the Ruby or Python ecosystem; and 2) to provide a complete example template for constructing other languages for Vivarium infrastructure that can be as powerful as needed;
+* **librbx-vm:** The virtual machine that executes Rubinius bytecode;
+* **librbx-immix:** The previous Rubinius Immix-based garbage collector;
+* **librbx-perceus:** (Under investigation) The Perceus reference-counting garbage collector on which the FBIP (functional but in-place) algorithms are based.
+* **librbx-otel:** The previous Rubinius telemetry and diagnostics ported to the Open Telemetry standard;
+
+You may wonder, "Why Python?" The simplest answer is that there's a ton of Python code out there and it would take many orders-of-magnitude longer to rewrite it than to add Python language support to the Rubinius language tool chain that has already been proven out with another dynamically-typed language.
+
+This is an important point. I will go so far as to suggest than any effort spent to rewrite existing C/C++ code in Rust is a terrible waste of time. Sure, if there's a new project and you really love Rust, by all means. But if Rust disappeared from the world tomorrow, maybe a blockchain would stop running. If C/C++ disappeared, the internet and most of modern society would cease to function. Far better to spend the precious limited time on building new functionality that is desperately needed. The C++ ecosystem is advancing rapidly, but if you want an alternative, I'd suggest checking out [Zig](https://ziglang.org) instead.
+
+#### LLVM
+
+The new Rubinius compiler is based on [LLVM](https://llvm.org), which is both a wondrous project and a _beast_.
+
+The smallest build I've been able to manage so far requires compiling more than 4,800 files. Yes, that's right. It can take two hours to run the CI in GitHub Actions, and that's just my CI action. I disabled the other hundreds of GitHub Actions you get when you fork the repo.
+
+Suffice to say, most of the time, you _do not_ want to be recompiling that thing. Takes me back to the 90's...
+
+<img src="https://imgs.xkcd.com/comics/compiling.png" alt="xkcd compiling" class="w-full border-1 rounded-lg" />
+
+<p class="text-center mt-2"><a href="https://xkcd.com/303">https://xkcd.com/303</a></p>
+
+So, LLVM is the one major exception to the build2 scheme above. There's no way we're going to make build2 packages out of it. build2 absolutely refuses to be a "wrapper" for another build system (good on them, I completely agree). And we do not want to mix the system-installed (no, not even the "devel" part) with the Rubinius build (explaining why in detail is too long for this post).
+
+Instead, we're creating a Homebrew tap (and bottle-builds) and installing our custom LLVM in a way that we can tell build2 to treat it like a "system" package.
+
+#### Rubinius
+
+The installable Rubinius package will continue to be the "batteries included" version that bundles things like the Ruby (and Python) core library, rubygems (at least until CodeDB+IPFS or whatever content-addressable infrastructure wins is fully available), etc.
+
+For the most part, this means Rubinius is simply one meta-package (in build2 terms) configuration that assembles the component packages in a particular way.
+
+While it may seem unnecessary to do this when build2 makes it quite easy, there's still a lot of value in a common piece of infrastructure for aiding people learning or teams building certain applications. The nice thing is that such a meta-package doesn't interfere in any way with someone building an alternative. There are no extra hoops to jump through.
+
+* **librbx-ruby:** The Ruby core library, written in Ruby;
+* **librbx-python:** The Python library;
+* **librbx-capi:** The C-extension API for Ruby;
+* **librbx-papi:** The C-extension API for Python;
+* **librbx-ffi:** The foreign-function interface for binding to C (or C-compatible) libraries directly (i.e. not via one of the C-extension APIs);
+* **literate-spec:** The multi-language test suite combining documentation and supporting test examples.
+
+It will be possible to easily configure a build of Rubinius to use a different set of components so that enabling language experimentation is as simple and robust as possible.
+
+### Take This Away...
+
+We've covered a lot of ground in this newsletter, so let me recap the main points:
+
+1. LLMs are by-and-large a waste if time, immense waste of resources, and are actively impeding important and necessary progress on actual machine intelligence;
+1. To accelerate this progress, we need infrastructure that makes it much more likely we are sifting errors from real explanations, as well as eliminating friction from collaboration in the widest possible sense;
+1. We have an embarrassing wealth of prior art to learn from in the biological domain, and a lot of solid theoretical work to build on;
+1. Languages are fundamental because _they enable us to express computation_, and we're assuming (with good reason) that intelligence is _computable_; and
+1. We need to be as efficient and as quick as possible in creating actual machine intelligence.
 
 ## News Around Your Towns
 
+I'm still trying to come up with a good place for during-the-day or early-evening hacking hangouts. As the pandemic recedes in the rear-view mirror, I know people are getting out and getting together more. Where are you all finding good places to hang out and work on stuff together?
 
 ## Reader's Corner
 
+Check the **References** section below for a humongous list of stuff to read if you're bored. What did I miss? What are you reading these days?
+
+And don't hesitate to drop us a note if you see something amiss, would like to give some feedback, or have a question or suggestion for future content: [`info@vivarium-ai.com`](mailto:info@vivarium-ai.com).
+
+While you're here, take a moment to sign up for the mailing list. We'll send only the very best organic, artisanal, hand-crafted quality content.
+
+{% email_capture /%}
 
 ## How's it Tracking?
 
+Last week was focused mostly on building out more of the build configuration and untangling the web of dependencies in Rubinius into a single graph with good boundaries. That was covered above.
+
+Apparently, sometime earlier this year, GitHub added "sub-issues". I'm not sure how I missed that but it's great news!
+
+Prior to sub-issues, the only really good way to relate a set of different tasks was with a milestone, but oddly, milestones _couldn't' be added to GitHub Projects_. So you had a split-brained status between a milestone in a single repository, and the otherwise fantastic project-level view you can create at the organization level to coordinate complex work across multiple repositories.
+
+So I'll be migrating the milestones to a set of parent issues that can be added to the organization-level projects and creating sub-issues for more granular work.
 
 ## London Calling...
 
+Still looking for folks whose passion is design. People will really appreciate you when they're trying to find what they're looking for here.
+
+We also would appreciate any introductions or connections you can help us make to folks who are running AI labs or research groups. There's nothing so valuable as hearing the problems and challenges first-hand when trying to build tools.
+
+At some point, VCs are going to run out of money, or they're going to start redirecting those dollars toward more sensible pursuits because there's no return coming for LLMs or generative AI. Hate to be a party-pooper but them there's the facts. If you know any of the aforementioned quick-witted ahead-of-the-pack switcher-uppers, we may have something of interest.
 
 ## Looking Forward to Next Week
+
+The Homebrew tap for `rbx` is working smoothly and will not need any modifications as the features are built out. Next up is creating binary "bottles" so that installation is a breeze, and connecting the GitHub Action that will automatically kick off a bottle-build when the `rbx` repository itself is tagged (rather than needing to manually go edit the Homebrew formula).
+
+The Rubinius Homebrew tap needs more work because the decomposition process is still underway. But once the formula is available, the bottle-builds will be trivial based on the prior setup done for `rbx`.
+
+One of the big pieces to extract is the generated "glue" code for the "primitives" (historically, these are operations that are implemented in C++ but appear as Ruby methods). In CRuby, pretty much everything in the Ruby core library is actually a C function. In Rubinius, most of it is in Ruby, but since some of the essential classes, like Array, have a C++ foundation, some of the Array methods are these "primitives".
+
+One future direction is to build into the instruction set architecture (ISA) another mechanism besides FFI (foreign-function interface) for dealing with these "cross-language domain" situations. But for now, it just requires wiring some code generation for the "primitives glue" into build2.
+
+The most interesting probably to folks is getting the minimum (as in micro-viable product--MVP) possible end-to-end example of Python syntax executing as Rubinius bytecode:
+
+```
+$ rbx -v console
+rubinius 26.2 (4.0.0 c1fb3614 2025-12-06 22.0.0) [arm64-darwin-25.1.0]
+irb(main):001:0> load "hello_from_python.py"
+Hello, Ruby! This is Python
+=> true
+irb(main):002:0> load "hello_from_ruby.rb"
+Hello, Python! This is Ruby
+=> true
+irb(main):003:0>
+```
+
+As soon as that pipeline is in place, it's just a matter of filling in the blanks. And that's something we can do in a highly parallel fashion. The more the merrier, and the faster. Now that we're cooking with gas, it's time to turn up the heat.
+
+So if you're interested in AI or language or infrastructure or cool hardware, head over to [Discord](https://discord.gg/25GuZR4fBN) and say, Hello!
+
+Have a great week!
+
+## References
+
+A new section this week and going forward, I'll provide all the links in the text above in one handy list:
+
+* [Cooking with gas](https://english.stackexchange.com/questions/25897/origin-of-the-phrase-now-were-cooking-with)
+* [Moonshot](https://english.stackexchange.com/questions/352761/what-is-the-original-meaning-of-moonshot-and-who-used-it)
+* [Where's your Ed at?](https://www.wheresyoured.at/)
+* [Big Tech Needs $2 Trillion In AI Revenue By 2030 or They Wasted Their Capex](https://www.wheresyoured.at/big-tech-2tr/)
+* [The Case Against Generative AI](https://www.wheresyoured.at/the-case-against-generative-ai/)
+* [Large Language Mistake](https://www.theverge.com/ai-artificial-intelligence/827820/large-language-models-ai-intelligence-neuroscience-problems)
+* [Markus on AI](https://garymarcus.substack.com)
+* [A trillion dollars is a terrible thing to waste](https://garymarcus.substack.com/p/a-trillion-dollars-is-a-terrible)
+* [Nautilus](https://nautil.us/about-us/)
+* [Deep Learning Is Hitting a Wall](https://nautil.us/deep-learning-is-hitting-a-wall-238440/)
+* [Modern-Day Oracles or Bullshit Machines?](https://thebullshitmachines.com)
+* [LLMs Must Hallucinate to Function](/blog/2025-11-16-llms-must-hallucinate-to-function/)
+* [Meta’s AI rules have let bots hold ‘sensual’ chats with kids, offer false medical info](https://www.reuters.com/investigates/special-report/meta-ai-chatbot-guidelines/)
+* [NIST article on the brain](https://www.nist.gov/blogs/taking-measure/brain-inspired-computing-can-help-us-create-faster-more-energy-efficient#:~:text=The%20human%20brain%20is%20an,just%2020%20watts%20of%20power.)
+* [_Scientists now know that bees can process time, a first in insects_](https://www.cnn.com/2025/11/12/science/bees-visual-stimulus-study-scli-intl)
+* [_Bees make some very smart decisions. Their brains are now a model for AI_](https://www.wvxu.org/podcast/focus-on-technology/2023-08-07/bees-brains-model-ai)
+* [Human brain organoids reveal pre-configured firing patterns](https://particle.news/story/human-brain-organoids-reveal-preconfigured-firing-patterns)
+* [Corvidae](https://en.wikipedia.org/wiki/Corvidae)
+* [Cephalopods](https://en.wikipedia.org/wiki/Cephalopod)
+* [Extropic Thermodynamic Computing](https://extropic.ai/);
+* [University of Texas at Dallas Neuromorphic Computer](https://thedebrief.org/forget-ai-scientists-have-developed-a-neuromorphic-computer-that-thinks-like-a-human-brain/);
+* [USC Viterbi School of Engineering and the School of Advanced Computing Integrated Spiking Artificial Neuron](https://scitechdaily.com/new-artificial-neurons-physically-replicate-the-brain/); and
+* [Tenstorrent Blackhole™ RISC-V Arrays](https://tenstorrent.com/hardware/blackhole).
+* [FPAA (field programmable analog arrays)](https://en.wikipedia.org/wiki/Field-programmable_analog_array)
+* [Gilligan's Island](https://en.wikipedia.org/wiki/Gilligan's_Island)
+* [Rubinius](https://rubinius.com)
+* [build2](https://build2.org)
+* [Zig](https://ziglang.org)
+* [LLVM](https://llvm.org)
