@@ -153,7 +153,7 @@ Git manages source code. It's not an _ad hoc_ project or package manager. We use
 
 The [build2](https://build2.org) tools for configuring, resolving dependencies, _development_ package management, building, and testing.
 
-I would have to say that build2 must been built by aliens because it deftly avoids the typical mess created by mere mortals, like we see in Bazel or CMake. It has a strong sense of the most efficient way to build packages and a package ecosystem, but is flexible enough to accommodate almost any type of project configuration you can imagine either punting on its responsibility or sacrificing its ideals.
+I would have to say that build2 must have been built by aliens because it deftly avoids the typical mess created by mere mortals, like we see in Bazel or CMake. It has a strong sense of the most efficient way to build packages and a package ecosystem, but is flexible enough to accommodate almost any type of project configuration you can imagine without either punting on its responsibility or sacrificing its ideals.
 
 Finally, let's talk about package managers for a moment: I identify three types of package managers:
 
@@ -165,7 +165,7 @@ There are overlaps between all these. A system package manager, like APT on Ubun
 
 The Rubinius build system must be flexible and modular enough that system package maintainers can easily substitute their own system packages when they desire, while still being as smooth and convenient for developers working on the Rubinius modules.
 
-build2 cleanly separates the source code (managed by git) from the configuration and build, in a completely separate directory. In fact, multiple simultaneous, parallel configurations are the norm. You don't have to rebuild to use a debug version and then recompile everything to do benchmarks on a release version. The debug, instrumented, release, etc versions live side-by-side.
+build2 cleanly separates the source code (managed by git) from the configuration and build files, which are in a completely separate directory. In fact, multiple simultaneous, parallel configurations are the norm. You don't have to rebuild to use a debug version and then recompile everything to do benchmarks on a release version. The debug, instrumented, release, etc versions live side-by-side.
 
 For the end-user, we are prioritizing Homebrew taps and "bottle" builds (pre-built binaries that are installed in just a few seconds).
 
@@ -177,7 +177,7 @@ The `rbx` application is the central tool in the Rubinius language platform.
 
 It is both a compiler and runtime. It must be as resource-efficient as possible, so a hard rule is that no managed code must be loaded to provide the core functionality. In addition, it is designed to be modular enough that less-essential functionality can be lazily loaded as shared libraries.
 
-You may wonder, if the Ruby core library is written in Ruby, how will the Ruby runtime load without running any managed code? Since rbx is an end-to-end (i.e. from parser to code generator) native compiler built on LLVM, the Ruby core library will be precompiled to machine code, but of course, any dynamism will still function the same way "de-opt" works with the JIT (just-in-time) compiler and falling back to interpreted code from JIT-compiled when a JIT assumption is invalid.
+You may wonder, if the Ruby core library is written in Ruby, how will the Ruby runtime load without running any managed code? Since `rbx` is an end-to-end (i.e. from parser to code generator) native compiler built on LLVM, the Ruby core library will be precompiled to machine code, but of course, any dynamism will still function the same way "de-opt" works with the JIT (just-in-time) compiler and falling back to interpreted code from JIT-compiled when a JIT assumption is invalid.
 
 Following the pattern of "umbrella" executables, there will be distinct "ruby" and "python" executable (i.e. `rbx ruby` and `rbx python`) so that command line processing of options is distinct.
 
@@ -217,7 +217,7 @@ The installable Rubinius package will continue to be the "batteries included" ve
 
 For the most part, this means Rubinius is simply one meta-package (in build2 terms) configuration that assembles the component packages in a particular way.
 
-While it may seem unnecessary to do this when build2 makes it quite easy, there's still a lot of value in a common piece of infrastructure for aiding people learning or teams building certain applications. The nice thing is that such a meta-package doesn't interfere in any way with someone building an alternative. There are no extra hoops to jump through.
+While it may seem unnecessary to do this as a separate project when build2 makes it quite easy for anyone to do so, there's still a lot of value in a common piece of infrastructure for aiding people learning or teams building certain applications. The nice thing is that such a meta-package doesn't interfere in any way with someone building an alternative. There are no extra hoops to jump through.
 
 * **librbx-ruby:** The Ruby core library, written in Ruby;
 * **librbx-python:** The Python library;
