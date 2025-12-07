@@ -30,5 +30,13 @@ export default defineMarkdocConfig({
       attributes: {
       },
     },
+    content_image: {
+      render: component('./src/components/ContentImage.astro'),
+      attributes: {
+        src: { type: String, required: true },
+        title: { type: String },
+        title_url: { type: String },
+      },
+    },
   },
 });

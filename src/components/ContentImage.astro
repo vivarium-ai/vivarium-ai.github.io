@@ -1,0 +1,29 @@
+---
+interface Props {
+  src: string;
+  title?: string;
+  title_url?: string;
+}
+
+const { src, title, title_url } = Astro.props;
+const altText = title ?? "image";
+---
+<div>
+  <img
+    src={src}
+    alt={altText}
+    class="w-full border-1 rounded-lg"
+  />
+
+  {title && (
+    <p class="text-center mt-2">
+      {title_url ? (
+        <a href={title_url} class="underline hover:no-underline">
+          {title}
+        </a>
+      ) : (
+        <strong>{title}</strong>
+      )}
+    </p>
+  )}
+</div>
