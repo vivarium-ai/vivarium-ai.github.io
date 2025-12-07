@@ -37,17 +37,18 @@ So, here we have a human brain... According to [a recent article by NIST](https:
 
 I guess things have changed a bit with LED lights now, but 20 watts is a dim incandescent light bulb. Yet, with those measly 20 watts, we can recognize the non-existent triangle in this image in a fraction of a second.
 
-<img src="/Kanizsa_triangle.svg" alt="Kanizsa's triangle drawing" class="w-full border-1 rounded-lg" />
-
-<p class="text-center mt-2">
-  <a href="https://commons.wikimedia.org/w/index.php?curid=1788215">Kanizsa's Triangle</a>
-  by <a href="//commons.wikimedia.org/wiki/User:Fibonacci" title="User:Fibonacci">Fibonacci</a>
-  (<a href="http://creativecommons.org/licenses/by-sa/3.0/" title="Creative Commons Attribution-Share Alike 3.0">CC BY-SA 3.0</a>)
-</p>
+{% content_image
+  src="/Kanizsa_triangle.svg"
+  title="Kanizsa's Triangle"
+  title_url="https://commons.wikimedia.org/w/index.php?curid=1788215"
+/%}
 
 And this sort of thing below is called a "bi-stable" image. You can switch back and forth between the young woman and the old woman (you see them both, right?), but I'd challenge to see an old and young woman simultaneously. Also notice how effortlessly you're able to switch between the two.
 
-<img src="/old-woman-young-woman.jpg" alt="Old woman, young woman bi-stable image" class="w-full border-1 rounded-lg" />
+{% content_image
+  src="/old-woman-young-woman.jpg"
+  title="Old Woman, Young Woman Bi-stable Image"
+/%}
 
 Now, I'm guessing you've probably had an experience or two with an LLM where you think, "Wow! How did it do that??" I have. But, if you've used them much at all, you've also seen the opposite, an utter lack of even a shred of actual understanding, _because they do not have any_. We imbue the word sequences they somewhat randomly spit out with our own experience and intelligence and "see" the Kanizsa triangle that _does not exist_.
 
@@ -203,9 +204,11 @@ The smallest build I've been able to manage so far requires compiling more than 
 
 Suffice to say, most of the time, you _do not_ want to be recompiling that thing. Takes me back to the 90's...
 
-<img src="https://imgs.xkcd.com/comics/compiling.png" alt="xkcd compiling" class="w-full border-1 rounded-lg" />
-
-<p class="text-center mt-2"><a href="https://xkcd.com/303">https://xkcd.com/303</a></p>
+{% content_image
+  src="https://imgs.xkcd.com/comics/compiling.png"
+  title="https://xkcd.com/303"
+  title_url="https://xkcd.com/303"
+/%}
 
 So, LLVM is the one major exception to the build2 scheme above. There's no way we're going to make build2 packages out of it. build2 absolutely refuses to be a "wrapper" for another build system (good on them, I completely agree). And we do not want to mix the system-installed (no, not even the "devel" part) with the Rubinius build (explaining why in detail is too long for this post).
 
