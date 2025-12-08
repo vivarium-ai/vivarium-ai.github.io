@@ -7,7 +7,8 @@ const howtos = await getCollection("howtos");
 const reference = await getCollection("reference");
 ---
 
-    <aside class="hidden sm:block">
+<nav aria-label="All documentation" class="text-sm">
+  <aside class="block">
     <h1 class="mb-2 px-2 text-xs font-semibold uppercase tracking-wide">
       Documentation
     </h1>
@@ -55,4 +56,5 @@ const reference = await getCollection("reference");
         ))}
       </ul>
     </section>
-    </aside>
+  </aside>
+</nav>
