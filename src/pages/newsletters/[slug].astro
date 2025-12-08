@@ -21,7 +21,7 @@ const { Content } = await item.render();
 
 <SiteLayout title={item.data.title ?? item.slug}>
   <main
-    class="grid grid-cols-1 sm:grid-cols-[1fr_3fr_1fr] gap-4 [&>*]:min-w-0 [&>*]:[overflow-wrap:anywhere]"
+      class="grid grid-cols-1 sm:grid-cols-[1fr_3fr_1fr] gap-4 [&>*]:min-w-0 [&>*]:[overflow-wrap:anywhere]">
     <aside class="hidden sm:block">
       <div class="sticky top-20 shrink-0 min-w-0 overflow-wrap:anywhere pe-2">
         <NewsList activeId={item.slug} />

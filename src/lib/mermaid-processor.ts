@@ -28,14 +28,11 @@ export function extractMermaidCode(node: any): string {
     }
   }
 
-  return parts.join("").trim();
+  return parts.join("")
 }
 
 export function renderMermaidToSvg(code: string): string {
-  const trimmed = code.trim();
-  if (!trimmed) return "";
-
-  const hash = createHash("sha1").update(trimmed).digest("hex").slice(0, 12);
+  const hash = createHash("sha1").update(code).digest("hex").slice(0, 12);
   const outFile = join(outDir, `${hash}.svg`);
   const cacheFile = join(cacheDir, `${hash}.mmd`);
 
@@ -43,7 +40,7 @@ export function renderMermaidToSvg(code: string): string {
   mkdirSync(cacheDir, { recursive: true });
 
   if (!existsSync(outFile)) {
-    writeFileSync(cacheFile, trimmed, "utf8");
+    writeFileSync(cacheFile, code, "utf8");
 
     execFileSync(
       "npx",

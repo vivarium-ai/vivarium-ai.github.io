@@ -40,6 +40,23 @@
   @apply prose;
 }
 
+.prose blockquote p:first-of-type::before,
+.prose blockquote p:first-of-type::after {
+  content: none !important;
+}
+
+.prose code::before,
+.prose code::after {
+  content: none !important;
+}
+
+.dark .prose-invert blockquote p:first-of-type::before,
+.dark .prose-invert blockquote p:first-of-type::after,
+.dark .prose-invert code::before,
+.dark .prose-invert code::after {
+  content: none !important;
+}
+
 .prose-compact :where(ul > li, ol > li) {
   margin-block: 0.05em;
 }
