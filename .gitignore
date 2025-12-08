@@ -3,6 +3,10 @@ dist/
 # generated types
 .astro/
 
+# generated mermaidjs svg
+.mermaid-cache
+public/mermaid
+
 # dependencies
 node_modules/
 

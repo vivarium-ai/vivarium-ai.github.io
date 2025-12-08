@@ -9,7 +9,10 @@ export default defineConfig({
   site: 'https://vivarium-ai.com',
   base: '/',
 
-  vite: { plugins: [tailwind()] },
+  vite: {
+    plugins: [tailwind()],
+    assetsInclude: ["**/mermaid/*.svg"],
+  },
   integrations: [
     solidJs(),
     markdoc({

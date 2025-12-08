@@ -1,14 +1,36 @@
 import { defineMarkdocConfig, component } from "@astrojs/markdoc/config";
+import { extractMermaidCode, renderMermaidToSvg } from "@/lib/mermaid-processor.ts";
+import Markdoc from "@markdoc/markdoc";
+
+const { Tag } = Markdoc;
 
 export default defineMarkdocConfig({
   tags: {
     mermaid: {
-      // map to an Astro component
-      render: component("./src/components/content/Mermaid.astro"),
-      // we let authors either do {% mermaid %}...{% /mermaid %} or pass code=""
+      render: "img",
       attributes: {
-        code: { type: String, required: false },
-        title: { type: String, required: false },
+        src: { type: String },
+        alt: { type: String },
+        title: { type: String },
+      },
+      transform(node, config) {
+        const attrs = node.transformAttributes(config);
+        const title = (attrs.title as string | undefined) ?? "Mermaid diagram";
+
+        const code = extractMermaidCode(node);
+
+        if (!code) {
+          return new Tag("span", {}, []);
+        }
+
+        const src = renderMermaidToSvg(code);
+
+        return new Tag("img", {
+          src,
+          alt: title,
+          title,
+          class: "w-full h-auto border-1 rounded-lg p-2 my-4"
+        });
       },
     },
     youtube: {
