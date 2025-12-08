@@ -50,7 +50,9 @@ jobs:
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
 
       - name: Install Chrome for mermaid-cli (Puppeteer)
-        run: npx puppeteer browsers install chrome-headless-shell
+        run: |
+          export PUPPETEER_CACHE_DIR=./node_modules/.puppeteer_cache
+          npx puppeteer browsers install chrome-headless-shell
 
       - name: Install deps
         run: npm ci
