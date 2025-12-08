@@ -49,6 +49,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
 
+      - name: Install Chrome for mermaid-cli (Puppeteer)
+        run: npx puppeteer browsers install chrome-headless-shell
+
       - name: Install deps
         run: npm ci
 
