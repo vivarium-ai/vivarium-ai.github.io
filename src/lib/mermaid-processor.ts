@@ -5,7 +5,7 @@ import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import { execFileSync } from "node:child_process";
 
-const PUPPETEER_CONFIG = join(process.cwd(), "puppeteer.config.cjs");
+const PUPPETEER_CONFIG = join(process.cwd(), "puppeteer.config.json");
 
 const dir = dirname(fileURLToPath(import.meta.url));
 const svgDir = "mermaid";
@@ -50,7 +50,7 @@ export function renderMermaidToSvg(code: string): string {
       [
         "mmdc",
         "-i",
-        cacheFile,       // your .mmd input
+        cacheFile,
         "-o",
         outFile,
         "--backgroundColor",
