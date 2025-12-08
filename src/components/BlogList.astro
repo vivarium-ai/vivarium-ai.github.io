@@ -1,4 +1,8 @@
 ---
+import ShowHide from "@/components/ShowHide.jsx";
+import { Icon } from "solid-heroicons";
+import { chevronDoubleLeft, chevronDoubleRight } from "solid-heroicons/solid";
+
 import { getBlogList, isActivePath } from "@/lib/blog";
 const blogLinks = await getBlogList();
 
@@ -6,10 +10,23 @@ const { activeId } = Astro.props;
 ---
 
 <nav aria-label="All blog posts" class="text-sm">
-  <h2 class="mb-2 px-2 text-xs font-semibold uppercase tracking-wide opacity-70">
-    Blog posts
-  </h2>
-  <ul class="space-y-1">
+  <div class="flex items-center gap-3">
+    <h2 class="mb-2 px-2 inline text-xs font-semibold uppercase tracking-wide opacity-70">
+      Blog posts
+    </h2>
+
+    <button
+      id="toggle-blog-index"
+      aria-expanded="false"
+      aria-label="Toggle blog index navigation"
+      class="hidden items-right p-2 rounded-md border border-neutral-300 dark:border-neutral-700"
+    >
+      <Icon id="icon-index-expand" path={chevronDoubleRight } class="h-6 w-6" />
+      <Icon id="icon-index-collapse" path={chevronDoubleLeft } class="h-6 w-6 hidden" />
+    </button>
+  </div>
+
+  <ul id="small-screen-index" class="space-y-1">
     {blogLinks.map((it) => {
       const isActive = isActivePath(it.path, activeId);
       return (
@@ -31,3 +48,11 @@ const { activeId } = Astro.props;
     })}
   </ul>
 </nav>
+
+<ShowHide
+  client:load
+  targetId="small-screen-index"
+  toggleId="toggle-blog-index"
+  showIconId="icon-index-expand"
+  hideIconId="icon-index-collapse"
+/>

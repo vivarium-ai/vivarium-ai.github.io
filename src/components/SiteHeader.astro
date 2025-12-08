@@ -1,6 +1,7 @@
 ---
 import SocialIcons from "@/components/SocialIcons.astro";
 import ThemeSwitch from "@/components/ThemeSwitch.astro";
+import ShowHide from "@/components/ShowHide.jsx";
 
 import { Icon } from "solid-heroicons";
 import { bars_4, xMark } from "solid-heroicons/solid";
@@ -31,19 +32,19 @@ import { bars_4, xMark } from "solid-heroicons/solid";
 
   <div class="md:hidden flex items-center gap-3">
     <button
-      id="menu-toggle"
+      id="toggle-menu"
       aria-expanded="false"
       aria-label="Toggle navigation"
       class="p-2 rounded-md border border-neutral-300 dark:border-neutral-700"
     >
-      <Icon id="icon-menu" path={bars_4} class="h-6 w-6" />
-      <Icon id="icon-close" path={xMark} class="h-6 w-6 hidden" />
+      <Icon id="icon-menu-open" path={bars_4} class="h-6 w-6" />
+      <Icon id="icon-menu-close" path={xMark} class="h-6 w-6 hidden" />
     </button>
   </div>
 </header>
 
 <nav
-  id="mobile-nav"
+  id="small-screen-menu"
   class="md:hidden hidden flex flex-col gap-2 text-sm mt-2 pb-2 border-b border-neutral-200 dark:border-neutral-700"
 >
   <a class="py-1 hover:underline" href="/blog/">Blog</a>
@@ -60,19 +61,10 @@ import { bars_4, xMark } from "solid-heroicons/solid";
   </div>
 </nav>
 
-<script>
-  let open = false;
-
-  const btn = document.getElementById("menu-toggle");
-  const menu = document.getElementById("mobile-nav");
-  const iconMenu = document.getElementById("icon-menu");
-  const iconClose = document.getElementById("icon-close");
-
-  btn.addEventListener("click", () => {
-    open = !open;
-    menu.classList.toggle("hidden");
-    iconMenu.classList.toggle("hidden", open);
-    iconClose.classList.toggle("hidden", !open);
-    btn.setAttribute("aria-expanded", open ? "true" : "false");
-  });
-</script>
+<ShowHide
+  client:load
+  targetId="small-screen-menu"
+  toggleId="toggle-menu"
+  showIconId="icon-menu-open"
+  hideIconId="icon-menu-close"
+/>
