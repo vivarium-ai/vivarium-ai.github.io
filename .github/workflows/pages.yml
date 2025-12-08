@@ -21,6 +21,9 @@ jobs:
     defaults:
       run:
         working-directory: .
+    env:
+      PUPPETEER_CACHE_DIR: ${{ github.workspace }}/node_modules/.puppeteer_cache
+
     steps:
       - name: Checkout
         uses: actions/checkout@v5
@@ -53,13 +56,9 @@ jobs:
         run: npm ci
 
       - name: Install Chrome for mermaid-cli (Puppeteer)
-        run: |
-          export PUPPETEER_CACHE_DIR=./node_modules/.puppeteer_cache
-          npx puppeteer browsers install chrome-headless-shell
+        run: npx puppeteer browsers install chrome-headless-shell
 
       - name: Build with Astro
-        env:
-          PUPPETEER_CACHE_DIR: ./node_modules/.puppeteer_cache
         uses: withastro/action@v3
 
   deploy:
