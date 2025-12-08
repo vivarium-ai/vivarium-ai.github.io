@@ -5,8 +5,17 @@ import NewsList from "@/components/NewsList.astro";
 import { formatDateUTC } from "@/lib/dates.ts";
 
 const all = await getCollection("newsletters");
-const items = all.filter((p) => p.data.published !== false);
+const items = all
+  .filter((p) => p.data.published !== false)
+  .sort((a, b) => {
+    const ad = new Date(a.data.date).getTime();
+    const bd = new Date(b.data.date).getTime();
+    return ad - bd;
+  });
+
 const item = items.at(-1);
+
+if (!item) return Astro.redirect("/404");
 
 const { Content } = await item.render();
 ---

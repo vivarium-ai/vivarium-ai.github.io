@@ -7,8 +7,17 @@ import { titleFor } from "@/lib/docs";
 import { formatDateUTC } from "@/lib/dates";
 
 const all = await getCollection("blog");
-const items = all.filter((p) => p.data.published !== false);
+const items = all
+  .filter((p) => p.data.published !== false)
+  .sort((a, b) => {
+    const ad = new Date(a.data.date).getTime();
+    const bd = new Date(b.data.date).getTime();
+    return ad - bd;
+  });
+
 const item = items.at(-1);
+
+if (!item) return Astro.redirect("/404");
 
 const title = titleFor(item);
 const description = item.data.description ?? "";
