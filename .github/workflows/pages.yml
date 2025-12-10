@@ -60,12 +60,6 @@ jobs:
       - name: Build with Astro
         uses: withastro/action@v3
 
-      - name: Find mermaid artifacts
-        run: |
-          pwd
-          ls -la
-          find . -name mermaid -type d
-
   deploy:
     runs-on: ubuntu-latest
     needs: build
