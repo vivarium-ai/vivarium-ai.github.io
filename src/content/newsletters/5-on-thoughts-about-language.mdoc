@@ -1,0 +1,83 @@
+---
+title: On Thoughts About Language
+author: Brian Shirai
+date: 2025-12-14T20:00:00Z
+week: 5
+---
+
+It's a short one this week, but don't be fooled, there are four entire universes of topics to explore nestled in these few words...
+
+As I've shared before, the vision for Vivarium is a system for investigating, testing, and implementing "real" artificial or machine intelligence, and is based on four pillars: agents, language, tools, and infrastructure.
+
+By "real", I mean not a parlor trick, not something that humans just anthropomorphize into seeming intelligence, but actual processes that can perceive, learn, process, and produce new information.
+
+Here are some things to explore along these pillar dimensions:
+
+1. **Agents:** There was an interesting article in Quanta magazine last week, [_"The Polyglot Neuroscientist Resolving How the Brain Parses Language"_](https://www.quantamagazine.org/the-polyglot-neuroscientist-resolving-how-the-brain-parses-language-20251205/). A moments reflection should be sufficient to establish that thoughts are not the same as the languages we use express them, so this research is extremely relevant in the age of the "LLM Industrial Complex". I reached out to Professor Fedorenko and she kindly suggest a paper to review and another researcher's work to investigate, so I wanted to share those:
+    * [_"Dissociating language and thought in large language models"_](https://www.cell.com/trends/cognitive-sciences/abstract/S1364-6613(24)00027-5);
+    * [Professor Joshua Tenenbaum](https://scholar.google.com/citations?hl=en&user=rRJ9wTJMUB8C)
+    * [_"How to Grow a Mind: Statistics, Structure, and Abstraction"_](https://www.science.org/doi/abs/10.1126/science.1192788)
+    * [_"A Global Geometric Framework for Nonlinear Dimensionality Reduction"_](https://www.science.org/doi/abs/10.1126/science.290.5500.2319)
+1. **Languages:** I've written previously about [why language is important for Vivarium](/blog/2025-11-08-part-2-the-languages/), and about [some of the very cool things languages can do](/blog/2025-11-23-what-can-languages-do/). This week, I also wrote about more specifically what a [Component Language Interface](/blog/component-language-interface/) would look like. You're probably familiar with the now almost ubiquitous "Application Programming Interface" and the evolution of this to generally mean a remote system being accessible via certain network endpoints. The "Component Language Interface" is a generalization of these ideas using the full power of a language as the interface between components.
+1. **Tools:** One of the most important tools for building Vivarium is the [Rubinius language platform](https://rubinius.com). There's a ton of work to do to bring up the new end-to-end compiler based entirely on the LLVM tool chain (instead of hodge-podge of different pieces), so I did not want to waste any time on the legacy components if avoidable, but I decided it would be helpful to have the existing Rubinius code working today. Unfortunately, I ran into a nasty, obscure concurrency issue using the compare-and-swap primitive for the expanded header that the C-API uses to keep the garbage collector sane. More on that below. But the good news is that having the current Rubinius system running while the new compiler is built out enables other experiments, like starting to build out the Python C-API.
+1. **Infrastructure:** This one is not about Vivarium _per se_ but rather about news last week of a new project out there. [Evan Phoenix](https://github.com/evanphx), the creator of [Rubinius](https://github.com/rubinius/rubinius) and [his team](https://miren.dev) have released a developer preview of [Miren](). There's a page explaining [how Miren is different](https://miren.dev/compare) than some of the other infrastructure that you may be familiar with. This is relevant to Vivarium for a couple reasons. I wrote last week about [some infrastructure ideas](/newsletters/4-saving-an-afternoon-in-the-library/#computational-infrastructure-versus-infrastructure-as-code) that I think are important for building a system like Vivarium, and more generally, I think we do not yet see enough innovation around infrastructure and we will need that as [more exotic hardware concepts](https://extropic.ai) start to become more widely available.
+
+I'll be writing more about Professor Tenenbaum's work in the future as I dig into more of those papers.
+
+## News Around Your Towns
+
+It's official, I joined [PDX Hackerspace](https://pdxhackerspace.org) and I'm going to be running a weekly meetup there every Tuesday from 6-9pm starting after the first of the year.
+
+There's a bunch of interesting people doing everything from 3-d printing, to custom circuit boards, to robotics, to computer security. For the meetup, there's not a fixed agenda, instead it's up to whatever people are interested in learning or working on.
+
+## Reader's Corner
+
+I'm curious to hear what people are reading these days to keep current on what's going on in your language community or an area of tech that you're interested in. I'm subscribed to a few newsletters, but it's hard to find the right balance between "OMG the fire hose" and "Wait, what? How did I not hear about this?"
+
+{% email_capture /%}
+
+## How's it Tracking?
+
+As mentioned above, I decided to get the existing [github.com/rubinius/rubinius](https://github.com/rubinius/rubinius) code building and drop in GitHub Actions this week (we were last using Travis CI, but they no longer support open source with free plans).
+
+But ten years is a long time and both operating systems and compilers have improved a lot in that time. Unfortunately, I hit a bug in the way that we manage "handles" for the C-API, so I thought I'd share some details on that.
+
+Rubinius is a fairly complex system because we implemented most of the Ruby core library in Ruby itself. This means that building the system requires bootstrapping with an existing Ruby implementation. To avoid some of that complexity, a cached pre-built Ruby core library (the CodeDB) is used. That part was still working fine (i.e. the AWS S3 bucket was still faithfully serving the CodeDB instance).
+
+We also depend on a few external libraries that for various reasons were difficult to consistently install across various operating systems. One of those is `libffi` that is used to provide "foreign-function interfaces" from Ruby code to C code without directly using APIs in CRuby. Recall that CRuby is written in C and the core library is implemented in C, so "C-extensions" (i.e. other Ruby libraries) were initially built in such a way that they were deeply intertwined with CRuby's own functions. Early in Rubinius, we wanted a way to provide a more clean separation, so Evan created the first implementation of a modern Ruby FFI.
+
+The vendored `libffi` was from 2014 and was broken badly for modern AArch64, so I updated that without too much hassle.
+
+There were a few other issues to be fixed involving variable-sized dynamic C arrays, something that newer versions of Clang++ are very strict about, so I fixed those.
+
+Finally, the whole system was building to the point that the virtual machine could boot, but it was immediately either hitting a type error or an abort. In Rubinius from very early, we implemented the virtual machine interface to C/C++ code using explicit type checks, unlike the CRuby implementation at the time that merely passed objects directly to C code that assumed they were correct. So in Rubinius, if the wrong object were passed, you would get a type error just like you'd expect in your Ruby code rather than a process crash. However, because Rubinius is written in C++ (which has exceptions) but also has to support C code (which does not have exceptions), we have to be very careful about raising a C++ exception if the call-stack included C function call frames. In some cases, we have to bail out with a controlled process abort. And that's what I was seeing.
+
+When the Rubinius machine is aborting, if the environment variable `RBX_PAUSE_ON_CRASH` is set, the process will wait to attach a debugger. This is extremely useful when the process is launched via a script or something else and not simple to start with debugger. So I added that to my env and attached debugger.
+
+One of the other interesting things about Rubinius is that we use a "shadow stack". That is, there are proper data structures for each call frame that can easily be inspected without having to dig into the CPU registers, so it's very easy to walk up and down the call stack and look at what values exist and what methods are being called.
+
+Another interesting thing is that every virtual machine instruction is a proper C++ function so that when you're looking at the call stack, or stepping through execution, it's easy to see what instructions are being executed.
+
+What I discovered was that the `MemoryHandle` we use to provide an immutable reference to C-API code appeared to be corrupted. This was pretty odd because a lot of effort has gone into making this mechanism robust.
+
+A typical Ruby object in Rubinius is represented by a subclass of the `Object` C++ class. This is another nice thing about Rubinius. Even though we need to rely on some C++ classes, those classes are named exactly the same as the corresponding Ruby class, so it's easy to find your way around.
+
+An "Object" is a bit of memory that has some state flags associated with it, as well as a pointer to the class for that object, and a pointer to instance variables. Since Rubinius has a precise garbage collector, and objects can be moved in memory, we need a way to associate a "handle" with some objects when those objects are used in a C-extension. Since every object won't need this, we don't want to waste memory, so we lazily associate the `MemoryHandle` with an object when needed. But we also need objects to have known sizes so the garbage collector knows how many contiguous bytes the object uses.
+
+The way we handle these two somewhat conflicting goals is to "inflate" the header of the object when needed. What this means is that we replace the "header flags" with a pointer to another object that has those flags as well as other data. This "inflated header" is the `MemoryHandle` object. That object never moves, so it can be passed to the C-extension. And the `MemoryHandle` object contains a point to the managed Ruby object, so given one of them, you can always recover the other.
+
+Since Rubinius has no global interpreter lock, we are very careful to manage shared state, and try to avoid locking operations that would limit the possible parallelism on multi-core. Back when Rubinius was first created, it was still pretty rare to have a lot of parallelism in applications, so everything was still developing, from operating systems to compilers to algorithms.
+
+Anyway, so it turns out that in using the "compare-and-swap" facilities in C++, there is a code path that can result in the wrong header being associated with the object, and then in the C-API (specifically, the one used by the Ruby parser extracted from CRuby all those years ago), the object representing the string to parse had the wrong `MemoryHandle`, resulting in an abort because there's no way to gracefully recover from this is C code.
+
+Not to worry, it's all being fixed up prim and proper so that we'll be able to use the existing Rubinius for experimentation and comparison while the new compiler is being assembled.
+
+## London Calling...
+
+I read this post with interest because I've been wondering the same thing for more than a year: [_"The Gorman Paradox: Where Are All The AI-Generated Apps?_"](https://codemanship.wordpress.com/2025/12/14/the-gorman-paradox-where-are-all-the-ai-generated-apps/).
+
+My request to you: What apps are you building with this "PhD in your pocket" (as Altman claims), or what app are you interested in building in the new year?
+
+## Looking Forward to Next Week
+
+
