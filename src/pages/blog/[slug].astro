@@ -58,7 +58,7 @@ const tocItems = buildToc(headings, [2, 3]);
     <article
       class="prose dark:prose-invert prose-compact grow shrink min-w-0 @container prose-headings:scroll-mt-28">
       <header class="mb-8 border-b pb-5">
-        <h1 class="text-3xl font-semibold tracking-tight">{title}</h1>
+        <h1>{title}</h1>
         {description && <p class="mt-2 text-sm opacity-80">{description}</p>}
         {pubDate && (
           <p class="mt-2 text-xs opacity-70"> {pubDate} </p>
