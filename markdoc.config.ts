@@ -1,10 +1,20 @@
 import { defineMarkdocConfig, component } from "@astrojs/markdoc/config";
 import { extractMermaidCode, renderMermaidToSvg } from "@/lib/mermaid-processor.ts";
 import Markdoc from "@markdoc/markdoc";
+import shiki from '@astrojs/markdoc/shiki'
 
 const { Tag } = Markdoc;
 
 export default defineMarkdocConfig({
+  extends: [
+    shiki({
+      themes: {
+        light: 'github-light',
+        dark: 'github-dark',
+      },
+      wrap: true,
+    }),
+  ],
   tags: {
     mermaid: {
       render: "img",
