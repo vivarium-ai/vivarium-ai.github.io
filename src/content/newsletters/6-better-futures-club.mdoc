@@ -1,0 +1,195 @@
+---
+title: Better Futures Club
+author: Brian Shirai
+date: 2025-12-21T20:00:00Z
+week: 6
+---
+
+The meta-theme for this week is inspired by the book, [_"The Structure of Scientific Revolutions"_](https://www.goodreads.com/book/show/61539.The_Structure_of_Scientific_Revolutions) by Thomas S. Kuhn.
+
+Kuhn wanted to explain how scientific understanding and explanations evolve. The topics and subject matter are far too involved to do them any justice with a quick summary here, but they certainly provide an essential foundation for both attempting to understand the current "artificial intelligence" paradigm, as well as possibly illuminating how to accelerate and improve the "science of intelligence".
+
+Despite the attention given to the mythical "Great Historical Figure" (e.g. consider [Prometheus](https://en.wikipedia.org/wiki/Prometheus)) who single-handedly discovers and explains some profound fact of existence, science is _always_ a collective and [communitarian](https://en.wikipedia.org/wiki/Communitarianism) endeavor.
+
+After the pandemic turned the world upside down, technology has changed, a _very_-digital-native generation of kids have grown up, and _a lot_ of other social dynamics are different, so how _do_ you help a new community form in the current reality?
+
+### Better Futures Club
+
+There are a pair of talks by David Deutsch that I wish everyone could watch.
+
+In [A New Way To Explain Explanation](https://medium.com/dorothyknows/david-deutsch-a-new-way-to-explain-explanation-e153f981428c), he talks about how humans solved the mystery of starlight in about 40 years after having spent more than 100,000 years gazing up at the night sky and trying to explain what they saw.
+
+And in [The Unknowable & How To Prepare For It](https://medium.com/dorothyknows/david-deutsch-the-unknowable-how-to-prepare-for-it-e1b2c7d78744), he talks about how creating new knowledge always creates new problems as well, for which we need good explanations with which to solve them, and that takes us back to what are "good explanations".
+
+We have an unlimited supply of problems to solve, and we have a powerful, demonstrated way to solve them. But are we making use of it?
+
+It may seem like "intelligence" is extremely complex or even mysterious, but is it really so much more mysterious than starlight? It's not like we could go to the stars and sample them and yet we did figure it out. We're surrounded by intelligence, but how hard are we searching for good explanations of how it works?
+
+Certainly not by creating things that parrot humans while consuming vast amounts of energy and other resources and producing many errors.
+
+Last week I mentioned this post, but it's important enough that I'll mention it again: [_"The Gorman Paradox: Where Are All The AI-Generated Apps?_"](https://codemanship.wordpress.com/2025/12/14/the-gorman-paradox-where-are-all-the-ai-generated-apps/).
+
+There are a lot of problems that it would benefit us immensely to solve, but so far, what is claimed to be "artificial intelligence" hasn't shown much value in doing so. Sure, there are a few examples, particularly the work of the [AlphaFold](https://deepmind.google/science/alphafold/) group, but we should be seeing hundreds of times more for the hundreds of billions of dollars that are pouring into LLM companies.
+
+There's never a bad time to remember this statement by Margaret Mead:
+
+> Never doubt that a small group of thoughtful, committed citizens can change the world; indeed, it's the only thing that ever has.
+
+[Shane Becker](https://veganstraightedge.com) is someone who has been around the Ruby and Rubinius world for a long time. He was a regular at Seattle Ruby, co-founded LA Ruby, created the Rubinius logo and some of the best Rubinius t-shirts ever, and many other things.
+
+He has had a vision for a modern version of a creative space inspired by [Bauhaus](https://en.wikipedia.org/wiki/Bauhaus). This intersects well with what I have hoped for ever since I started contributing to Rubinius in 2006 and wanted people to be able to use programming languages to solve problems.
+
+Together, we're going to run a weekly meetup in Portland under the banner of the [Better Futures Club](https://betterfutures.club). We'll be meeting at the [PDX Hackerspace](https://pdxhackerspace.org/) on alternating Tuesdays and Thursdays starting in January. You can find the events on [Luma](https://luma.com/calendar/manage/cal-xmzZlC1aLLW28it) and [Calagator](https://calagator.org/).
+
+### Components & Interfaces
+
+Just like humans are inseparable from their communities and associations, "programs" or "applications" are always collections of distinct parts or "components"&mdash;in a very broad sense of something that has identity with a boundary that distinguishes it from other things.
+
+Sometimes people like to talk about "monoliths" or "monolithic applications" ("mono" from Greek _monos_ ‘alone’, and "-lith" from Greek _lithos_ ‘stone’) as if they were, to reference the above, something like Prometheus, standing alone, apart, above, etc.
+
+Nope, it's just where you draw the boundaries. So a "monolith" typically wouldn't include the operating system, the device drivers, the TCP/IP networking stack, etc. Not everyone would agree, there are still probably one or two [Unikernel](https://en.wikipedia.org/wiki/Unikernel) people out there.
+
+Software applications, or more generally, things that describe computation, are always collections of things.
+
+And between things, there is some sort of boundary, and some sort of interaction. Unless those billiard balls are sitting on the table and nothing ever happens. Then it's just boundaries and no interaction.
+
+#### Lambda Calculus
+
+One of the simplest ways to define computation is the [lambda calculus](). In just a few sentences, it's possible to define a means to describe any possible computation:
+
+1. Variables (taken from an alphabet);
+
+    `x` &ndash; A simple variable.
+
+1. Abstraction (function definition); and
+
+    `λx. M` &ndash; A function with parameter `x` and body `M`.
+
+1. Application (function invocation).
+
+    `M N` &ndash; Applying function `M` to argument `N`.
+
+There are some details about binding and scope of variables that are important. You can read up on that.
+
+Computation in this system is also defined extremely simply. It's a single rule called **β-reduction**:
+
+    `(λx. M) N → M[x := N]` &ndash; Replace all free occurrences of x in M with N.
+
+What would it look like if we introduced boundaries into a sea of computation?
+
+#### Actors
+
+The **"actor model"** is a formal model of _concurrent_ computation. It is also extremely simple. It was defined by [Carl Hewitt](https://en.wikipedia.org/wiki/Carl_Hewitt) in 1973 and formalized by [Gul Agha](https://en.wikipedia.org/wiki/Gul_Agha_\(computer_scientist\)) in 1986 (see [_Actors: A Model of Concurrent Computation in Distributed Systems_](https://direct.mit.edu/books/monograph/4794/ActorsA-Model-of-Concurrent-Computation-in)).
+
+An _**actor**_ is an entity that, upon receiving a message, may do exactly three things:
+
+1. Send a message to other actors;
+1. Create a new actor; and
+1. Change its own behavior for the next message.
+
+These are some properties of actors that arise from this definition:
+
+* Actors communicate only by asynchronous message passing.
+* There is no shared state.
+* Each actor processes its messages sequentially.
+* The order in which message are delivered is not guaranteed.
+* There is no global clock or global state.
+
+Some of the properties of actor-based computation are also interesting:
+
+* Every actor has an identity (an address).
+* Messages are sent to actor identities.
+* The core operation is sending a message, not calling a function.
+* Sending a message does not block the sender.
+* There is no return value from sending a message.
+
+An "actor system" is one where many actors execute concurrently, even though each actor handles messages sent to it one at a time. Hence, concurrency is a _system_ attribute, not a component attribute.
+
+#### Interfaces
+
+Actors and the lambda calculus are truly fascinating systems. Elegant, simple, and yet as capable as it is possible to be (i.e. able to express any possible computation).
+
+Why then did we not use something like this when we began to build systems of communicating parts? Why did we consider that the interactions between components needed to be something mediated by an ["interface definition language"](https://en.wikipedia.org/wiki/Interface_description_language) (IDL) instead of computation?
+
+> An IDL is a generic term for a language that lets a program or object written in one language communicate with another program written in an unknown language.
+
+Here are some examples of the mechanisms that have been proposed to define the interaction between systems:
+
+* [CORBA](https://en.wikipedia.org/wiki/CORBA)
+* [Distributed Component Object Model](https://en.wikipedia.org/wiki/Distributed_Component_Object_Model) (DCOM)
+* [Protocol Buffers](https://en.wikipedia.org/wiki/Protocol_Buffers)
+* JSON Web-Service Protocol ([JSON-WSP](https://en.wikipedia.org/wiki/JSON-WSP))
+* [OMG IDL](https://en.wikipedia.org/wiki/OMG_IDL)
+* [Web Services Description Language](https://en.wikipedia.org/wiki/Web_Services_Description_Language) (WSDL)
+* ...
+
+By my count, there are _at least 30_ such things listed on that Wikipedia page above. Compared to the definitions of lambda calculus and Actors, wow, that's a lot. I wonder why we'd need so many of those?
+
+#### Why not Computation?
+
+[Unison](https://www.unison-lang.org) is a newer programming language that has a couple value propositions.
+
+It is advertised as a new approach to distributed programming where there is "[n]o more writing encoders and decoders at every network boundary. Say where you want computations to run and it happens 🔮 — Dependencies are deployed on the fly."
+
+That sounds _exactly_ like what I've been trying to get across. I wonder why Unison didn't go the "IDL" route?
+
+Did I mention there was going to be homework this week...
+
+## News Around Your Towns
+
+If you're in the Portland Metro area, we'd love to see you at a [Better Futures Club](https://betterfutures.club) meetup in the new year.
+
+I'm also going to check out some of the other events happening around town and probably propose a talk to any that may be interested. I'll report on how that goes.
+
+## Reader's Corner
+
+Reading groups are a great way to engage new material with others. They are also pretty easy to do online. There's a ton of material out there about various models and theories of intelligence. Is anyone participating in a reading group focused on exploring these? Let us know at [`news@vivarium-ai.com`](mailto:news@vivarium-ai.com).
+
+{% email_capture /%}
+
+## How's it Tracking?
+
+It is believed that [Euclid](https://en.wikiquote.org/wiki/Euclid) said, "There is no royal road to geometry." The meaning being that not even a king gets a shortcut to understanding something like mathematics.
+
+The Rubinius LLVM backend is the third major LLVM component and second LLVM backend that I've worked on and each time I believed there could be a shortcut. Each time it seems like there must be a way that doesn't require scaling such a high stone castle wall protecting the vast LLVM riches within, but alas... Perhaps I've learned my lesson.
+
+So progress continues on warping a previously working but totally different backend into one for Rubinius, not entirely unlike [turning a bunch of rusty nails into a knife blade](https://www.youtube.com/watch?v=IDNJxsaR1ng). (You should definitely watch that video, you'll thank me.)
+
+## London Calling...
+
+[Rubinius](https://bsky.app/profile/rubinius.com), [Vivarium AI](https://bsky.app/profile/vivarium-ai.com), and [Better Futures Club](https://bsky.app/profile/betterfutures.club) are all on [Bluesky](https://bsky.app) as verified (via domain name) accounts. The whole open-source and social media ecosystems have evolved a lot in the last decade from what they were in the early Twitter days. Where are conversations happening and what are people talking about? We'd like to ask you for a favor: follow those or suggest accounts to pay attention to.
+
+## Looking Forward to Next Week
+
+We're rapidly running out of days in the 2025 allotment. I know the holiday season is busy for people and many things are demanding attention. In the northern hemisphere, it's also winter and the plants and seeds may look dormant but there's activity underground, ready for spring.
+
+I've written a lot about the various pillars of the Vivarium system, except for infrastructure. To be useful in helping to easily explore existing approaches to machine intelligence, test them, and experiment with them, the whole system needs to be efficient and as easy to interact with as possible. So, I'd like to get a reference system running that embeds at least one interesting intelligence model in an agent component and illustrates an interaction with the other system elements.
+
+Here's hoping you are spending time with friends and family as this year wraps up.
+
+## References
+
+1. [_"The Structure of Scientific Revolutions"_](https://www.goodreads.com/book/show/61539.The_Structure_of_Scientific_Revolutions)
+1. [Prometheus](https://en.wikipedia.org/wiki/Prometheus)
+1. [Communitarianism](https://en.wikipedia.org/wiki/Communitarianism)
+1. [A New Way To Explain Explanation](https://medium.com/dorothyknows/david-deutsch-a-new-way-to-explain-explanation-e153f981428c)
+1. [The Unknowable & How To Prepare For It](https://medium.com/dorothyknows/david-deutsch-the-unknowable-how-to-prepare-for-it-e1b2c7d78744)
+1. [_"The Gorman Paradox: Where Are All The AI-Generated Apps?_"](https://codemanship.wordpress.com/2025/12/14/the-gorman-paradox-where-are-all-the-ai-generated-apps/)
+1. [AlphaFold](https://deepmind.google/science/alphafold/)
+1. [Shane Becker](https://veganstraightedge.com)
+1. [Bauhaus](https://en.wikipedia.org/wiki/Bauhaus)
+1. [Better Futures Club](https://betterfutures.club)
+1. [PDX Hackerspace](https://pdxhackerspace.org/)
+1. [Better Futures Club Luma calendar event](https://luma.com/calendar/manage/cal-xmzZlC1aLLW28it)
+1. [Unikernel](https://en.wikipedia.org/wiki/Unikernel)
+1. [Carl Hewitt](https://en.wikipedia.org/wiki/Carl_Hewitt)
+1. [Gul Agha](https://en.wikipedia.org/wiki/Gul_Agha_\(computer_scientist\))
+1. [_Actors: A Model of Concurrent Computation in Distributed Systems_](https://direct.mit.edu/books/monograph/4794/ActorsA-Model-of-Concurrent-Computation-in)
+1. [Interface Definition Language](https://en.wikipedia.org/wiki/Interface_description_language)
+1. [CORBA](https://en.wikipedia.org/wiki/CORBA)
+1. [Distributed Component Object Model](https://en.wikipedia.org/wiki/Distributed_Component_Object_Model) (DCOM)
+1. [Protocol Buffers](https://en.wikipedia.org/wiki/Protocol_Buffers)
+1. JSON Web-Service Protocol ([JSON-WSP](https://en.wikipedia.org/wiki/JSON-WSP))
+1. [OMG IDL](https://en.wikipedia.org/wiki/OMG_IDL)
+1. [Web Services Description Language](https://en.wikipedia.org/wiki/Web_Services_Description_Language) (WSDL)
+1. [Unison](https://www.unison-lang.org)
