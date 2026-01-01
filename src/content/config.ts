@@ -7,6 +7,44 @@ const docsSchema = z.object({
   order: z.number().optional(),
 });
 
+const docs = defineCollection({
+  loader: glob({ pattern: "*.mdoc", base: "./src/content/docs/" }),
+  schema: docsSchema,
+});
+
+const ecosystem = defineCollection({
+  loader: glob({
+    base: "./src/content/docs",
+    pattern: [
+      "ai-ecosystem.mdoc",
+      "ai-ecosystem/**/*.mdoc",
+    ],
+  }),
+  schema: docsSchema,
+});
+
+const models = defineCollection({
+  loader: glob({
+    base: "./src/content/docs",
+    pattern: [
+      "ai-models.mdoc",
+      "ai-models/**/*.mdoc",
+    ],
+  }),
+  schema: docsSchema,
+});
+
+const architecture = defineCollection({
+  loader: glob({
+    base: "./src/content/docs",
+    pattern: [
+      "vivarium-architecture.mdoc",
+      "vivarium-architecture/**/*.mdoc",
+    ],
+  }),
+  schema: docsSchema,
+});
+
 const articles = defineCollection({
   loader: glob({ pattern: "**/*.mdoc", base: "./src/content/docs/articles" }),
   schema: docsSchema,
@@ -95,6 +133,10 @@ export const collections = {
   newsletters,
   papers,
   events,
+  docs,
+  ecosystem,
+  models,
+  architecture,
   articles,
   tutorials,
   howtos,

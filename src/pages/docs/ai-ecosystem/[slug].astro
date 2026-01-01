@@ -1,0 +1,51 @@
+---
+import { getCollection, getEntry, render } from "astro:content";
+import SiteLayout from "@/layouts/SiteLayout.astro";
+import DocList from "@/components/DocList.astro";
+import DocToc from "@/components/DocToc.astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("ecosystem");
+  return posts.map((p) => ({
+    params: { slug: p.id.split("/").pop()! },
+    props: { fullSlug: p.id },
+  }));
+}
+
+const { fullSlug } = Astro.props;
+
+const entry = await getEntry("ecosystem", fullSlug);
+if (!entry) return Astro.redirect("/404");
+
+const { Content, headings } = await render(entry);
+---
+
+<SiteLayout title={entry.data.title ?? "Article"}>
+  <main
+      class="grid grid-cols-1 sm:grid-cols-[1fr_3fr_1fr] gap-4 [&>*]:min-w-0 [&>*]:[overflow-wrap:anywhere]">
+
+  <aside class="block">
+    <div class="sticky top-20 shrink-0 min-w-0 overflow-wrap:anywhere pe-2">
+      <DocList />
+    </div>
+  </aside>
+
+  <article class="prose dark:prose-invert max-w-none">
+    <p class="text-xs uppercase tracking-wide text-slate-400 mb-4">
+      Explanations
+    </p>
+    <h1>{entry.data.title ?? "Untitled article"}</h1>
+    {entry.data.description && (
+      <p class="text-slate-500 mb-6">{entry.data.description}</p>
+    )}
+    <Content />
+  </article>
+
+  <aside class="hidden md:block">
+    <div class="sticky top-20 shrink-0 min-w-0 overflow-wrap:anywhere ps-2">
+      <DocToc headings={headings} />
+    </div>
+  </aside>
+  </main>
+</SiteLayout>
+
