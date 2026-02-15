@@ -1,0 +1,46 @@
+---
+title: Do Programming Languages Even Matter Anymore?
+author: Brian Shirai
+date: 2026-02-15T13:00:00Z
+---
+
+Riddle me this, LLM-true-believers:
+
+Why don't LLMs just compute whatever it is that you want computed? Why do they need to "write programs"?
+
+As an intelligent being, I am able to calculate any math problem in a mathematical domain that I have learned. I may be terribly slow and so relish the opportunity to use a calculator to assist me, but I don't have to "translate" something into a program to run somewhere else.
+
+LLMs cannot do this, at all, and never will. Why is that?
+
+Because the only thing they can compute is the next token given a "blub" (the thing that resulted from "training"&mdash;which means, calculating a bunch of correlations between a bunch of words) and a "prompt"&mdash;which means, some seed text to start the gears whirring.
+
+LLMs are nothing but [Mad Libs](https://madlibs.com) running on very expensive and very inefficient computer hardware (millions of times less efficient than a human brain) that are sometimes funny (just like Mad Libs), but more often absurd or dangerous.
+
+## What is Software?
+
+Software is a sequence of directives for describing to a computational resource the algorithm to compute a desired value.
+
+The specific piece of software is specially constructed for a specific computational resource. Sure, it's possible to make computational resources that use the same set of instructions, so then the same instance of software could function for any one of them, but that's often not the case.
+
+When computational resources were first available, the software written by humans used these instructions or directives directly.
+
+But the elements of computing on binary numbers (i.e. sequences of only 1s and 0s) are extremely fine-grained and tedious. And so humans, being the problem-solving animals that they are, started to use their _intelligence_ to define "higher-level abstractions" of these "low-level details" to increase the power (i.e. potential to perform work) of their programs. Instead of having to remember hundreds, thousands, millions, or billions of instructions (a feat that is quite difficult for humans), they could remember a low number of 10s of things.
+
+## Languages Matter to Intelligences
+
+Problems are quite difficult to solve. To an intelligence attempting to solve a problem, one critical capability is ignoring details that cannot in fact affect the solution to the problem. These are called "invariants", meaning they do not vary in the solution, they are fixed.
+
+It's possible to create hierarchies of information and representations of information that enable carefully excluding the invariants and focusing on the precise behavior of those things that do vary in the problem in a way that affects the solution.
+
+For example, if you're mailing out a bunch of letters using the same sized envelope, the label printer does not need to account for the size of the envelope, but merely for the number of letters in the name and address of the recipient given the fixed size. A program laying out the text and potentially abbreviating or truncating it can safely ignore the possibility that the size of the label changes.
+
+But the program, or programmer, would have to understand what this constraint (the size of the label) means and when it could be violated. The programmer understands the context and the problem.
+
+And while this is an extremely simple example, at one time, printing mailing labels was a huge business function. Think about power companies, credit companies, employers, etc. sending mail to people.
+
+Printing labels may not be a big thing today, but any software system and the creators of that system deal with the same sorts of problems and so they create programming languages that improve the efficiency of understanding those problems and defining the solutions.
+
+And that's the central point: **LLMs don't care which programming language you use because they are not intelligent, they are not doing any "information processing" in the problem domain of the code they're splurting out, and they'll never be able to perform anything like an actual computation other than flipping a coin on the next "token" to append to a list of previous tokens.**
+
+Fucking brilliant. We're spending how much on this bullshit?
+
